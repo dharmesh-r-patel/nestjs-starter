@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "foxundermoon.shell-format",
+        "yzhang.markdown-all-in-one",
+        "mikestead.dotenv"
+    ]
+}

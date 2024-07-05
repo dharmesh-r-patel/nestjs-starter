@@ -1,0 +1,51 @@
+{
+    "apps": [
+      {
+        "name": "netsjs-starter",
+        "script": "index.js",
+        "args": "start",
+        "exec_interpreter": "node",
+        "node_args": [
+          "--harmony",
+          "--expose-gc",
+          "--max-old-space-size=8192"
+        ],
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "error_file": "../log/error.log",
+        "out_file": "../log/info.log",
+        "instances": 1,
+        "min_uptime": "200s",
+        "max_restarts": 2000,
+        "max_memory_restart": "2G",
+        "watch": [
+          "src/**",
+          "*"
+        ],
+        "ignore_watch": [
+          "[\\/\\\\]\\./",
+          "templates",
+          "node_modules"
+        ],
+        "merge_logs": true,
+        "autorestart": true,
+        "env": {
+          "PORT": 3031,
+          "DEBUG": "custom:*",
+          "NODE_ENV": "development"
+        },
+        "env_staging": {
+          "PORT": 3032,
+          "DEBUG": "custom:*",
+          "NODE_ENV": "staging"
+        },
+        "env_testing": {
+          "PORT": 3033,
+          "NODE_ENV": "testing"
+        },
+        "env_production": {
+          "PORT": 3000,
+          "NODE_ENV": "production"
+        }
+      }
+    ]
+  }

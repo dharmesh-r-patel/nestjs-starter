@@ -1,0 +1,37 @@
+{
+    "apps": [
+      {
+        "name": "nestjs-starter",
+        "script": "dist/main.js",
+        "args": "start",
+        "exec_interpreter": "node",
+        "node_args": [
+          "--harmony",
+          "--expose-gc",
+          "--max-old-space-size=8192"
+        ],
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "error_file": "../log/error.log",
+        "out_file": "../log/info.log",
+        "instances": 1,
+        "min_uptime": "200s",
+        "max_restarts": 20,
+        "max_memory_restart": "1G",
+        "watch": [
+          "src/**",
+          "*"
+        ],
+        "ignore_watch": [
+          "[\\/\\\\]\\./",
+          "node_modules"
+        ],
+        "merge_logs": true,
+        "exec_mode": "cluster",
+        "autorestart": true,
+        "env_production": {
+          "PORT": 3000,
+          "NODE_ENV": "production"
+        }
+      }
+    ]
+  }

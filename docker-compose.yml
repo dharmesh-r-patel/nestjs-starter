@@ -1,0 +1,92 @@
+services:
+    server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: ${BUILD_TARGET}
+        restart: unless-stopped
+        env_file:
+            - ./.env.${NODE_ENV}
+        ports:
+            - '${PORT}:${PORT}'
+        # Run in dev Mode: npm run start:dev
+        # command: yarn ${NODE_ENV}
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules # Prevents overwriting node_modules
+        healthcheck:
+            test: ['CMD', 'pg_isready', '-h', '$${POSTGRES_HOST}', '-p', '$${POSTGRES_PORT}']
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        command: ['sh', './entrypoint.sh']
+# # Working Start
+# services:
+#     server:
+#         build:
+#             context: .
+#             dockerfile: Dockerfile
+#             # Only will build development stage from our dockerfile
+#             target: development
+#         restart: unless-stopped
+#         env_file:
+#             - ./.env.${NODE_ENV}
+#         volumes:
+#             - .:/usr/src/app
+#             - /usr/src/app/node_modules # Prevents overwriting node_modules
+#         # Run in dev Mode: npm run start:dev
+#         # command: yarn ${NODE_ENV}
+#         healthcheck:
+#             test: ["CMD", "pg_isready", "-h", "$${POSTGRES_HOST}", "-p", "$${POSTGRES_PORT}"]
+#             interval: 10s
+#             timeout: 5s
+#             retries: 5
+#         command: ["sh", "./entrypoint.sh"]
+#         ports:
+#             - '${PORT}:${PORT}'
+# # Working End
+# services:
+#   postgres:
+#     image: postgres:latest
+#     ports:
+#       - '5432:5432'
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=master123
+#       - POSTGRES_DB=postgres
+#     volumes:
+#       - pg_data:/var/lib/postgresql
+#     networks:
+#       - backend
+#   redis:
+#     image: redis:latest
+#     restart: always
+#     ports:
+#       - '6379:6379'
+#     command: redis-server --save 20 1 --loglevel warning
+#     volumes:
+#       - redis_data:/data
+#     networks:
+#       - backend
+#   server:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.dev
+#     restart: unless-stopped
+#     ports:
+#       - '3001:3001'
+#     env_file:
+#       - ./.env.docker
+#     networks:
+#       - backend
+#     volumes:
+#       - .:/app
+#       - /app/node_modules
+# networks:
+#   backend:
+#     driver: bridge
+# volumes:
+#   pg_data:
+#     driver: local
+#   redis_data:
+#     driver: local
