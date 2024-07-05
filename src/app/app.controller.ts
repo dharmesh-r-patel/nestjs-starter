@@ -5,19 +5,19 @@ import { PrismaService } from '../common/helper/services/prisma.service';
 // import { PublicRoute } from 'src/core/decorators/public.request.decorator';
 
 @Controller({
-	version: VERSION_NEUTRAL,
-	path: '/',
+    version: VERSION_NEUTRAL,
+    path: '/',
 })
 export class AppController {
-	constructor(
-		private readonly healthCheckService: HealthCheckService,
-		private readonly prismaService: PrismaService
-	) {}
+    constructor(
+        private readonly healthCheckService: HealthCheckService,
+        private readonly prismaService: PrismaService
+    ) {}
 
-	@Get('/health')
-	@HealthCheck()
-	// @PublicRoute()
-	public async getHealth() {
-		return this.healthCheckService.check([() => this.prismaService.isHealthy()]);
-	}
+    @Get('/health')
+    @HealthCheck()
+    // @PublicRoute()
+    public async getHealth() {
+        return this.healthCheckService.check([() => this.prismaService.isHealthy()]);
+    }
 }

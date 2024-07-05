@@ -35,7 +35,7 @@ COPY --chown=node:node . .
 RUN chmod +x entrypoint.sh
 
 # Generate Prisma database client code
-RUN yarn generate
+RUN yarn prisma:generate
 
 # Use the node user from the image (instead of the root user)
 USER node
