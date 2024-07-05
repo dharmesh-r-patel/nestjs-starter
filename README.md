@@ -102,6 +102,7 @@ kubectl apply -f k8s/
 minikube service nestjs-starter-service
 ```
 <!-- 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 -->
+<!-- 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 -->
 
 ## Support
 
