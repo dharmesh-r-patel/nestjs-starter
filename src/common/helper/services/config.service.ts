@@ -1,13 +1,73 @@
 // import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { IsEnum, IsInt, IsOptional, IsString, ValidateIf, IsUrl, Max, Min } from 'class-validator';
 import * as dotenv from 'dotenv';
 
+import { FileDriver } from '../../../core/enum/file.type';
+import { IAppConfig } from '../../../core/interfaces/app.interfaces';
 import { IAwsConfig } from '../../../core/interfaces/aws.interfaces';
+import { IFileConfig } from '../../../core/interfaces/file.interfaces';
 import { IJWTConfig } from '../../../core/interfaces/jwt.interfaces';
 import { INodeEmailerConfig } from '../../../core/interfaces/node-emailer.interfaces';
 // import { IPostgreSQLConfig } from '../../../core/interfaces/postgres.interfaces';
 import { ISendGridConfig } from '../../../core/interfaces/sendgrid.interfaces';
 import { ISMSConfig } from '../../../core/interfaces/sms.interfaces';
 import { IUploadFileConfig } from '../../../core/interfaces/upload-file.interfaces';
+import validateConfig from '../../../utils/validate-config';
+
+/**
+ * Config service
+ * @export
+ * @class ConfigService
+ */
+
+class EnvVarAppConfigValidator {
+    @IsInt()
+    @Min(0)
+    @Max(65535)
+    @IsOptional()
+    APP_PORT: number;
+
+    @IsUrl({ require_tld: false })
+    @IsOptional()
+    FRONTEND_DOMAIN: string;
+
+    @IsUrl({ require_tld: false })
+    @IsOptional()
+    BACKEND_DOMAIN: string;
+
+    @IsString()
+    @IsOptional()
+    API_PREFIX: string;
+}
+
+class EnvVarFileConfigValidator {
+    @IsEnum(FileDriver)
+    FILE_DRIVER: FileDriver;
+
+    @ValidateIf((envValues) =>
+        [FileDriver.S3, FileDriver.S3_PRESIGNED].includes(envValues.FILE_DRIVER)
+    )
+    @IsString()
+    AWS_ACCESS_KEY_ID: string;
+
+    @ValidateIf((envValues) =>
+        [FileDriver.S3, FileDriver.S3_PRESIGNED].includes(envValues.FILE_DRIVER)
+    )
+    @IsString()
+    AWS_SECRET_ACCESS_KEY: string;
+
+    @ValidateIf((envValues) =>
+        [FileDriver.S3, FileDriver.S3_PRESIGNED].includes(envValues.FILE_DRIVER)
+    )
+    @IsString()
+    AWS_DEFAULT_S3_BUCKET: string;
+
+    @ValidateIf((envValues) =>
+        [FileDriver.S3, FileDriver.S3_PRESIGNED].includes(envValues.FILE_DRIVER)
+    )
+    @IsString()
+    AWS_S3_REGION: string;
+}
 
 export class ConfigService {
     constructor() {
@@ -38,6 +98,10 @@ export class ConfigService {
         return Number(this.get(key));
     }
 
+    public getBoolean(key: string): boolean {
+        return Boolean(this.get(key));
+    }
+
     get nodeEnv(): string {
         return this.get('NODE_ENV') || 'development';
     }
@@ -59,6 +123,18 @@ export class ConfigService {
     //   };
     //   return dbConfig;
     // }
+
+    get appConfig(): IAppConfig {
+        validateConfig(process.env, EnvVarAppConfigValidator);
+        return {
+            name: this.get('APP_NAME') || '',
+            workingDirectory: process.env.PWD || process.cwd(),
+            frontendDomain: this.get('FRONTEND_DOMAIN') || '',
+            backendDomain: this.get('BACKEND_DOMAIN') || '',
+            port: this.getNumber('PORT'),
+            apiPrefix: this.get('API_PREFIX') || '',
+        };
+    }
 
     get prismaConfig(): string {
         return `postgresql://${this.get('POSTGRES_USER')}:${this.get('POSTGRES_PASSWORD')}@${this.get('POSTGRES_HOST')}:${this.get('POSTGRES_PORT')}/${this.get('POSTGRES_NAME')}?connection_limit=${this.get('POSTGRES_CONNECTION_LIMIT')}&pool_timeout=${this.get('POSTGRES_POOL_TIMEOUT')}&schema=${this.get('POSTGRES_SCHEMA')}`;
@@ -132,6 +208,18 @@ export class ConfigService {
             MAX_UPLOAD_FILE_SIZE: this.getNumber('MAX_UPLOAD_FILE_SIZE'),
             PROFILE_PIC_FILE_PATH: this.get('PROFILE_PIC_FILE_PATH'),
             MULTIPLE_FILE_PATH: this.get('MULTIPLE_FILE_PATH'),
+        };
+    }
+
+    get fileConfig(): IFileConfig {
+        validateConfig(process.env, EnvVarFileConfigValidator);
+        return {
+            driver: (this.get('FILE_DRIVER') as FileDriver | undefined) ?? FileDriver.LOCAL,
+            accessKeyId: this.get('AWS_ACCESS_KEY_ID'),
+            secretAccessKey: this.get('AWS_SECRET_ACCESS_KEY'),
+            awsDefaultS3Bucket: this.get('AWS_DEFAULT_S3_BUCKET'),
+            awsS3Region: this.get('AWS_S3_REGION'),
+            maxFileSize: 5242880, // 5mb
         };
     }
 }

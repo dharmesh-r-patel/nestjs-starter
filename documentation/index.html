@@ -1,0 +1,262 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-starter documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">nestjs-starter documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>NestJS Starter Boilerplate</h1>
+<h2>Introduction</h2>
+<p>This project is a nestjs starter. It aims to nestjs bootstrap. The main features include:</p>
+<ul>
+<li>Feature 1</li>
+<li>Feature 2</li>
+<li>Feature 3</li>
+</ul>
+<h2>Getting Started</h2>
+<h3>Prerequisites</h3>
+<p>Ensure you have the following installed:</p>
+<ul>
+<li>Node.js (20+)</li>
+<li>Yarn or npm (yarn recomandation)</li>
+<li>Docker (if applicable)</li>
+</ul>
+<h3>Installation</h3>
+<ol>
+<li>Clone the repository:<b>Example :</b><div><pre class="line-numbers"><code class="language-sh">git clone https://github.com/dharmesh--patel/nestjs-starter.git
+cd yourproject</code></pre></div></li>
+</ol>
+<h2>Visual Studio Code Extensions</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">- ESLint - `dbaeumer.vscode-eslint` - Dirk Baeumer
+
+- Prettier - Code formatter by `esbenp.prettier-vscode` - Esben Petersen
+ 
+- Prisma - `Prisma.prisma` - prisma.io
+
+- Dockfile - `foxundermoon.shell-format` - foxundermoon
+
+- markdown - `yzhang.markdown-all-in-one` - Yu Zhang
+
+- To open the command pallette, 
+  you can use Command + Shift + P on Mac or Control + Shift + P on Windows. 
+  In the command pallette search format, then choose Format Document.</code></pre></div><h2>Installation</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ yarn</code></pre></div><h2>Running Server</h2>
+<h2>Development / Staging / Production</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># development
+$ yarn start
+
+# staging
+$ yarn staging
+
+# production
+$ yarn production</code></pre></div><h2>Build</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn build</code></pre></div><h2>Tests</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># unit tests
+$ yarn test
+
+# e2e tests
+$ yarn test:e2e
+
+# test coverage
+$ yarn test:cov</code></pre></div><h2>Database Migration Development</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">   # Change in database file (it will create migration file in prisma/migration)
+   $ yarn migration</code></pre></div><h2>Docker Container and Database Migration for Staging/Production</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">   # To run docker file run script (it will create docker container run update database)
+   $ bash ./start.sh staging/production</code></pre></div><h2>Docker Container down</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">   # To run docker file run script (it will create docker container run update database)
+   $ bash ./stop.sh staging/production</code></pre></div><h2>Running all services on Docker</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">docker-compose up --build</code></pre></div><h2>Run only database and redis services on Docker</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">docker-compose up postgres redis</code></pre></div><h2>Swagger Documentation</h2>
+<ul>
+<li>Swagger documentation endpoint will be running at <b> <code>/docs</code> </b>.</li>
+</ul>
+<h2>K8s Deployment Local</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># first start minikube
+minikube start
+
+# deployment
+kubectl apply -f k8s/
+
+# get endpoint of k8s cluster
+minikube service nestjs-starter-service</code></pre></div><!-- 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 -->
+<!-- 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 -->
+
+<h2>Support</h2>
+<p>Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you&#39;d like to join them, please <a href="https://docs.nestjs.com/support">read more here</a>.</p>
+<h2>License</h2>
+<p>Nest is <a href="LICENSE">MIT licensed</a>.</p>
+<h2>Author</h2>
+<p>🇮🇳 Dharmesh Patel <br>
+<a href="https://github.com/dharmesh-r-patel/nestjs-starter">Github</a>
+<a href="https://www.linkedin.com/in/dharmeshbbay">Linkedin</a>
+<a href="https://www.instagram.com/dharmesh_numbertank">Instagram</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

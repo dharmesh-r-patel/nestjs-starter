@@ -13,50 +13,50 @@ import { constraintErrors } from './constraint-errors';
 
 // @Catch(QueryFailedError)
 export class QueryFailedFilter implements ExceptionFilter {
-	constructor(public reflector: Reflector) {}
+    constructor(public reflector: Reflector) {}
 
-	catch(exception: any, host: ArgumentsHost) {
-		const ctx = host.switchToHttp();
-		const response = ctx.getResponse<Response>();
-		const request = ctx.getRequest<Request>();
+    catch(exception: any, host: ArgumentsHost) {
+        const ctx = host.switchToHttp();
+        const response = ctx.getResponse<Response>();
+        const request = ctx.getRequest<Request>();
 
-		const errorMessage = constraintErrors[exception.constraint];
+        const errorMessage = constraintErrors[exception.constraint];
 
-		const status =
-			exception.constraint && exception.constraint.startsWith('UQ')
-				? HttpStatus.CONFLICT
-				: HttpStatus.INTERNAL_SERVER_ERROR;
+        const status =
+            exception.constraint && exception.constraint.startsWith('UQ')
+                ? HttpStatus.CONFLICT
+                : HttpStatus.INTERNAL_SERVER_ERROR;
 
-		const errorResponse = {
-			message: exception.sqlMessage,
-			query: exception.query,
-		};
+        const errorResponse = {
+            message: exception.sqlMessage,
+            query: exception.query,
+        };
 
-		try {
-			Logger.error(
-				`${request.method} ${request.url}`,
-				JSON.stringify(errorResponse),
-				'ExceptionFilter'
-			);
+        try {
+            Logger.error(
+                `${request.method} ${request.url}`,
+                JSON.stringify(errorResponse),
+                'ExceptionFilter'
+            );
 
-			// const sqlService = new PgSQLService();
-			// const query = new Query();
-			// const reqstr = JSON.stringify(_.clone(request.body));
-			// const resstr = JSON.stringify(_.clone(errorResponse));
-			// sqlService.run(query.addQueryError("DBQuery", request.method, request.url, reqstr, resstr));
-		} catch (error) {
-			Logger.error(
-				`${request.method} ${request.url}`,
-				JSON.stringify(errorResponse),
-				'ExceptionFilter'
-			);
-		}
-		response.status(status).json({
-			statusCode: status,
-			error: STATUS_CODES[status],
-			message: errorMessage,
-		});
-	}
+            // const sqlService = new PgSQLService();
+            // const query = new Query();
+            // const reqstr = JSON.stringify(_.clone(request.body));
+            // const resstr = JSON.stringify(_.clone(errorResponse));
+            // sqlService.run(query.addQueryError("DBQuery", request.method, request.url, reqstr, resstr));
+        } catch (error) {
+            Logger.error(
+                `${request.method} ${request.url}`,
+                JSON.stringify(errorResponse),
+                'ExceptionFilter'
+            );
+        }
+        response.status(status).json({
+            statusCode: status,
+            error: STATUS_CODES[status],
+            message: errorMessage,
+        });
+    }
 }
 
 // import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';

@@ -1,21 +1,21 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 
 import { ConfigService } from './services/config.service';
 import { PrismaService } from './services/prisma.service';
 
 const providers = [ConfigService, PrismaService];
 
-// @Global()
+@Global()
 @Module({
-	// imports: [],
-	// providers: [ConfigService, PrismaService],
-	// controllers: [],
-	// exports: [ConfigService, PrismaService],
-	providers,
-	imports: [
-		// HttpModule,
-	],
-	exports: [...providers],
+    // imports: [],
+    // providers: [ConfigService, PrismaService],
+    // controllers: [],
+    // exports: [ConfigService, PrismaService],
+    providers,
+    imports: [
+        // HttpModule,
+    ],
+    exports: [...providers],
 })
 export class HelperModule {}
 

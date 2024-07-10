@@ -60,4 +60,6 @@ yarn.lock
 !.yarn/sdks
 !.yarn/versions
 
+drive/
+
 publish.sh

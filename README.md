@@ -1,4 +1,24 @@
-# NestJS Starter Boilerplate 
+# NestJS Starter Boilerplate
+
+## Introduction
+This project is a nestjs starter. It aims to nestjs bootstrap. The main features include:
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Getting Started
+
+### Prerequisites
+Ensure you have the following installed:
+- Node.js (20+)
+- Yarn or npm (yarn recomandation)
+- Docker (if applicable)
+
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/dharmesh--patel/nestjs-starter.git
+   cd yourproject
 
 ## Visual Studio Code Extensions
     - ESLint - `dbaeumer.vscode-eslint` - Dirk Baeumer

@@ -5,6 +5,12 @@ import { Prisma, PrismaClient } from '@prisma/client';
 
 import { ConfigService } from '../services/config.service';
 
+/**
+ * Prisma service
+ * @export
+ * @class PrismaService
+ */
+
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     constructor() {
