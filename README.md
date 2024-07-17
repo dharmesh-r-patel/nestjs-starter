@@ -121,9 +121,6 @@ kubectl apply -f k8s/
 # get endpoint of k8s cluster
 minikube service nestjs-starter-service
 ```
-<!-- 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 -->
-<!-- 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 -->
-
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
