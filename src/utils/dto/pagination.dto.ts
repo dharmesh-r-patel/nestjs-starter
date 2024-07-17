@@ -134,19 +134,6 @@ export class SortByDto<T> {
     direction: string;
 }
 
-function abc(entity) {
-    console.log(
-        'Hi====================================================================================',
-        entity
-    );
-    return entity;
-    return ['name', 'iso1', 'status'];
-}
-
-type Getter<T> = {
-    [P in keyof T as `get${Capitalize<string & P>}`]: () => T[P];
-};
-
 // export class PaginatedResultDto<T> {
 //     @ApiProperty()
 //     data: T[];

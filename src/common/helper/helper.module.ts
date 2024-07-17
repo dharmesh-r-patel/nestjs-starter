@@ -1,10 +1,12 @@
+import { HttpModule } from '@nestjs/axios';
 import { Global, Module } from '@nestjs/common';
 
 import { ConfigService } from './services/config.service';
 import { PaginationService } from './services/pagination.service';
 import { PrismaService } from './services/prisma.service';
+import { UtilsService } from './services/util.service';
 
-const providers = [ConfigService, PaginationService, PrismaService];
+const providers = [ConfigService, PaginationService, PrismaService, UtilsService];
 
 @Global()
 @Module({
@@ -13,10 +15,8 @@ const providers = [ConfigService, PaginationService, PrismaService];
     // controllers: [],
     // exports: [ConfigService, PrismaService],
     providers,
-    imports: [
-        // HttpModule,
-    ],
-    exports: [...providers],
+    imports: [HttpModule],
+    exports: [...providers, HttpModule],
 })
 export class HelperModule {}
 

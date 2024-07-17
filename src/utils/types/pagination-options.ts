@@ -1,4 +1,5 @@
-export interface IPaginationOptions {
-    page: number;
-    limit: number;
+export interface IPaginationFieldConfig {
+    joinTable: any;
+    alias: () => string;
+    selectFields: (alias: string) => string[];
 }
