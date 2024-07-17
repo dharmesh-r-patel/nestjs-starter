@@ -1,9 +1,10 @@
 import { Global, Module } from '@nestjs/common';
 
 import { ConfigService } from './services/config.service';
+import { PaginationService } from './services/pagination.service';
 import { PrismaService } from './services/prisma.service';
 
-const providers = [ConfigService, PrismaService];
+const providers = [ConfigService, PaginationService, PrismaService];
 
 @Global()
 @Module({

@@ -2,8 +2,8 @@
     "apps": [
       {
         "name": "netsjs-starter",
-        "script": "index.js",
-        "args": "start",
+        "script": "node_modules/.bin/ts-node",
+        "args": "-r tsconfig-paths/register ./src/main.ts",
         "exec_interpreter": "node",
         "node_args": [
           "--harmony",

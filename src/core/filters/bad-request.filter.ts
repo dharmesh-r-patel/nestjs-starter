@@ -21,6 +21,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
     constructor(public reflector: Reflector) {}
 
     catch(exception: BadRequestException, host: ArgumentsHost) {
+        console.log('BAD REQUREST from fil');
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
         // const request = ctx.getRequest();

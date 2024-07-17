@@ -17,8 +17,20 @@
         "esModuleInterop": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "types": ["node", "jest"]
+        "types": ["node", "jest"],
+        "paths": {
+            "@app/*": ["src/*"],
+            "@common/*": ["src/common/*"],
+            "@core/*": ["src/core/*"],
+            "@decorators/*": ["src/decorators/*"],
+            "@filters/*": ["src/core/filters/*"],
+            "@modules/*": ["src/modules/*"],
+            "@providers/*": ["src/providers/*"],
+            "@services/*": ["src/common/helper/services/*"],
+            "@utils/*": ["src/utils/*"],
+            "@validators/*": ["src/core/validators/*"]
+        }
     },
-    "include": ["src/**/*.ts", "test/**/*.ts", "*.js"],
+    "include": ["src/**/*.ts", "test/**/*.ts", "*.js", "prisma/**/*.ts"],
     "exclude": ["node_modules", "dist", "*coverage"]
 }

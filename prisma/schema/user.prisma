@@ -17,6 +17,7 @@ model User {
 
   @@index(source)
   @@index(defaultWorkspace)
+  @@schema("public")
 }
 
 model Account {
@@ -38,4 +39,5 @@ model Account {
 
   @@unique([provider, providerAccountId])
   @@index([userId])
+  @@schema("public")
 }

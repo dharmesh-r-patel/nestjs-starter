@@ -6,13 +6,14 @@ import compression from 'compression';
 import RateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
+import { HelperModule } from '@common/helper/helper.module';
+import { AllExceptionsFilter } from '@filters/all-exceptions.filter';
+import { BadRequestExceptionFilter } from '@filters/bad-request.filter';
+import { PrismaClientExceptionFilter } from '@filters/prisma-exception.filter';
+// import { QueryFailedFilter } from '@filters/query-failed.filter';
+import { ConfigService } from '@services/config.service';
+
 import { AppModule } from './app/app.module';
-import { HelperModule } from './common/helper/helper.module';
-import { ConfigService } from './common/helper/services/config.service';
-import { AllExceptionsFilter } from './core/filters/all-exceptions.filter';
-import { BadRequestExceptionFilter } from './core/filters/bad-request.filter';
-import { PrismaClientExceptionFilter } from './core/filters/prisma-exception.filter';
-import { QueryFailedFilter } from './core/filters/query-failed.filter';
 import swaggerInit from './swagger';
 // import { initAdapters } from "./adapters.init";
 
@@ -45,10 +46,10 @@ async function bootstrap() {
 
     const { httpAdapter } = app.get(HttpAdapterHost);
     app.useGlobalFilters(
-        new BadRequestExceptionFilter(reflector),
-        new QueryFailedFilter(reflector),
         new AllExceptionsFilter(reflector),
-        new PrismaClientExceptionFilter(httpAdapter)
+        new PrismaClientExceptionFilter(httpAdapter),
+        // new QueryFailedFilter(reflector),
+        new BadRequestExceptionFilter(reflector)
     );
 
     app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));

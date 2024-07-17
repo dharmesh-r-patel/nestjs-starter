@@ -7,6 +7,7 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@index([userId])
+    @@schema("public")
 }
 
 model VerificationToken {
@@ -15,6 +16,7 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+    @@schema("public")
 }
 
 model Token {
@@ -30,4 +32,7 @@ model Token {
     userId     String
 
     @@index([userId])
+    @@schema("public")
 }
+
+// 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

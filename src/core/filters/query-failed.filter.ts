@@ -16,6 +16,7 @@ export class QueryFailedFilter implements ExceptionFilter {
     constructor(public reflector: Reflector) {}
 
     catch(exception: any, host: ArgumentsHost) {
+        console.log('QUERY FAIL from filter');
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
         const request = ctx.getRequest<Request>();

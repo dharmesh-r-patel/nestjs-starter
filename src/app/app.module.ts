@@ -6,7 +6,7 @@ import { Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
 
 // eslint-disable-next-line import/order
-import { HelperModule } from '../common/helper/helper.module';
+import { HelperModule } from '@common/helper/helper.module';
 
 // import { CommonModule } from 'src/common/common.module';
 // import { CoreModule } from 'src/core/core.module';

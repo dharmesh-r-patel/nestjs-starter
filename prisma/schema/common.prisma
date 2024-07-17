@@ -1,0 +1,48 @@
+model countries {
+    id_country    String    @id @default(uuid()) @db.Uuid
+    name          String?   @unique @db.VarChar(80)
+    iso           String    @db.Char(2)
+    nice_name     String    @db.VarChar(80)
+    iso3          String?   @db.Char(3)
+    num_code      String?   @db.VarChar(10)
+    dial_code     String?   @db.VarChar(10)
+    continent     String?   @db.VarChar(20)
+    capital       String?   @db.VarChar(40)
+    id_currency   String?   @db.Uuid
+    id_timezone   String?   @db.Uuid
+    status        Int       @default(1) @db.SmallInt /// '1.Active, 127.Delete',
+    id_created_by String?   @db.Uuid
+    id_updated_by String?   @db.Uuid
+    created_at    DateTime  @default(now()) @db.Timestamptz(6)
+    updated_at    DateTime? @db.Timestamptz(6)
+
+    @@index([name], name: "idx_name_btree", type: BTree)
+    @@schema("public")
+}
+
+model currencies {
+    id_currency    String @id @default(uuid()) @db.Uuid
+    code           String @db.VarChar(10)
+    name           String @db.VarChar(80)
+    name_plural    String @db.VarChar(80)
+    symbol         String @db.VarChar(10)
+    symbol_native  String @db.VarChar(10)
+    decimal_digits Int    @default(2) @db.SmallInt
+    rounding       Int    @default(0) @db.SmallInt
+    country_code   String @db.VarChar(10)
+    status         Int    @default(1) @db.SmallInt /// '1.Active, 127.Delete',
+
+    @@schema("public")
+}
+
+model timezone {
+    id_timezone       String @id @default(uuid()) @db.Uuid
+    value             String @db.VarChar(40)
+    offset            String @db.VarChar(10)
+    offset_in_minutes Int    @db.SmallInt
+    abbr              String @db.VarChar(10)
+    text              String @db.VarChar(40)
+    status            Int    @default(1) @db.SmallInt /// '1.Active, 127.Delete',
+
+    @@schema("public")
+}
