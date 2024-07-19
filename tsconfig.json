@@ -21,8 +21,9 @@
         "paths": {
             "@app/*": ["src/*"],
             "@common/*": ["src/common/*"],
+            "@config/*": ["src/config/*"],
             "@core/*": ["src/core/*"],
-            "@decorators/*": ["src/decorators/*"],
+            "@decorators/*": ["src/core/decorators/*"],
             "@filters/*": ["src/core/filters/*"],
             "@modules/*": ["src/modules/*"],
             "@providers/*": ["src/providers/*"],

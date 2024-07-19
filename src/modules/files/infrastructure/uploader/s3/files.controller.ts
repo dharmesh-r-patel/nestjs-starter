@@ -2,7 +2,8 @@ import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
-import { ApiFile } from '../../../../../decorators/swagger.schema';
+// import { ApiFile } from '../../../../../decorators/swagger.schema';
+import { ApiFile } from '@decorators/swagger.schema';
 
 import { FileResponseDto } from './dto/file-response.dto';
 import { FilesS3Service } from './files.service';
@@ -18,7 +19,7 @@ export class FilesS3Controller {
     @ApiCreatedResponse({
         type: FileResponseDto,
     })
-    @Post('v1/upload')
+    @Post('v1/upload/s3')
     @ApiConsumes('multipart/form-data')
     @ApiBody({
         schema: {

@@ -1,9 +1,12 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { HealthIndicatorResult } from '@nestjs/terminus';
 
 import { Prisma, PrismaClient } from '@prisma/client';
 
-import { ConfigService } from '../services/config.service';
+import { AllConfigType } from '@config/type/config.type';
+
+// import { ConfigService } from '../services/config.service';
 
 /**
  * Prisma service
@@ -13,16 +16,11 @@ import { ConfigService } from '../services/config.service';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
-    constructor() {
-        const configService = new ConfigService();
-        // console.log(
-        //     'ConfigService-------------------------------------------------',
-        //     configService.prismaConfig
-        // );
+    constructor(private readonly configService: ConfigService<AllConfigType>) {
         super({
             datasources: {
                 db: {
-                    url: configService.prismaConfig,
+                    url: configService.get('database.url', { infer: true }), // configService.prismaConfig,
                 },
             },
         });
@@ -49,7 +47,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     async isHealthy(): Promise<HealthIndicatorResult> {
         try {
             const x = await this.$queryRaw`SELECT 1`;
-            console.log('RESULTTTTTTTTTTTTTTTTTTTT', x);
+            // console.log('RESULTTTTTTTTTTTTTTTTTTTT', x);
             return Promise.resolve({
                 prisma: {
                     status: 'up',

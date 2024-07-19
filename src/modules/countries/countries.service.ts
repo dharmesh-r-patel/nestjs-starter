@@ -70,7 +70,13 @@ export class CountriesService {
         const { joinTables, selectFields, filterQuery, sortByQuery } =
             this.utilsService.buildDynamicQuery(paginationQuery, fieldConfigs);
 
-        const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields.join(', ')} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
+        console.log(
+            'HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL selectFields',
+            selectFields
+        );
+
+        // const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields.join(', ')} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
+        const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
         const countQuery = `SELECT count(*) ${fromQuery} ${joinTables.join(' ')} ${filterQuery}`;
 
         // const select = selectFields.join(', ');

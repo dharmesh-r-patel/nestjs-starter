@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 
 import { S3Client } from '@aws-sdk/client-s3';
 import multerS3 from 'multer-s3';
 
-import { HelperModule } from '../../../../../common/helper/helper.module';
-import { ConfigService } from '../../../../../common/helper/services/config.service';
+// import { HelperModule } from '../../../../../common/helper/helper.module';
+// import { ConfigService } from '../../../../../common/helper/services/config.service';
+import { AllConfigType } from '@config/type/config.type';
+
 import { imageFileFilter } from '../../../../../providers/file-upload.service';
 
 import { FilesS3PresignedController } from './files.controller';
@@ -15,14 +18,18 @@ import { FilesS3PresignedService } from './files.service';
 @Module({
     imports: [
         MulterModule.registerAsync({
-            imports: [HelperModule],
+            imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: (configService: ConfigService) => {
+            useFactory: (configService: ConfigService<AllConfigType>) => {
                 const s3 = new S3Client({
-                    region: configService.fileConfig.awsS3Region,
+                    region: configService.get('file.awsS3Region', { infer: true }),
                     credentials: {
-                        accessKeyId: configService.fileConfig.accessKeyId,
-                        secretAccessKey: configService.fileConfig.secretAccessKey,
+                        accessKeyId: configService.getOrThrow('file.accessKeyId', {
+                            infer: true,
+                        }),
+                        secretAccessKey: configService.getOrThrow('file.secretAccessKey', {
+                            infer: true,
+                        }),
                     },
                 });
 

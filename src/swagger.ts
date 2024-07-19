@@ -1,17 +1,20 @@
 import { INestApplication } from '@nestjs/common'; // , Logger
-// import { ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { ConfigService } from './common/helper/services/config.service';
+import { AllConfigType } from '@config/type/config.type';
+
+// import { ConfigService } from './common/helper/services/config.service';
 
 export default async function (app: INestApplication) {
-    const configService = app.get(ConfigService);
+    // const configService = app.get(ConfigService);
+    const configService = app.get(ConfigService<AllConfigType>);
     // const logger = app.get(Logger);
 
-    const docName: string = configService.get('APP_NAME');
-    const docDesc: string = configService.get('APP_DESCRIPTION');
-    const docVersion: string = configService.get('APP_VERSION');
-    const docPrefix: string = configService.get('APP_PREFIX');
+    const docName: string = configService.getOrThrow('app.name', { infer: true }); //configService.get('APP_NAME');
+    const docDesc: string = configService.getOrThrow('app.description', { infer: true }); //configService.get('APP_DESCRIPTION');
+    const docVersion: string = configService.getOrThrow('app.version', { infer: true }); //configService.get('APP_VERSION');
+    const docPrefix: string = configService.getOrThrow('app.appPrefix', { infer: true }); //configService.get('APP_PREFIX');
 
     const documentBuild = new DocumentBuilder()
         .setTitle(docName)

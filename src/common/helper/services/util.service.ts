@@ -2,9 +2,6 @@ import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { IPaginationFieldConfig } from '@utils/types/pagination-options';
 
 export class UtilsService {
-    static buildDynamicQuery() {
-        throw new Error('Method not implemented.');
-    }
     public buildDynamicQuery(
         paginationQuery: PaginationQueryDto<any>,
         fieldConfigs: Record<string, IPaginationFieldConfig>
@@ -70,6 +67,8 @@ export class UtilsService {
                 .join(', ');
         }
 
-        return { filterQuery, filterValues, joinTables, selectFields, sortByQuery };
+        const selectedFields = selectFields.length > 0 ? `${', '}${selectFields.join(', ')}` : [];
+
+        return { filterQuery, filterValues, joinTables, selectFields: selectedFields, sortByQuery };
     }
 }

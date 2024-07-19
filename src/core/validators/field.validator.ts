@@ -2,9 +2,7 @@
 import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 
 export function IsValidField(entity: any, validationOptions?: ValidationOptions) {
-    console.log('+++++++++++++++++++++++++++++++++++++++++++++++');
     return function (object: object, propertyName: string) {
-        console.log('+++++++++++++++++++++++++++++++++++++++++++++++');
         registerDecorator({
             name: 'isValidField',
             target: object.constructor,

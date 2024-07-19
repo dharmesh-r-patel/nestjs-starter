@@ -18,12 +18,9 @@ import {
 
 import { diskStorage } from 'multer';
 
-import { ApiFile } from '../../../../../decorators/swagger.schema';
-import {
-    filesRoot,
-    editFileName,
-    imageFileFilter,
-} from '../../../../../providers/file-upload.service';
+// import { ApiFile } from '@decorators/swagger.schema';
+import { ApiFile } from '@decorators/swagger.schema';
+import { filesRoot, editFileName, imageFileFilter } from '@providers/file-upload.service';
 
 import { FileResponseDto } from './dto/file-response.dto';
 import { FilesLocalService } from './files.service';

@@ -1,17 +1,21 @@
 import { ClassSerializerInterceptor, ValidationPipe, BadRequestException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
+import { useContainer } from 'class-validator';
 import compression from 'compression';
 import RateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
-import { HelperModule } from '@common/helper/helper.module';
+// import { HelperModule } from '@common/helper/helper.module';
+import { AllConfigType } from '@config/type/config.type';
 import { AllExceptionsFilter } from '@filters/all-exceptions.filter';
 import { BadRequestExceptionFilter } from '@filters/bad-request.filter';
 import { PrismaClientExceptionFilter } from '@filters/prisma-exception.filter';
 // import { QueryFailedFilter } from '@filters/query-failed.filter';
-import { ConfigService } from '@services/config.service';
+// import { ConfigService } from '@services/config.service';
+import { ResolvePromisesInterceptor } from '@utils/serializer.interceptor';
 
 import { AppModule } from './app/app.module';
 import swaggerInit from './swagger';
@@ -19,16 +23,21 @@ import swaggerInit from './swagger';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    useContainer(app.select(AppModule), { fallbackOnErrors: true });
+    const configService = app.get(ConfigService<AllConfigType>);
 
     app.enableCors();
     app.enableShutdownHooks();
     // app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 
-    const configService = app.select(HelperModule).get(ConfigService);
+    // dx const configService = app.select(HelperModule).get(ConfigService);
 
-    const globalPrefix: string = configService.get('API_PREFIX');
+    // const globalPrefix: string = configService.get('API_PREFIX');
+    app.setGlobalPrefix(configService.getOrThrow('app.apiPrefix', { infer: true }), {
+        exclude: ['/'],
+    });
 
-    app.setGlobalPrefix(globalPrefix);
+    // app.setGlobalPrefix(globalPrefix);
     app.useGlobalPipes(
         new ValidationPipe({
             // disableErrorMessages: true,
@@ -52,9 +61,16 @@ async function bootstrap() {
         new BadRequestExceptionFilter(reflector)
     );
 
-    app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
+    app.useGlobalInterceptors(
+        // ResolvePromisesInterceptor is used to resolve promises in responses because class-transformer can't do it
+        // https://github.com/typestack/class-transformer/issues/549
+        new ResolvePromisesInterceptor(),
+        new ClassSerializerInterceptor(reflector)
+    );
 
-    if (['development', 'staging', 'testing'].includes(configService.nodeEnv)) {
+    const node_env = configService.getOrThrow('app.nodeEnv', { infer: true });
+
+    if (['development', 'staging', 'testing'].includes(node_env)) {
         swaggerInit(app);
     }
 
@@ -73,9 +89,9 @@ async function bootstrap() {
     console.debug('Nest JS is running on PORT is -' + process.env.PORT);
 
     //  await app.listen(process.env.PORT);
-    const port = configService.getNumber('PORT');
+    const port = configService.getOrThrow('app.port', { infer: true });
     await app.listen(port);
 
     console.info(`server running on port ${port}`);
 }
-bootstrap();
+void bootstrap();

@@ -5,11 +5,12 @@ import {
     UnprocessableEntityException,
 } from '@nestjs/common';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
+import { ConfigService } from '@nestjs/config';
 
 import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
-import { ConfigService } from '../../../../../common/helper/services/config.service';
+// import { ConfigService } from '../../../../../common/helper/services/config.service';
 import { FileType } from '../../../domain/file';
 
 import { FileUploadDto } from './dto/file.dto';
@@ -20,10 +21,14 @@ export class FilesS3PresignedService {
 
     constructor(private readonly configService: ConfigService) {
         this.s3 = new S3Client({
-            region: configService.fileConfig.awsS3Region,
+            region: configService.get('file.awsS3Region', { infer: true }),
             credentials: {
-                accessKeyId: configService.fileConfig.accessKeyId,
-                secretAccessKey: configService.fileConfig.secretAccessKey,
+                accessKeyId: configService.getOrThrow('file.accessKeyId', {
+                    infer: true,
+                }),
+                secretAccessKey: configService.getOrThrow('file.secretAccessKey', {
+                    infer: true,
+                }),
             },
         });
     }
@@ -47,7 +52,12 @@ export class FilesS3PresignedService {
             });
         }
 
-        if (file.fileSize > (this.configService.fileConfig.maxFileSize || 0)) {
+        if (
+            file.fileSize >
+            (this.configService.get('file.maxFileSize', {
+                infer: true,
+            }) || 0)
+        ) {
             throw new PayloadTooLargeException({
                 statusCode: HttpStatus.PAYLOAD_TOO_LARGE,
                 error: 'Payload Too Large',
@@ -58,7 +68,9 @@ export class FilesS3PresignedService {
         const key = `${randomStringGenerator()}.${file.fileName.split('.').pop()?.toLowerCase()}`;
 
         const command = new PutObjectCommand({
-            Bucket: this.configService.fileConfig.awsDefaultS3Bucket,
+            Bucket: this.configService.getOrThrow('file.awsDefaultS3Bucket', {
+                infer: true,
+            }),
             Key: key,
             ContentLength: file.fileSize,
         });
@@ -80,7 +92,9 @@ export class FilesS3PresignedService {
 
     async generatePresignedUrl(key: string, expiresIn: number): Promise<string> {
         const command = new GetObjectCommand({
-            Bucket: this.configService.fileConfig.awsDefaultS3Bucket,
+            Bucket: this.configService.getOrThrow('file.awsDefaultS3Bucket', {
+                infer: true,
+            }),
             Key: key,
         });
 

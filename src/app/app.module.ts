@@ -1,47 +1,31 @@
 import { Module } from '@nestjs/common';
-// import { ScheduleModule } from '@nestjs/schedule';
-// import { BullModule } from '@nestjs/bull';
-// import { ConfigModule, ConfigService } from '@nestjs/config';
-// import { ConfigService } from "../common/helper/services/config.service";
+import { ConfigModule } from '@nestjs/config';
 import { TerminusModule } from '@nestjs/terminus';
 
-// eslint-disable-next-line import/order
+// import * as dotenv from 'dotenv';
+
 import { HelperModule } from '@common/helper/helper.module';
-
-// import { CommonModule } from 'src/common/common.module';
-// import { CoreModule } from 'src/core/core.module';
-// import { HelperModule } from 'src/common/helper/helper.module';
-
-// import { PostModule } from '../modules/post/post.module';
-// import { UserModule } from '../modules/user/user.module';
+import appConfig from '@config/app.config';
+import databaseConfig from '@config/database.config';
+import fileConfig from '@config/file.config';
 
 import { ApiModule } from '../modules/api.module';
 
 import { AppController } from './app.controller';
 
+const ENV = process.env.NODE_ENV;
+
 @Module({
     controllers: [AppController],
     imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            load: [appConfig, databaseConfig, fileConfig],
+            envFilePath: !ENV ? '.env' : `.env.${ENV}`,
+        }),
         ApiModule,
         TerminusModule,
-        // CoreModule,
-        // CommonModule,
         HelperModule,
-        // ScheduleModule.forRoot(),
-        // PostModule,
-        // UserModule,
-
-        // BullModule.forRootAsync({
-        //   imports: [ConfigModule],
-        //   useFactory: async (configService: ConfigService) => ({
-        //     redis: {
-        //       host: configService.get('redis.host'),
-        //       port: Number(configService.get('redis.port')),
-        //     },
-        //   }),
-        //   inject: [ConfigService],
-        // }),
     ],
-    // providers: [ConfigService],
 })
 export class AppModule {}
