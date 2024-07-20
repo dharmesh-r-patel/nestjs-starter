@@ -15,21 +15,19 @@ export class CountriesService {
         private readonly utilsService: UtilsService
     ) {}
 
-    async findAll(
-        paginationQuery: PaginationQueryDto<Country>
-    ): Promise<PaginationResponseDto<Country>> {
+    async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Country>> {
         const baseQuery = [
-            'ptlb.id_country',
-            'ptlb.name',
-            'ptlb.iso',
-            'ptlb.nice_name',
-            'ptlb.iso3',
-            'ptlb.num_code',
-            'ptlb.dial_code',
-            'ptlb.continent',
-            'ptlb.capital',
+            'ptbl.id_country',
+            'ptbl.name',
+            'ptbl.iso',
+            'ptbl.nice_name',
+            'ptbl.iso3',
+            'ptbl.num_code',
+            'ptbl.dial_code',
+            'ptbl.continent',
+            'ptbl.capital',
         ];
-        const fromQuery = ` FROM countries ptlb`;
+        const fromQuery = ` FROM countries ptbl`;
 
         const fieldConfigs: Record<string, IPaginationFieldConfig> = {
             symbol: {
@@ -67,20 +65,30 @@ export class CountriesService {
             // Add more field configurations as needed
         };
 
-        const { joinTables, selectFields, filterQuery, sortByQuery } =
-            this.utilsService.buildDynamicQuery(paginationQuery, fieldConfigs);
-
-        console.log(
-            'HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL selectFields',
-            selectFields
+        const { selectQuery, countQuery } = this.utilsService.buildDynamicQuery(
+            paginationQuery,
+            fieldConfigs,
+            baseQuery,
+            fromQuery
         );
-
-        // const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields.join(', ')} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
-        const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
-        const countQuery = `SELECT count(*) ${fromQuery} ${joinTables.join(' ')} ${filterQuery}`;
 
         // const select = selectFields.join(', ');
         return this.paginationService.paginate<Country>(selectQuery, countQuery, paginationQuery);
+
+        // const { joinTables, selectFields, filterQuery, sortByQuery } =
+        //     this.utilsService.buildDynamicQuery(paginationQuery, fieldConfigs);
+
+        // console.log(
+        //     'HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL selectFields',
+        //     selectFields
+        // );
+
+        // // const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields.join(', ')} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
+        // const selectQuery = `SELECT ${baseQuery.join(', ')} ${selectFields} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
+        // const countQuery = `SELECT count(*) ${fromQuery} ${joinTables.join(' ')} ${filterQuery}`;
+
+        // // const select = selectFields.join(', ');
+        // return this.paginationService.paginate<Country>(selectQuery, countQuery, paginationQuery);
     }
 }
 

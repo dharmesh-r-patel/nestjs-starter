@@ -10,16 +10,16 @@ import {
     ValidateNested,
     Matches,
     IsEnum,
-    Validate,
-    IsIn,
+    // Validate,
+    // IsIn,
 } from 'class-validator';
 
-import { IsValidField } from '@core/validators/field.validator'; // Import the custom validator
+// import { IsValidField } from '@core/validators/field.validator'; // Import the custom validator
 import { IsNumberStringOrNumber } from '@decorators/number.string.validator';
 import { ToNumber } from '@decorators/transforms.decorator';
 // import { IsNumberStringOrNumber } from '@decorators/number.string.validator';
 // import { ToNumber } from '@decorators/transforms.decorator';
-import { Country } from '@modules/countries/dto/country';
+// import { Country } from '@modules/countries/dto/country';
 
 export enum PaginationType {
     NONE = 'no',
@@ -28,7 +28,7 @@ export enum PaginationType {
     ALL = 'all',
 }
 
-export class PaginationQueryDto<T> {
+export class PaginationQueryDto {
     @ApiPropertyOptional({
         description:
             'Pagination must all (Page and has_next_page), infinity (only has_next_page), paginate(only page)',
@@ -68,7 +68,7 @@ export class PaginationQueryDto<T> {
         required: false,
         type: String,
         description: 'Array of filter objects as a JSON string',
-        example: '[{"field":"iso","operator":"=","value":"IN"}]',
+        example: '[{"field":"name","operator":"=","value":"IN"}]',
     })
     @IsOptional()
     @Transform(({ value }) => {
@@ -91,7 +91,7 @@ export class PaginationQueryDto<T> {
     })
     @ValidateNested({ each: true })
     @Type(() => SortByDto)
-    sort?: SortByDto<T>[] | null;
+    sort?: SortByDto[] | null;
 }
 
 export class FilterQueryDto {
@@ -111,7 +111,7 @@ export class FilterQueryDto {
     value: string;
 }
 
-export class SortByDto<T> {
+export class SortByDto {
     // @ApiProperty({ example: 'name' })
     // @IsString()
     // @Validate(IsValidField, [Country], {
@@ -126,7 +126,7 @@ export class SortByDto<T> {
     // @Validate(IsValidField, [{ entity: () => T }], {
     //     message: 'Field must be a valid key of the specified entity',
     // })
-    field: keyof T;
+    field: string;
 
     @ApiProperty({ example: 'ASC' })
     @IsString()

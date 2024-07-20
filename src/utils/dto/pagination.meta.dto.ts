@@ -1,63 +1,63 @@
-import { ApiResponseProperty } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 
 export interface IPageMetaDtoParameters {
-    paginationQueryDto: PaginationQueryDto<any>;
+    paginationQueryDto: PaginationQueryDto;
     totalItems: number;
     maxPages?: number;
 }
 
 export class PaginationMetaDto {
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 77, //  'Total records'
     })
     readonly totalItems: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 7, //  'Current page number',
     })
     readonly currentPage: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 10, //  'limit / page record number',
     })
     readonly pageSize: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 8, //  'Total pages',
     })
     readonly totalPages: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 1, //  'Start page',
     })
     readonly startPage: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 7, //  'End page',
     })
     readonly endPage: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 0, //  'Record start index',
     })
     readonly startIndex: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Number,
         example: 76, //  'Record end index',
     })
     readonly endIndex: number;
 
-    @ApiResponseProperty({
+    @ApiPropertyOptional({
         type: Array,
         example: [1, 2, 3, 4, 5, 6, 7], //  'Array of page number',
     })

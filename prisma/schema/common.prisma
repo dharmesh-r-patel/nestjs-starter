@@ -1,5 +1,5 @@
 model countries {
-    id_country    String    @id @default(uuid()) @db.Uuid
+    id_country    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     name          String?   @unique @db.VarChar(80)
     iso           String    @db.Char(2)
     nice_name     String    @db.VarChar(80)
@@ -21,22 +21,22 @@ model countries {
 }
 
 model currencies {
-    id_currency    String @id @default(uuid()) @db.Uuid
-    code           String @db.VarChar(10)
-    name           String @db.VarChar(80)
-    name_plural    String @db.VarChar(80)
-    symbol         String @db.VarChar(10)
-    symbol_native  String @db.VarChar(10)
-    decimal_digits Int    @default(2) @db.SmallInt
-    rounding       Int    @default(0) @db.SmallInt
-    country_code   String @db.VarChar(10)
-    status         Int    @default(1) @db.SmallInt /// '1.Active, 127.Delete',
+    id_currency    String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    code           String  @db.VarChar(10)
+    name           String  @db.VarChar(80)
+    name_plural    String  @db.VarChar(80)
+    symbol         String  @db.VarChar(10)
+    symbol_native  String  @db.VarChar(10)
+    decimal_digits Int     @default(2) @db.SmallInt
+    rounding       Int     @default(0) @db.SmallInt
+    country_code   String? @db.VarChar(10)
+    status         Int     @default(1) @db.SmallInt /// '1.Active, 127.Delete',
 
     @@schema("public")
 }
 
 model timezone {
-    id_timezone       String @id @default(uuid()) @db.Uuid
+    id_timezone       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     value             String @db.VarChar(40)
     offset            String @db.VarChar(10)
     offset_in_minutes Int    @db.SmallInt

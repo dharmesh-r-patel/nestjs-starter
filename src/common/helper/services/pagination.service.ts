@@ -12,7 +12,7 @@ export class PaginationService {
     async paginate<T>(
         selectQuery: string,
         countQuery: string,
-        paginationQuery: PaginationQueryDto<T>
+        paginationQuery: PaginationQueryDto
     ): Promise<PaginationResponseDto<T>> {
         const { page, limit, pagination } = paginationQuery;
 
@@ -27,7 +27,7 @@ export class PaginationService {
         //     this.prisma.$queryRawUnsafe<{ count: number }[]>(countQuery),
         // ]);
 
-        console.log('DATTTTTTTTTTTTTTTTTTTTTTTTT', dataQuery);
+        // console.log('DATTTTTTTTTTTTTTTTTTTTTTTTT', dataQuery);
 
         const [data, total] = await Promise.all([
             this.prisma.$queryRawUnsafe<T[]>(dataQuery),

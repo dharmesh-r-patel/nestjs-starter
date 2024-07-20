@@ -4,11 +4,12 @@ import { APP_FILTER } from '@nestjs/core';
 import { HttpErrorFilter } from '@core/exceptions/http-error.filter';
 
 import { CountriesModule } from './countries/countries.module';
+import { CurrenciesModule } from './currencies/currencies.module';
 import { FilesModule } from './files/files.module';
 import { HomeModule } from './home/home.module';
 
 @Module({
-    imports: [CountriesModule, FilesModule, HomeModule],
+    imports: [CountriesModule, CurrenciesModule, FilesModule, HomeModule],
     providers: [
         {
             provide: APP_FILTER,

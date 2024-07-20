@@ -1,7 +1,7 @@
 import { Controller, Get, Query, HttpStatus, HttpCode } from '@nestjs/common';
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 
-import { PaginationResponseDto } from '@utils/dto/pagination-response.dto';
+import { PaginationResponse, PaginationResponseDto } from '@utils/dto/pagination-response.dto';
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 
 import { CountriesService } from './countries.service';
@@ -18,10 +18,8 @@ export class CountriesController {
 
     @Get('v1/countries')
     @HttpCode(HttpStatus.OK)
-    @ApiOkResponse({ type: PaginationResponseDto })
-    async findAll(
-        @Query() query: PaginationQueryDto<Country>
-    ): Promise<PaginationResponseDto<Country>> {
+    @ApiOkResponse({ type: PaginationResponse(Country) })
+    async findAll(@Query() query: PaginationQueryDto): Promise<PaginationResponseDto<Country>> {
         const get_all = await this.countriesService.findAll(query);
 
         return get_all;
