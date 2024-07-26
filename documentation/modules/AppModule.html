@@ -192,6 +192,15 @@
 
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>This file contains the <code>AppModule</code> class, which is the root module of the NestJS application.</p>
+<p>The <code>AppModule</code> class is responsible for importing and configuring the core modules of the application.
+It includes configuration for environment variables, database connections, and health checks.</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -228,48 +237,44 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
-// import { ScheduleModule } from &#x27;@nestjs/schedule&#x27;;
-// import { BullModule } from &#x27;@nestjs/bull&#x27;;
-// import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
-// import { ConfigService } from &quot;../common/helper/services/config.service&quot;;
+import { ConfigModule } from &#x27;@nestjs/config&#x27;;
 import { TerminusModule } from &#x27;@nestjs/terminus&#x27;;
 
-import { HelperModule } from &#x27;../common/helper/helper.module&#x27;;
+// import * as dotenv from &#x27;dotenv&#x27;;
 
-// import { CommonModule } from &#x27;src/common/common.module&#x27;;
-// import { CoreModule } from &#x27;src/core/core.module&#x27;;
-// import { HelperModule } from &#x27;src/common/helper/helper.module&#x27;;
+import { HelperModule } from &#x27;@common/helper/helper.module&#x27;;
+import appConfig from &#x27;@config/app.config&#x27;;
+import databaseConfig from &#x27;@config/database.config&#x27;;
+import fileConfig from &#x27;@config/file.config&#x27;;
 
-// import { PostModule } from &#x27;../modules/post/post.module&#x27;;
-// import { UserModule } from &#x27;../modules/user/user.module&#x27;;
+import { ApiModule } from &#x27;../modules/api.module&#x27;;
 
-import { ApiModule } from &#x27;./api.module&#x27;;
 import { AppController } from &#x27;./app.controller&#x27;;
+
+const ENV &#x3D; process.env.NODE_ENV;
+
+/**
+ * @fileoverview
+ * This file contains the &#x60;AppModule&#x60; class, which is the root module of the NestJS application.
+ *
+ * @module
+ * @description
+ * The &#x60;AppModule&#x60; class is responsible for importing and configuring the core modules of the application.
+ * It includes configuration for environment variables, database connections, and health checks.
+ */
 
 @Module({
     controllers: [AppController],
     imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            load: [appConfig, databaseConfig, fileConfig],
+            envFilePath: !ENV ? &#x27;.env&#x27; : &#x60;.env.${ENV}&#x60;,
+        }),
         ApiModule,
         TerminusModule,
-        // CoreModule,
-        // CommonModule,
         HelperModule,
-        // ScheduleModule.forRoot(),
-        // PostModule,
-        // UserModule,
-
-        // BullModule.forRootAsync({
-        //   imports: [ConfigModule],
-        //   useFactory: async (configService: ConfigService) &#x3D;&gt; ({
-        //     redis: {
-        //       host: configService.get(&#x27;redis.host&#x27;),
-        //       port: Number(configService.get(&#x27;redis.port&#x27;)),
-        //     },
-        //   }),
-        //   inject: [ConfigService],
-        // }),
     ],
-    // providers: [ConfigService],
 })
 export class AppModule {}
 </code></pre>

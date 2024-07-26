@@ -1,10 +1,29 @@
 # NestJS Starter Boilerplate
 
 ## Introduction
-This project is a nestjs starter. It aims to nestjs bootstrap. The main features include:
-- Feature 1
-- Feature 2
-- Feature 3
+Introducing the NestJS boilerplate - a great way to get started on your next Node.js project! It's built using the latest version of NestJS, which is a powerful and flexible framework for creating efficient and scalable server-side applications. The boilerplate includes TypeScript, PostgreSQL, and JWT authentication right out of the box, so you don't have to worry about setting those up yourself.
+
+Other awesome features include configuration support with Dotenv, Prisma for interacting with databases, Swagger for API documentation, and Docker Compose for container orchestration. Plus, the boilerplate also comes with pre-configured linting tools and secure HTTP headers with Helmet.
+
+Getting started is easy - just clone the repository, install the dependencies, and you're ready to start building your next great idea!
+
+## 🚀 Features
+
+- 📱 **NestJS** — latest version
+- 🎉 **TypeScript** - Type checking
+- ⚙️ **Dotenv** - Supports environment variables
+- 🗝 **Authentication** - JWT, RSA256
+- 🏬 **Authorization** - RBAC, CBAC
+- 🏪 **Prisma** - Database ORM
+- 🏪 **PostgreSQL** - Open-Source Relational Database
+- 🧠 **Configuration** - Single config for all
+- 📃 **Swagger** - API Documentation
+- 🐳 **Docker Compose** - Container Orchestration
+- 🔐 **Helmet** - secure HTTP headers
+- 📏 **ESLint** — Pluggable JavaScript linter
+- 💖 **Prettier** - Opinionated Code Formatter
+- ✨ **Commitlint** - Lint your conventional commits
+- 🕵️‍♂️ **Code Scanning** - Code scanning with CodeQL
 
 ## Getting Started
 
@@ -121,6 +140,25 @@ kubectl apply -f k8s/
 # get endpoint of k8s cluster
 minikube service nestjs-starter-service
 ```
+
+## Commit Message Guidelines
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+
+
+Type: The type of change (e.g., feat, fix, docs, style, refactor, test, chore).
+Scope: The scope of the change (e.g., core, api, config), which is optional.
+Description: A short, imperative summary of the change.
+Body: Detailed explanation of the change, which is optional.
+Footer: Any footer notes, such as breaking changes or issues closed, which is optional.
+
+git commit -m "feat(api): add new endpoint for user registration"
+git commit -m "fix(core): handle edge case in data processing"
+
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

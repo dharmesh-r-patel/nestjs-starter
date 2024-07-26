@@ -84,11 +84,26 @@
 
 <h1>NestJS Starter Boilerplate</h1>
 <h2>Introduction</h2>
-<p>This project is a nestjs starter. It aims to nestjs bootstrap. The main features include:</p>
+<p>Introducing the NestJS boilerplate - a great way to get started on your next Node.js project! It&#39;s built using the latest version of NestJS, which is a powerful and flexible framework for creating efficient and scalable server-side applications. The boilerplate includes TypeScript, PostgreSQL, and JWT authentication right out of the box, so you don&#39;t have to worry about setting those up yourself.</p>
+<p>Other awesome features include configuration support with Dotenv, Prisma for interacting with databases, Swagger for API documentation, and Docker Compose for container orchestration. Plus, the boilerplate also comes with pre-configured linting tools and secure HTTP headers with Helmet.</p>
+<p>Getting started is easy - just clone the repository, install the dependencies, and you&#39;re ready to start building your next great idea!</p>
+<h2>🚀 Features</h2>
 <ul>
-<li>Feature 1</li>
-<li>Feature 2</li>
-<li>Feature 3</li>
+<li>📱 <strong>NestJS</strong> — latest version</li>
+<li>🎉 <strong>TypeScript</strong> - Type checking</li>
+<li>⚙️ <strong>Dotenv</strong> - Supports environment variables</li>
+<li>🗝 <strong>Authentication</strong> - JWT, RSA256</li>
+<li>🏬 <strong>Authorization</strong> - RBAC, CBAC</li>
+<li>🏪 <strong>Prisma</strong> - Database ORM</li>
+<li>🏪 <strong>PostgreSQL</strong> - Open-Source Relational Database</li>
+<li>🧠 <strong>Configuration</strong> - Single config for all</li>
+<li>📃 <strong>Swagger</strong> - API Documentation</li>
+<li>🐳 <strong>Docker Compose</strong> - Container Orchestration</li>
+<li>🔐 <strong>Helmet</strong> - secure HTTP headers</li>
+<li>📏 <strong>ESLint</strong> — Pluggable JavaScript linter</li>
+<li>💖 <strong>Prettier</strong> - Opinionated Code Formatter</li>
+<li>✨ <strong>Commitlint</strong> - Lint your conventional commits</li>
+<li>🕵️‍♂️ <strong>Code Scanning</strong> - Code scanning with CodeQL</li>
 </ul>
 <h2>Getting Started</h2>
 <h3>Prerequisites</h3>
@@ -155,9 +170,17 @@ minikube start
 kubectl apply -f k8s/
 
 # get endpoint of k8s cluster
-minikube service nestjs-starter-service</code></pre></div><!-- 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 -->
-<!-- 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 -->
-
+minikube service nestjs-starter-service</code></pre></div><h2>Commit Message Guidelines</h2>
+<p><type>[optional scope]: <description></p>
+<p>[optional body]</p>
+<p>[optional footer(s)]</p>
+<p>Type: The type of change (e.g., feat, fix, docs, style, refactor, test, chore).
+Scope: The scope of the change (e.g., core, api, config), which is optional.
+Description: A short, imperative summary of the change.
+Body: Detailed explanation of the change, which is optional.
+Footer: Any footer notes, such as breaking changes or issues closed, which is optional.</p>
+<p>git commit -m &quot;feat(api): add new endpoint for user registration&quot;
+git commit -m &quot;fix(core): handle edge case in data processing&quot;</p>
 <h2>Support</h2>
 <p>Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you&#39;d like to join them, please <a href="https://docs.nestjs.com/support">read more here</a>.</p>
 <h2>License</h2>

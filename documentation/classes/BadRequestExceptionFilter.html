@@ -123,6 +123,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A custom exception filter to handle BadRequestException specifically.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -191,12 +198,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/core/filters/bad-request.filter.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/core/filters/bad-request.filter.ts:27</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of BadRequestExceptionFilter.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -205,6 +214,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -219,6 +229,12 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>The reflector instance used for metadata reflection.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -254,10 +270,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/core/filters/bad-request.filter.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/core/filters/bad-request.filter.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><ul>
+<li>The reflector instance used for metadata reflection.</li>
+</ul>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -290,14 +314,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="65"
-                                    class="link-to-prism">src/core/filters/bad-request.filter.ts:65</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/core/filters/bad-request.filter.ts:93</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Filters and formats validation errors.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -308,6 +334,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -322,6 +349,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>Array of validation errors.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -331,7 +364,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Formatted validation errors.</p>
+
                             </div>
                 </td>
             </tr>
@@ -357,14 +391,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/core/filters/bad-request.filter.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/core/filters/bad-request.filter.ts:43</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Catches and handles BadRequestException thrown by the application.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -375,6 +411,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -389,6 +426,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The BadRequestException that was thrown.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>host</td>
@@ -401,6 +444,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The execution context that contains request and response objects.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -444,11 +493,32 @@ import * as _ from &#x27;lodash&#x27;;
 // import { PgSQLService } from &quot;../common/shared/services/pgsql.service&quot;;
 // import { Query } from &#x27;./query&#x27;;
 
+/**
+ * A custom exception filter to handle BadRequestException specifically.
+ *
+ * @class
+ * @implements {ExceptionFilter}
+ */
+
 @Catch(BadRequestException)
 export class BadRequestExceptionFilter implements ExceptionFilter {
+    /**
+     * Creates an instance of BadRequestExceptionFilter.
+     *
+     * @param {Reflector} reflector - The reflector instance used for metadata reflection.
+     */
+
     constructor(public reflector: Reflector) {}
 
+    /**
+     * Catches and handles BadRequestException thrown by the application.
+     *
+     * @param {BadRequestException} exception - The BadRequestException that was thrown.
+     * @param {ArgumentsHost} host - The execution context that contains request and response objects.
+     */
+
     catch(exception: BadRequestException, host: ArgumentsHost) {
+        console.log(&#x27;BAD REQUREST from fil&#x27;);
         const ctx &#x3D; host.switchToHttp();
         const response &#x3D; ctx.getResponse&lt;Response&gt;();
         // const request &#x3D; ctx.getRequest();
@@ -489,6 +559,13 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
         //   );
         // } catch (error) {}
     }
+
+    /**
+     * Filters and formats validation errors.
+     *
+     * @param {ValidationError[]} validationErrors - Array of validation errors.
+     * @returns {object} Formatted validation errors.
+     */
 
     private _validationFilter(validationErrors: ValidationError[]) {
         const errorMessages &#x3D; {};

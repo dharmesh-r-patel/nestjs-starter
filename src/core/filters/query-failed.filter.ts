@@ -11,9 +11,36 @@ import { Response } from 'express';
 import { constraintErrors } from './constraint-errors';
 // import { Query } from './query';
 
+/**
+ * Exception filter for handling database query failures.
+ *
+ * This filter catches exceptions related to failed database queries and formats
+ * the response based on the type of database constraint error.
+ *
+ * @export
+ * @class QueryFailedFilter
+ * @implements {ExceptionFilter}
+ */
+
 // @Catch(QueryFailedError)
 export class QueryFailedFilter implements ExceptionFilter {
+    /**
+     * Creates an instance of QueryFailedFilter.
+     * @param {Reflector} reflector The reflector instance used for metadata reflection.
+     *
+     * @memberof QueryFailedFilter
+     */
+
     constructor(public reflector: Reflector) {}
+
+    /**
+     * Handles the database query failure exception and formats the error response.
+     *
+     * @param {any} exception The exception thrown by a failed database query.
+     * @param {ArgumentsHost} host The arguments host for accessing request and response objects.
+     *
+     * @memberof QueryFailedFilter
+     */
 
     catch(exception: any, host: ArgumentsHost) {
         console.log('QUERY FAIL from filter');

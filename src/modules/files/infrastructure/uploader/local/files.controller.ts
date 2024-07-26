@@ -25,10 +25,30 @@ import { filesRoot, editFileName, imageFileFilter } from '@providers/file-upload
 import { FileResponseDto } from './dto/file-response.dto';
 import { FilesLocalService } from './files.service';
 
+/**
+ * @controller FilesLocalController
+ *
+ * @description
+ * The `FilesLocalController` is responsible for handling file operations related to local storage.
+ * It provides endpoints for uploading and downloading files.
+ */
+
 @ApiTags('Files')
 @Controller()
 export class FilesLocalController {
     constructor(private readonly filesService: FilesLocalService) {}
+
+    /**
+     * Uploads a file to local storage.
+     *
+     * @endpoint POST /v1/upload
+     * @consumes multipart/form-data
+     *
+     * @param file The file to be uploaded.
+     * @returns FileResponseDto The response containing file details after upload.
+     *
+     * @throws { HttpException } If there is an error during file upload.
+     */
 
     @ApiCreatedResponse({
         type: FileResponseDto,
@@ -59,6 +79,17 @@ export class FilesLocalController {
     async uploadFile(@UploadedFile() file: Express.Multer.File): Promise<FileResponseDto> {
         return this.filesService.create(file);
     }
+
+    /**
+     * Downloads a file from local storage.
+     *
+     * @endpoint GET /:path
+     *
+     * @param path The path to the file to be downloaded.
+     * @returns A file response stream.
+     *
+     * @throws { HttpException } If the file cannot be found or there is an error during download.
+     */
 
     @Get(':path')
     @ApiExcludeEndpoint()

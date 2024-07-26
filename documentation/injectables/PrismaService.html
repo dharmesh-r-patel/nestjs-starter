@@ -123,7 +123,10 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Prisma service</p>
+                <p>PrismaService</p>
+<p><code>PrismaService</code> is a service that extends the PrismaClient class to manage database operations with Prisma ORM. It handles
+initialization and teardown of database connections, executes raw queries with parameter escaping, supports transactions,
+and provides a health check for the database connection.</p>
 
             </p>
 
@@ -186,15 +189,54 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(configService: <a href="../classes/ConfigService.html" target="_self">ConfigService&lt;AllConfigType&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/common/helper/services/prisma.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/common/helper/services/prisma.service.ts:28</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of PrismaService.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/ConfigService.html" target="_self" >ConfigService&lt;AllConfigType&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>The configuration service for retrieving database connection details.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -219,21 +261,23 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>executeRawQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, params?: any[])</code>
+                    <code>executeRawQuery(queryObj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, fields: string[])</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="39"
-                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:39</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:79</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Executes a raw query with optional data and field sanitization.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -244,32 +288,73 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>query</td>
+                                                <td>queryObj</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
                                                     No
                                             </td>
 
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
 
+                                            <td>
+                                                    <ul>
+<li>The query object with a <code>syntax</code> method to generate the query string.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
-                                                <td>params</td>
+                                                <td>data</td>
                                             <td>
-                                                        <code>any[]</code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
-                                                    Yes
+                                                    No
                                             </td>
 
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
 
+                                            <td>
+                                                    <ul>
+<li>Optional data to be used in the query.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fields</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>[]</code>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>Optional fields to be sanitized in the data.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -279,7 +364,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The result of the query.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -307,14 +395,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:129</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Executes a transaction with Prisma.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -325,6 +415,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -339,6 +430,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>A function containing the transactional operations.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -348,7 +445,10 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <ul>
+<li>The result of the transaction.</li>
+</ul>
+
                             </div>
                 </td>
             </tr>
@@ -376,19 +476,27 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:141</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Checks the health of the Prisma connection by executing a simple query.</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>Promise&lt;HealthIndicatorResult&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <ul>
+<li>The result of the health check.</li>
+</ul>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -415,19 +523,24 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:61</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Called when the module is destroyed. Disconnects from the database.</p>
+</div>
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -454,19 +567,24 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/common/helper/services/prisma.service.ts:51</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Called when the module is initialized. Connects to the database.</p>
+</div>
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -478,46 +596,132 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnModuleInit, OnModuleDestroy } from &#x27;@nestjs/common&#x27;;
+import { ConfigService } from &#x27;@nestjs/config&#x27;;
 import { HealthIndicatorResult } from &#x27;@nestjs/terminus&#x27;;
 
 import { Prisma, PrismaClient } from &#x27;@prisma/client&#x27;;
+import * as _ from &#x27;lodash&#x27;;
 
-import { ConfigService } from &#x27;../services/config.service&#x27;;
+import { AllConfigType } from &#x27;@config/type/config.type&#x27;;
+
+// import { ConfigService } from &#x27;../services/config.service&#x27;;
 
 /**
- * Prisma service
+ * PrismaService
+ *
+ * @description
+ * &#x60;PrismaService&#x60; is a service that extends the PrismaClient class to manage database operations with Prisma ORM. It handles
+ * initialization and teardown of database connections, executes raw queries with parameter escaping, supports transactions,
+ * and provides a health check for the database connection.
+ *
  * @export
  * @class PrismaService
+ * @extends PrismaClient
+ * @implements {OnModuleInit}
+ * @implements {OnModuleDestroy}
  */
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
-    constructor() {
-        const configService &#x3D; new ConfigService();
-        // console.log(
-        //     &#x27;ConfigService-------------------------------------------------&#x27;,
-        //     configService.prismaConfig
-        // );
+    /**
+     * Creates an instance of PrismaService.
+     *
+     * @param {ConfigService&lt;AllConfigType&gt;} configService - The configuration service for retrieving database connection details.
+     */
+
+    constructor(private readonly configService: ConfigService&lt;AllConfigType&gt;) {
         super({
             datasources: {
                 db: {
-                    url: configService.prismaConfig,
+                    url: configService.get(&#x27;database.url&#x27;, { infer: true }), // configService.prismaConfig,
                 },
             },
         });
     }
 
-    async onModuleInit() {
+    /**
+     * Called when the module is initialized. Connects to the database.
+     *
+     * @returns {Promise&lt;void&gt;}
+     */
+
+    async onModuleInit(): Promise&lt;void&gt; {
         await this.$connect();
     }
 
-    async onModuleDestroy() {
+    /**
+     * Called when the module is destroyed. Disconnects from the database.
+     *
+     * @returns {Promise&lt;void&gt;}
+     */
+
+    async onModuleDestroy(): Promise&lt;void&gt; {
         await this.$disconnect();
     }
 
-    async executeRawQuery(query: string, params?: any[]): Promise&lt;any&gt; {
-        return this.$queryRawUnsafe(query, ...params);
+    // async executeRawQuery(query: string, params?: any[]): Promise&lt;any&gt; {
+    //     return this.$queryRawUnsafe(query, ...params);
+    // }
+
+    /**
+     * Executes a raw query with optional data and field sanitization.
+     *
+     * @param {any} queryObj - The query object with a &#x60;syntax&#x60; method to generate the query string.
+     * @param {any} [data&#x3D;null] - Optional data to be used in the query.
+     * @param {string[]} [fields&#x3D;[]] - Optional fields to be sanitized in the data.
+     *
+     * @returns {Promise&lt;any&gt;} - The result of the query.
+     */
+
+    async executeRawQuery(
+        queryObj: any &#x3D; null,
+        data: any &#x3D; null,
+        fields: string[] &#x3D; []
+    ): Promise&lt;any&gt; {
+        const newObj &#x3D; Object.assign({}, data);
+
+        if (typeof data &#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; data instanceof Object &amp;&amp; !(data instanceof Array)) {
+            for (const [key, value] of Object.entries(newObj)) {
+                const found &#x3D; fields.includes(key);
+                if (found) {
+                    const escValue &#x3D; value as any;
+                    // newObj[key] &#x3D; escValue.replace(/&#x27;/g, &quot;\\&#x27;&quot;);
+                    newObj[key] &#x3D; escValue.replace(/&#x27;/g, &quot;&#x27;&#x27;&quot;);
+                }
+            }
+        }
+
+        let query: string;
+        if (data) {
+            query &#x3D; queryObj.syntax(
+                typeof data &#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; data instanceof Object &amp;&amp; !(data instanceof Array)
+                    ? newObj
+                    : data
+            );
+        } else {
+            query &#x3D; queryObj.syntax();
+        }
+
+        // return this.$queryRawUnsafe(query, ...params);
+        const rows &#x3D; await this.$queryRawUnsafe(query);
+
+        let result: any;
+        if (queryObj.type &#x3D;&#x3D; &#x27;SELECT_ONE&#x27; || queryObj.type &#x3D;&#x3D; &#x27;INSERT&#x27;) {
+            result &#x3D; !_.isEmpty(rows) ? rows[0] : null; //do not change null to balnk object
+        } else {
+            result &#x3D; rows;
+        }
+
+        return result;
     }
+
+    /**
+     * Executes a transaction with Prisma.
+     *
+     * @param {(prisma: Prisma.TransactionClient) &#x3D;&gt; Promise&lt;any&gt;} actions - A function containing the transactional operations.
+     *
+     * @returns {Promise&lt;any&gt;} - The result of the transaction.
+     */
 
     async executeTransaction(
         actions: (prisma: Prisma.TransactionClient) &#x3D;&gt; Promise&lt;any&gt;
@@ -525,10 +729,16 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
         return this.$transaction(actions);
     }
 
+    /**
+     * Checks the health of the Prisma connection by executing a simple query.
+     *
+     * @returns {Promise&lt;HealthIndicatorResult&gt;} - The result of the health check.
+     */
+
     async isHealthy(): Promise&lt;HealthIndicatorResult&gt; {
         try {
-            const x &#x3D; await this.$queryRaw&#x60;SELECT 1&#x60;;
-            console.log(&#x27;RESULTTTTTTTTTTTTTTTTTTTT&#x27;, x);
+            await this.$queryRaw&#x60;SELECT 1&#x60;;
+            // console.log(&#x27;RESULTTTTTTTTTTTTTTTTTTTT&#x27;, x);
             return Promise.resolve({
                 prisma: {
                     status: &#x27;up&#x27;,

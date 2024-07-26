@@ -6,11 +6,26 @@ import {
     ValidationArguments,
 } from 'class-validator';
 
+/**
+ * Custom validator for checking if a string is a valid comma-separated list of numbers.
+ *
+ * @export
+ * @class CommaSeparated
+ * @implements {ValidatorConstraintInterface}
+ */
 @Injectable()
 @ValidatorConstraint({ name: 'CommaSeparated', async: false })
 export class CommaSeparated implements ValidatorConstraintInterface {
+    /**
+     * Validates if the given value is a comma-separated list of numbers.
+     *
+     * @param {string} propertyValue - The value to be validated.
+     * @param {ValidationArguments} args - The validation arguments.
+     * @returns {boolean} - Returns true if valid; otherwise, false.
+     */
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    validate(propertyValue: string, args: ValidationArguments) {
+    validate(propertyValue: string, args: ValidationArguments): boolean {
         //
         //
         const isValid = /^[0-9]+(,[0-9]+)*$/.test(propertyValue);
@@ -22,14 +37,36 @@ export class CommaSeparated implements ValidatorConstraintInterface {
         }
     }
 
-    defaultMessage(args: ValidationArguments) {
+    /**
+     * Default error message when validation fails.
+     *
+     * @param {ValidationArguments} args - The validation arguments.
+     * @returns {string} - The error message.
+     */
+
+    defaultMessage(args: ValidationArguments): string {
         return `Invalid ${args.property}`;
     }
 }
 
+/**
+ * Custom validator for checking if a string is in the correct "field direction" format.
+ *
+ * @export
+ * @class SortBy
+ * @implements {ValidatorConstraintInterface}
+ */
 @Injectable()
 @ValidatorConstraint({ name: 'SortBy', async: false })
 export class SortBy implements ValidatorConstraintInterface {
+    /**
+     * Validates if the given value is in the format of "field direction" where direction is "ASC" or "DESC".
+     *
+     * @param {string} value - The value to be validated.
+     * @param {ValidationArguments} args - The validation arguments.
+     * @returns {boolean} - Returns true if valid; otherwise, false.
+     */
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validate(value: string, args: ValidationArguments): boolean {
         // Split the input by spaces and validate each pair
@@ -53,6 +90,13 @@ export class SortBy implements ValidatorConstraintInterface {
 
         return true;
     }
+
+    /**
+     * Default error message when validation fails.
+     *
+     * @param {ValidationArguments} args - The validation arguments.
+     * @returns {string} - The error message.
+     */
 
     defaultMessage(args: ValidationArguments): string {
         return `${args.property} must be in the format "field direction" where direction is "ASC" or "DESC", separated by spaces.`;

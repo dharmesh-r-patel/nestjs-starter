@@ -16,9 +16,29 @@ import * as _ from 'lodash';
 // import { PgSQLService } from "../common/shared/services/pgsql.service";
 // import { Query } from './query';
 
+/**
+ * A custom exception filter to handle BadRequestException specifically.
+ *
+ * @class
+ * @implements {ExceptionFilter}
+ */
+
 @Catch(BadRequestException)
 export class BadRequestExceptionFilter implements ExceptionFilter {
+    /**
+     * Creates an instance of BadRequestExceptionFilter.
+     *
+     * @param {Reflector} reflector - The reflector instance used for metadata reflection.
+     */
+
     constructor(public reflector: Reflector) {}
+
+    /**
+     * Catches and handles BadRequestException thrown by the application.
+     *
+     * @param {BadRequestException} exception - The BadRequestException that was thrown.
+     * @param {ArgumentsHost} host - The execution context that contains request and response objects.
+     */
 
     catch(exception: BadRequestException, host: ArgumentsHost) {
         console.log('BAD REQUREST from fil');
@@ -62,6 +82,13 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
         //   );
         // } catch (error) {}
     }
+
+    /**
+     * Filters and formats validation errors.
+     *
+     * @param {ValidationError[]} validationErrors - Array of validation errors.
+     * @returns {object} Formatted validation errors.
+     */
 
     private _validationFilter(validationErrors: ValidationError[]) {
         const errorMessages = {};

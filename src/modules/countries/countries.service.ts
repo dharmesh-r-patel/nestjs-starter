@@ -8,12 +8,46 @@ import { IPaginationFieldConfig } from '@utils/types/pagination-options';
 
 import { Country } from './dto/country';
 
+/**
+ * @fileoverview
+ * This file defines the `CountriesService`, which handles the business logic for managing countries.
+ *
+ * @module
+ * @description
+ * The `CountriesService` is responsible for providing country-related services, including pagination and dynamic queries.
+ */
 @Injectable()
 export class CountriesService {
     constructor(
         private readonly paginationService: PaginationService,
         private readonly utilsService: UtilsService
     ) {}
+
+    /**
+     * Find all countries with pagination.
+     *
+     * @param {PaginationQueryDto} paginationQuery - The pagination query parameters.
+     * @returns {Promise<PaginationResponseDto<Country>>} A promise that resolves to a paginated response of countries.
+     *
+     * @description
+     * This method allows the client to retrieve a paginated list of countries based on the provided query parameters.
+     * It dynamically builds SQL queries to select and count countries, and supports field configurations for joining additional tables.
+     *
+     * @example
+     * ```typescript
+     * const paginationQuery: PaginationQueryDto = {
+     *   page: 1,
+     *   limit: 10,
+     *   sortBy: 'name',
+     *   filter: { continent: 'Asia' },
+     * };
+     * const countries = await countriesService.findAll(paginationQuery);
+     * ```
+     *
+     * @see PaginationQueryDto
+     * @see PaginationResponseDto
+     * @see Country
+     */
 
     async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Country>> {
         const baseQuery = [

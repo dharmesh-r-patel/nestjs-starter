@@ -1,20 +1,119 @@
 import * as _ from 'lodash';
 
+/**
+ * Options for building queries.
+ *
+ * @export
+ * @interface QueryOptions
+ */
+
 export interface QueryOptions {
+    /**
+     * Name of the query.
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+
     queryName?: string;
+
+    /**
+     * Type of the query (e.g., INSERT, SELECT, UPDATE, DELETE).
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+
     queryType?: string;
+
+    /**
+     * Name of the table to perform the query on.
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+
     table: string;
+
+    /**
+     * List of fields to include in the query (e.g., columns for SELECT, INSERT, or UPDATE).
+     *
+     * @type {string[]}
+     * @memberof QueryOptions
+     */
+
     fields?: string[];
+
+    /**
+     * Values to be used in the query (e.g., for INSERT or UPDATE operations).
+     *
+     * @type {Record<string, any>}
+     * @memberof QueryOptions
+     */
+
     values?: Record<string, any>;
+
+    /**
+     * Conditions for the query (e.g., WHERE clauses).
+     *
+     * @type {Record<string, any>}
+     * @memberof QueryOptions
+     */
+
     conditions?: Record<string, any>;
+
+    /**
+     * Optional conditions for the query.
+     *
+     * @type {Record<string, any>}
+     * @memberof QueryOptions
+     */
+
     optionalConditions?: Record<string, any>;
+
+    /**
+     * Join clauses to include in the query.
+     *
+     * @type {string[]}
+     * @memberof QueryOptions
+     */
+
     joins?: string[];
+
+    /**
+     * Fields to return from the query.
+     *
+     * @type {string[]}
+     * @memberof QueryOptions
+     */
+
     returningFields?: string[];
+
+    /**
+     * Type of delete operation ('soft' or 'hard').
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
     deleteType?: string;
 }
 
+/**
+ * Class to build dynamic SQL queries.
+ *
+ * @export
+ * @class DynamicQueryBuilder
+ */
 export class DynamicQueryBuilder {
-    buildInsertQuery(options: QueryOptions) {
+    /**
+     * Builds an INSERT SQL query.
+     *
+     * @param {QueryOptions} options - Options for the INSERT query.
+     * @returns {object} - An object containing the query name, type, and the SQL syntax.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildInsertQuery(options: QueryOptions): object {
         const { queryName, queryType, fields, table, values = {}, returningFields = [] } = options;
         const conds = _.pick(values, fields);
         const keys = _.keys(conds);
@@ -35,7 +134,15 @@ export class DynamicQueryBuilder {
         };
     }
 
-    buildSelectQuery(options: QueryOptions) {
+    /**
+     * Builds a SELECT SQL query.
+     *
+     * @param {QueryOptions} options - Options for the SELECT query.
+     * @returns {object} - An object containing the query name, type, and the SQL syntax.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildSelectQuery(options: QueryOptions): object {
         const {
             queryName,
             queryType,
@@ -77,7 +184,15 @@ export class DynamicQueryBuilder {
         };
     }
 
-    buildUpdateQuery(options: QueryOptions) {
+    /**
+     * Builds an UPDATE SQL query.
+     *
+     * @param {QueryOptions} options - Options for the UPDATE query.
+     * @returns {object} - An object containing the query name, type, SQL syntax, and values to be used.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildUpdateQuery(options: QueryOptions): object {
         const { table, values = {}, conditions = {}, returningFields = [] } = options;
 
         const setClauses = Object.keys(values).map((key, index) => `${key} = $${index + 1}`);
@@ -109,7 +224,15 @@ export class DynamicQueryBuilder {
     //   },
     // };
 
-    buildDeleteQuery(options: QueryOptions) {
+    /**
+     * Builds a DELETE SQL query.
+     *
+     * @param {QueryOptions} options - Options for the DELETE query.
+     * @returns {object} - An object containing the query name, type, and the SQL syntax.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildDeleteQuery(options: QueryOptions): object {
         const {
             queryName,
             queryType,

@@ -123,6 +123,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Exception filter for handling database query failures.</p>
+<p>This filter catches exceptions related to failed database queries and formats
+the response based on the type of database constraint error.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -187,12 +196,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/core/filters/query-failed.filter.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/core/filters/query-failed.filter.ts:26</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of QueryFailedFilter.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -201,6 +212,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -215,6 +227,10 @@
                                                             No
                                                     </td>
                                                     
+                                                        <td>
+                                                                <p>The reflector instance used for metadata reflection.</p>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -250,10 +266,15 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/core/filters/query-failed.filter.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/core/filters/query-failed.filter.ts:34</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">The reflector instance used for metadata reflection.</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -284,14 +305,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/core/filters/query-failed.filter.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/core/filters/query-failed.filter.ts:45</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles the database query failure exception and formats the error response.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -302,6 +325,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -316,6 +340,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The exception thrown by a failed database query.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>host</td>
@@ -328,6 +356,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The arguments host for accessing request and response objects.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -366,11 +398,39 @@ import { Response } from &#x27;express&#x27;;
 import { constraintErrors } from &#x27;./constraint-errors&#x27;;
 // import { Query } from &#x27;./query&#x27;;
 
+/**
+ * Exception filter for handling database query failures.
+ *
+ * This filter catches exceptions related to failed database queries and formats
+ * the response based on the type of database constraint error.
+ *
+ * @export
+ * @class QueryFailedFilter
+ * @implements {ExceptionFilter}
+ */
+
 // @Catch(QueryFailedError)
 export class QueryFailedFilter implements ExceptionFilter {
+    /**
+     * Creates an instance of QueryFailedFilter.
+     * @param {Reflector} reflector The reflector instance used for metadata reflection.
+     *
+     * @memberof QueryFailedFilter
+     */
+
     constructor(public reflector: Reflector) {}
 
+    /**
+     * Handles the database query failure exception and formats the error response.
+     *
+     * @param {any} exception The exception thrown by a failed database query.
+     * @param {ArgumentsHost} host The arguments host for accessing request and response objects.
+     *
+     * @memberof QueryFailedFilter
+     */
+
     catch(exception: any, host: ArgumentsHost) {
+        console.log(&#x27;QUERY FAIL from filter&#x27;);
         const ctx &#x3D; host.switchToHttp();
         const response &#x3D; ctx.getResponse&lt;Response&gt;();
         const request &#x3D; ctx.getRequest&lt;Request&gt;();

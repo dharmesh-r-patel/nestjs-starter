@@ -15,6 +15,22 @@ import { imageFileFilter } from '../../../../../providers/file-upload.service';
 import { FilesS3PresignedController } from './files.controller';
 import { FilesS3PresignedService } from './files.service';
 
+/**
+ * @module FilesS3PresignedModule
+ *
+ * @description
+ * The `FilesS3PresignedModule` configures and sets up the module for handling file uploads to an Amazon S3 bucket using presigned URLs. It integrates the necessary dependencies and configurations for Multer to manage file uploads and provides the service and controller for handling S3 interactions.
+ *
+ * @imports
+ * - `MulterModule`: Configured asynchronously to use `multer-s3` for file storage on S3.
+ * - `ConfigModule`: Provides configuration services for retrieving AWS S3 settings.
+ *
+ * @providers
+ * - `FilesS3PresignedService`: Service that handles the logic for interacting with S3 and generating presigned URLs.
+ *
+ * @controllers
+ * - `FilesS3PresignedController`: Controller for handling HTTP requests related to file uploads and presigned URLs.
+ */
 @Module({
     imports: [
         MulterModule.registerAsync({

@@ -123,6 +123,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Exception filter for handling HTTP exceptions in a NestJS application.</p>
+<p>This filter catches all <code>HttpException</code> instances and formats the response
+with the status code, timestamp, and request path.</p>
+
+            </p>
 
 
             <p class="comment">
@@ -188,14 +197,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="7"
-                                    class="link-to-prism">src/core/filters/http-exception.filter.ts:7</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/core/filters/http-exception.filter.ts:27</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles the HTTP exception and formats the error response.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -206,6 +217,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -220,6 +232,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The HTTP exception to handle.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>host</td>
@@ -232,6 +248,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The arguments host for accessing request and response objects.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -261,9 +281,30 @@
 
 import { Request, Response } from &#x27;express&#x27;;
 
+/**
+ * Exception filter for handling HTTP exceptions in a NestJS application.
+ *
+ * This filter catches all &#x60;HttpException&#x60; instances and formats the response
+ * with the status code, timestamp, and request path.
+ *
+ * @export
+ * @class HttpExceptionFilter
+ * @implements {ExceptionFilter}
+ */
+
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
+    /**
+     * Handles the HTTP exception and formats the error response.
+     *
+     * @param {HttpException} exception The HTTP exception to handle.
+     * @param {ArgumentsHost} host The arguments host for accessing request and response objects.
+     *
+     * @memberof HttpExceptionFilter
+     */
+
     catch(exception: HttpException, host: ArgumentsHost) {
+        console.log(&#x27;HTTP EXEPTION from filter&#x27;);
         const ctx &#x3D; host.switchToHttp();
         const response &#x3D; ctx.getResponse&lt;Response&gt;();
         const request &#x3D; ctx.getRequest&lt;Request&gt;();

@@ -1,0 +1,1217 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-starter documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >CountriesService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/countries/countries.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This file defines the <code>CountriesService</code>, which handles the business logic for managing countries.</p>
+<p>The <code>CountriesService</code> is responsible for providing country-related services, including pagination and dynamic queries.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(paginationService: <a href="../injectables/PaginationService.html" target="_self">PaginationService</a>, utilsService: <a href="../classes/UtilsService.html" target="_self">UtilsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/countries/countries.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>paginationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PaginationService.html" target="_self" >PaginationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>utilsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/UtilsService.html" target="_self" >UtilsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(paginationQuery: <a href="../classes/PaginationQueryDto.html" target="_self">PaginationQueryDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/modules/countries/countries.service.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Find all countries with pagination.</p>
+<p>This method allows the client to retrieve a paginated list of countries based on the provided query parameters.
+It dynamically builds SQL queries to select and count countries, and supports field configurations for joining additional tables.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">```typescript
+const paginationQuery: PaginationQueryDto = {
+  page: 1,
+  limit: 10,
+  sortBy: &#39;name&#39;,
+  filter: { continent: &#39;Asia&#39; },
+};
+const countries = await countriesService.findAll(paginationQuery);</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">See PaginationQueryDto
+See PaginationResponseDto
+See Country</code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>paginationQuery</td>
+                                            <td>
+                                                            <code><a href="../classes/PaginationQueryDto.html" target="_self" >PaginationQueryDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The pagination query parameters.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/functions.html#PaginationResponse" target="_self" >Promise&lt;PaginationResponseDto&lt;Country&gt;&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise that resolves to a paginated response of countries.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+
+import { PaginationService } from &#x27;@services/pagination.service&#x27;;
+import { UtilsService } from &#x27;@services/util.service&#x27;;
+import { PaginationResponseDto } from &#x27;@utils/dto/pagination-response.dto&#x27;;
+import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
+import { IPaginationFieldConfig } from &#x27;@utils/types/pagination-options&#x27;;
+
+import { Country } from &#x27;./dto/country&#x27;;
+
+/**
+ * @fileoverview
+ * This file defines the &#x60;CountriesService&#x60;, which handles the business logic for managing countries.
+ *
+ * @module
+ * @description
+ * The &#x60;CountriesService&#x60; is responsible for providing country-related services, including pagination and dynamic queries.
+ */
+@Injectable()
+export class CountriesService {
+    constructor(
+        private readonly paginationService: PaginationService,
+        private readonly utilsService: UtilsService
+    ) {}
+
+    /**
+     * Find all countries with pagination.
+     *
+     * @param {PaginationQueryDto} paginationQuery - The pagination query parameters.
+     * @returns {Promise&lt;PaginationResponseDto&lt;Country&gt;&gt;} A promise that resolves to a paginated response of countries.
+     *
+     * @description
+     * This method allows the client to retrieve a paginated list of countries based on the provided query parameters.
+     * It dynamically builds SQL queries to select and count countries, and supports field configurations for joining additional tables.
+     *
+     * @example
+     * &#x60;&#x60;&#x60;typescript
+     * const paginationQuery: PaginationQueryDto &#x3D; {
+     *   page: 1,
+     *   limit: 10,
+     *   sortBy: &#x27;name&#x27;,
+     *   filter: { continent: &#x27;Asia&#x27; },
+     * };
+     * const countries &#x3D; await countriesService.findAll(paginationQuery);
+     * &#x60;&#x60;&#x60;
+     *
+     * @see PaginationQueryDto
+     * @see PaginationResponseDto
+     * @see Country
+     */
+
+    async findAll(paginationQuery: PaginationQueryDto): Promise&lt;PaginationResponseDto&lt;Country&gt;&gt; {
+        const baseQuery &#x3D; [
+            &#x27;ptbl.id_country&#x27;,
+            &#x27;ptbl.name&#x27;,
+            &#x27;ptbl.iso&#x27;,
+            &#x27;ptbl.nice_name&#x27;,
+            &#x27;ptbl.iso3&#x27;,
+            &#x27;ptbl.num_code&#x27;,
+            &#x27;ptbl.dial_code&#x27;,
+            &#x27;ptbl.continent&#x27;,
+            &#x27;ptbl.capital&#x27;,
+        ];
+        const fromQuery &#x3D; &#x60; FROM countries ptbl&#x60;;
+
+        const fieldConfigs: Record&lt;string, IPaginationFieldConfig&gt; &#x3D; {
+            symbol: {
+                joinTable: (alias: string) &#x3D;&gt;
+                    &#x60;JOIN currencies ${alias} ON ${alias}.id_currency &#x3D; ptlb.id_currency&#x60;,
+                alias: () &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
+                selectFields: (alias: string) &#x3D;&gt; [
+                    &#x60;${alias}.symbol&#x60;,
+                    &#x60;${alias}.name AS currency_name&#x60;,
+                ],
+            },
+            offset: {
+                joinTable: (alias: string) &#x3D;&gt;
+                    &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+                alias: () &#x3D;&gt; &#x60;tz${0}&#x60;,
+                selectFields: (alias: string) &#x3D;&gt; [
+                    &#x60;${alias}.value&#x60;,
+                    &#x60;${alias}.offset&#x60;,
+                    &#x60;${alias}.offset_in_minutes&#x60;,
+                    &#x60;${alias}.text&#x60;,
+                ],
+            },
+            abbr: {
+                joinTable: (alias: string) &#x3D;&gt;
+                    &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+                alias: () &#x3D;&gt; &#x60;tz${0}&#x60;,
+                selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.abbr&#x60;],
+            },
+            code: {
+                joinTable: (alias: string) &#x3D;&gt;
+                    &#x60;JOIN currencies ${alias} ON ${alias}.id_currency &#x3D; ptlb.id_currency&#x60;, // Reusing join logic for code
+                alias: () &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
+                selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.code&#x60;],
+            },
+            // Add more field configurations as needed
+        };
+
+        const { selectQuery, countQuery } &#x3D; this.utilsService.buildDynamicQuery(
+            paginationQuery,
+            fieldConfigs,
+            baseQuery,
+            fromQuery
+        );
+
+        // const select &#x3D; selectFields.join(&#x27;, &#x27;);
+        return this.paginationService.paginate&lt;Country&gt;(selectQuery, countQuery, paginationQuery);
+
+        // const { joinTables, selectFields, filterQuery, sortByQuery } &#x3D;
+        //     this.utilsService.buildDynamicQuery(paginationQuery, fieldConfigs);
+
+        // console.log(
+        //     &#x27;HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL selectFields&#x27;,
+        //     selectFields
+        // );
+
+        // // const selectQuery &#x3D; &#x60;SELECT ${baseQuery.join(&#x27;, &#x27;)} ${selectFields.join(&#x27;, &#x27;)} ${fromQuery} ${joinTables.join(&#x27; &#x27;)} ${filterQuery} ${sortByQuery}&#x60;;
+        // const selectQuery &#x3D; &#x60;SELECT ${baseQuery.join(&#x27;, &#x27;)} ${selectFields} ${fromQuery} ${joinTables.join(&#x27; &#x27;)} ${filterQuery} ${sortByQuery}&#x60;;
+        // const countQuery &#x3D; &#x60;SELECT count(*) ${fromQuery} ${joinTables.join(&#x27; &#x27;)} ${filterQuery}&#x60;;
+
+        // // const select &#x3D; selectFields.join(&#x27;, &#x27;);
+        // return this.paginationService.paginate&lt;Country&gt;(selectQuery, countQuery, paginationQuery);
+    }
+}
+
+// start
+// import { Injectable } from &#x27;@nestjs/common&#x27;;
+
+// import { PaginationService } from &#x27;@services/pagination.service&#x27;;
+// import { UtilsService } from &#x27;@services/util.service&#x27;;
+// import { PaginationResponseDto } from &#x27;@utils/dto/pagination-response.dto&#x27;;
+// import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
+// import { IFieldConfig } from &#x27;@utils/types/pagination-options&#x27;;
+// // import { PaginationMetaDto } from &#x27;@utils/dto/pagination.meta.dto&#x27;;
+
+// import { Country } from &#x27;./dto/country&#x27;;
+
+// @Injectable()
+// export class CountriesService {
+//     constructor(
+//         private readonly paginationService: PaginationService,
+//         private readonly utilsService: UtilsService
+//     ) {}
+
+//     async findAll(
+//         paginationQuery: PaginationQueryDto&lt;Country&gt;
+//     ): Promise&lt;PaginationResponseDto&lt;Country&gt;&gt; {
+//         const baseQuery &#x3D; [
+//             &#x27;ptlb.id_country&#x27;,
+//             &#x27;ptlb.name&#x27;,
+//             &#x27;ptlb.iso&#x27;,
+//             &#x27;ptlb.nice_name&#x27;,
+//             &#x27;ptlb.iso3&#x27;,
+//             &#x27;ptlb.num_code&#x27;,
+//             &#x27;ptlb.dial_code&#x27;,
+//             &#x27;ptlb.continent&#x27;,
+//             &#x27;ptlb.capital&#x27;,
+//         ];
+//         const fromQuery &#x3D; &#x60; FROM countries ptlb&#x60;;
+
+//         // const joinTables &#x3D; [];
+//         // const whereClauses &#x3D; [];
+
+//         //     const baseQuery &#x3D; &#x60;
+//         //   SELECT
+//         //     s.id,
+//         //     s.name,
+//         //     s.population,
+//         //     s.area
+//         // &#x60;;
+
+//         //     const fromQuery &#x3D; &#x60;
+//         //   FROM
+//         //     states s
+//         // &#x60;;
+//         //  let sortByQuery &#x3D; &#x27;&#x27;;
+
+//         // const fieldConfigs: Record&lt;string, IFieldConfig&gt; &#x3D; {
+//         //     symbol: {
+//         //         joinTable: (index: number) &#x3D;&gt;
+//         //             &#x60;JOIN currencies c${0} ON c${0}.id_currency &#x3D; ptlb.id_currency&#x60;,
+//         //         alias: (index: number) &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
+//         //         selectFields: (alias: string) &#x3D;&gt; [
+//         //             &#x60;${alias}.symbol&#x60;,
+//         //             &#x60;${alias}.name AS currency_name&#x60;,
+//         //         ],
+//         //     },
+//         //     offset: {
+//         //         joinTable: (index: number) &#x3D;&gt;
+//         //             &#x60;JOIN timezone tz${index} ON tz${index}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+//         //         alias: (index: number) &#x3D;&gt; &#x60;tz${index}&#x60;,
+//         //         selectFields: (alias: string) &#x3D;&gt; [
+//         //             &#x60;${alias}.value&#x60;,
+//         //             &#x60;${alias}.offset&#x60;,
+//         //             &#x60;${alias}.offset_in_minutes&#x60;,
+//         //             &#x60;${alias}.text&#x60;,
+//         //         ],
+//         //     },
+//         //     code: {
+//         //         joinTable: (index: number) &#x3D;&gt;
+//         //             &#x60;JOIN currencies c${0} ON c${0}.id_currency &#x3D; ptlb.id_currency&#x60;, // Reusing join logic for code
+//         //         alias: (index: number) &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
+//         //         selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.code&#x60;],
+//         //     },
+//         //     // Add more field configurations as needed
+//         // };
+
+//         const fieldConfigs: Record&lt;string, IFieldConfig&gt; &#x3D; {
+//             symbol: {
+//                 joinTable: (alias: string) &#x3D;&gt;
+//                     &#x60;JOIN currencies ${alias} ON ${alias}.id_currency &#x3D; ptlb.id_currency&#x60;,
+//                 alias: () &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
+//                 selectFields: (alias: string) &#x3D;&gt; [
+//                     &#x60;${alias}.symbol&#x60;,
+//                     &#x60;${alias}.name AS currency_name&#x60;,
+//                 ],
+//             },
+//             offset: {
+//                 joinTable: (alias: string) &#x3D;&gt;
+//                     &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+//                 alias: () &#x3D;&gt; &#x60;tz${0}&#x60;,
+//                 selectFields: (alias: string) &#x3D;&gt; [
+//                     &#x60;${alias}.value&#x60;,
+//                     &#x60;${alias}.offset&#x60;,
+//                     &#x60;${alias}.offset_in_minutes&#x60;,
+//                     &#x60;${alias}.text&#x60;,
+//                 ],
+//             },
+//             abbr: {
+//                 joinTable: (alias: string) &#x3D;&gt;
+//                     &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+//                 alias: () &#x3D;&gt; &#x60;tz${0}&#x60;,
+//                 selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.abbr&#x60;],
+//             },
+//             code: {
+//                 joinTable: (alias: string) &#x3D;&gt;
+//                     &#x60;JOIN currencies ${alias} ON ${alias}.id_currency &#x3D; ptlb.id_currency&#x60;, // Reusing join logic for code
+//                 alias: () &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
+//                 selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.code&#x60;],
+//             },
+//             // Add more field configurations as needed
+//         };
+
+//         // const fieldConfigs: Record&lt;string, IFieldConfig&gt; &#x3D; {
+//         //     symbol: {
+//         //         joinTable: (index: number) &#x3D;&gt;
+//         //             &#x60;JOIN currencies c${index} ON c${index}.id_currency &#x3D; s.currency_id&#x60;,
+//         //         alias: (index: number) &#x3D;&gt; &#x60;c${index}&#x60;,
+//         //         selectFields: (alias: string) &#x3D;&gt; [
+//         //             &#x60;${alias}.symbol&#x60;,
+//         //             &#x60;${alias}.name AS currency_name&#x60;,
+//         //         ],
+//         //     },
+//         //     offset: {
+//         //         joinTable: (index: number) &#x3D;&gt;
+//         //             &#x60;JOIN timezone tz${index} ON tz${index}.id_timezone &#x3D; s.timezone_id&#x60;,
+//         //         alias: (index: number) &#x3D;&gt; &#x60;tz${index}&#x60;,
+//         //         selectFields: (alias: string) &#x3D;&gt; [
+//         //             &#x60;${alias}.value&#x60;,
+//         //             &#x60;${alias}.offset&#x60;,
+//         //             &#x60;${alias}.offset_in_minutes&#x60;,
+//         //             &#x60;${alias}.text&#x60;,
+//         //         ],
+//         //     },
+//         //     code: {
+//         //         joinTable: (index: number) &#x3D;&gt;
+//         //             &#x60;JOIN currencies c${index} ON c${index}.id_currency &#x3D; s.currency_id&#x60;,
+//         //         alias: (index: number) &#x3D;&gt; &#x60;c${index}&#x60;,
+//         //         selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.code&#x60;],
+//         //     },
+//         //     // Add more field configurations as needed
+//         // };
+
+//         // const { joinTables, selectFields, filterQuery, filterValues, sortByQuery } &#x3D;
+//         //     this.buildDynamicQuery(paginationQuery.filters, paginationQuery.sort, fieldConfigs);
+
+//         // const finalSelectQuery &#x3D; &#x60;SELECT ${baseQuery.join(&#x27;, &#x27;)}, ${selectFields.join(&#x27;, &#x27;)} ${fromQuery} ${joinTables.join(
+//         //     &#x27; &#x27;
+//         // )} ${filterQuery} ${sortByQuery}&#x60;;
+
+//         // const { joinTables, selectFields, filterQuery, sortByQuery } &#x3D; this.buildDynamicQuery(
+//         //     paginationQuery,
+//         //     // paginationQuery.filters,
+//         //     // paginationQuery.sort,
+//         //     fieldConfigs
+//         // );
+
+//         const { joinTables, selectFields, filterQuery, sortByQuery } &#x3D;
+//             this.utilsService.buildDynamicQuery(
+//                 paginationQuery,
+//                 // paginationQuery.filters,
+//                 // paginationQuery.sort,
+//                 fieldConfigs
+//             );
+
+//         const finalSelectQuery &#x3D; &#x60;SELECT ${baseQuery.join(&#x27;, &#x27;)}, ${selectFields.join(&#x27;, &#x27;)} ${fromQuery} ${joinTables.join(
+//             &#x27; &#x27;
+//         )} ${filterQuery} ${sortByQuery}&#x60;;
+
+//         console.log(&#x27;BENCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC&#x27;, finalSelectQuery);
+
+//         // let filterQuery &#x3D; &#x27;&#x27;;
+//         // if (paginationQuery.filters &amp;&amp; paginationQuery.filters.length &gt; 0) {
+//         //     const filterConditions &#x3D; paginationQuery.filters
+//         //         .map((filter, index) &#x3D;&gt; {
+//         //             const field &#x3D; filter.field.toLowerCase();
+//         //             let alias &#x3D; &#x60;&#x60;;
+//         //             if (field &#x3D;&#x3D;&#x3D; &#x27;symbol&#x27;) {
+//         //                 joinTables.push(
+//         //                     &#x60; JOIN currencies c${index} ON c.id_currency &#x3D; c${index}.id_currency&#x60;
+//         //                 );
+//         //                 selectFields.push(&#x60;c${index}.symbol&#x60;, &#x60;c${index}.name AS currency_name&#x60;);
+//         //                 alias &#x3D; &#x60;c${index}&#x60;;
+//         //             } else if (field &#x3D;&#x3D;&#x3D; &#x27;offset&#x27;) {
+//         //                 joinTables.push(
+//         //                     &#x60; JOIN timezone tz${index} ON c.id_timezone &#x3D; tz${index}.id_timezone&#x60;
+//         //                 );
+//         //                 selectFields.push(
+//         //                     &#x60;tz${index}.value&#x60;,
+//         //                     &#x60;tz${index}.offset&#x60;,
+//         //                     &#x60;tz${index}.offset_in_minutes&#x60;,
+//         //                     &#x60;tz${index}.text&#x60;
+//         //                 );
+//         //                 alias &#x3D; &#x60;tz${index}&#x60;;
+//         //             } else {
+//         //                 alias &#x3D; &#x60;c${index}&#x60;;
+//         //             }
+//         //             const operator &#x3D; filter.operator.toUpperCase();
+//         //             if (operator &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//         //                 const values &#x3D; filter.value
+//         //                     .split(&#x27;,&#x27;)
+//         //                     .map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;)
+//         //                     .join(&#x27;, &#x27;);
+//         //                 return &#x60; ${alias}.${filter.field} IN (${values})&#x60;;
+//         //             }
+//         //             return &#x60; ${alias}.${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//         //         })
+//         //         .join(&#x27; AND &#x27;);
+//         //     filterQuery &#x3D; &#x60;WHERE ${filterConditions}&#x60;;
+//         // }
+
+//         // console.log(&#x27;____________________________________&#x27;, joinTables);
+
+//         // Add sort by clauses based on filters
+//         // if (paginationQuery.sort) {
+//         //     sortByQuery &#x3D; &#x60; order by &#x60;;
+//         //     sortByQuery +&#x3D; paginationQuery.sort
+//         //         .map((filter) &#x3D;&gt; {
+//         //             return &#x60;${filter.field} ${filter.direction}&#x60;;
+//         //         })
+//         //         .join(&#x27;, &#x27;);
+//         // }
+
+//         // const select &#x3D; selectFields.join(&#x27;, &#x27;);
+//         return this.paginationService.paginate&lt;Country&gt;(
+//             selectFields,
+//             &#x60;${fromQuery}&#x60;,
+//             joinTables,
+//             &#x60;${filterQuery}&#x60;,
+//             sortByQuery,
+//             paginationQuery
+//         );
+//     }
+
+//     private buildDynamicQuery(
+//         paginationQuery: any,
+//         // filters: any | undefined,
+//         // sort: any | undefined,
+//         fieldConfigs: Record&lt;string, IFieldConfig&gt;
+//     ) {
+//         let filterQuery &#x3D; &#x27;&#x27;;
+//         let sortByQuery &#x3D; &#x27;&#x27;;
+//         const filterValues: any[] &#x3D; [];
+//         const joinTables: string[] &#x3D; [];
+//         const selectFields: string[] &#x3D; [];
+
+//         const filters &#x3D; paginationQuery.filters;
+//         const sort &#x3D; paginationQuery.sort;
+
+//         const mySet &#x3D; new Set&lt;string&gt;();
+
+//         if (filters &amp;&amp; filters.length &gt; 0) {
+//             const filterConditions &#x3D; filters
+//                 .map(
+//                     (filter: { field: string; operator: string; value: string }, index: number) &#x3D;&gt; {
+//                         const field &#x3D; filter.field.toLowerCase();
+//                         let alias &#x3D; &#x60;ptlb&#x60;; // default alias for the main table
+//                         if (fieldConfigs[field]) {
+//                             const config &#x3D; fieldConfigs[field];
+//                             alias &#x3D; config.alias(index);
+
+//                             if (!mySet.has(alias)) {
+//                                 mySet.add(alias);
+//                                 // joinTables.push(config.joinTable(index));
+//                                 joinTables.push(config.joinTable(alias));
+//                             }
+//                             selectFields.push(...config.selectFields(alias));
+//                         }
+//                         const operator &#x3D; filter.operator.toUpperCase();
+//                         if (operator &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//                             const values &#x3D; filter.value.split(&#x27;,&#x27;).map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;);
+//                             return &#x60;${alias}.${filter.field} IN (${values.join(&#x27;, &#x27;)})&#x60;;
+//                         }
+//                         // Add the value to the filterValues array for parameterized query
+//                         filterValues.push(filter.value);
+//                         // return &#x60;${alias}.${filter.field} ${filter.operator} ?&#x60;;
+//                         return &#x60;${alias}.${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//                     }
+//                 )
+//                 .join(&#x27; AND &#x27;);
+
+//             filterQuery &#x3D; &#x60;WHERE ${filterConditions}&#x60;;
+//         }
+
+//         if (sort &amp;&amp; sort.length &gt; 0) {
+//             sortByQuery &#x3D; &#x60;ORDER BY &#x60;;
+//             sortByQuery +&#x3D; sort
+//                 .map((sortItem: { field: string; direction: any }) &#x3D;&gt; {
+//                     const field &#x3D; sortItem.field.toLowerCase();
+//                     let alias &#x3D; &#x60;ptlb&#x60;; // default alias for the main table
+
+//                     if (fieldConfigs[field]) {
+//                         const config &#x3D; fieldConfigs[field];
+//                         alias &#x3D; config.alias(0); // Use index 0 since sorting doesn&#x27;t require multiple aliases
+//                     }
+
+//                     return &#x60;${alias}.${sortItem.field} ${sortItem.direction}&#x60;;
+//                 })
+//                 .join(&#x27;, &#x27;);
+//         }
+
+//         return { filterQuery, filterValues, joinTables, selectFields, sortByQuery };
+//     }
+
+//     // private buildDynamicQuery(
+//     //     filters: any | undefined,
+//     //     sort: any | undefined,
+//     //     fieldConfigs: Record&lt;string, IFieldConfig&gt;
+//     // ) {
+//     //     let filterQuery &#x3D; &#x27;&#x27;;
+//     //     let sortByQuery &#x3D; &#x27;&#x27;;
+//     //     const filterValues: any[] &#x3D; [];
+//     //     const joinTables: string[] &#x3D; [];
+//     //     const selectFields: string[] &#x3D; [];
+
+//     //     if (filters &amp;&amp; filters.length &gt; 0) {
+//     //         const filterConditions &#x3D; filters
+//     //             .map(
+//     //                 (filter: { field: string; operator: string; value: string }, index: number) &#x3D;&gt; {
+//     //                     const field &#x3D; filter.field.toLowerCase();
+//     //                     let alias &#x3D; &#x60;s&#x60;; // default alias for the main table
+
+//     //                     if (fieldConfigs[field]) {
+//     //                         const config &#x3D; fieldConfigs[field];
+//     //                         alias &#x3D; config.alias(index);
+//     //                         joinTables.push(config.joinTable(index));
+//     //                         selectFields.push(...config.selectFields(alias));
+//     //                     }
+
+//     //                     const operator &#x3D; filter.operator.toUpperCase();
+//     //                     if (operator &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//     //                         const values &#x3D; filter.value.split(&#x27;,&#x27;).map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;);
+//     //                         return &#x60;${alias}.${filter.field} IN (${values.join(&#x27;, &#x27;)})&#x60;;
+//     //                     }
+
+//     //                     // Add the value to the filterValues array for parameterized query
+//     //                     filterValues.push(filter.value);
+//     //                     // return &#x60;${alias}.${filter.field} ${filter.operator} ?&#x60;;
+//     //                     return &#x60;${alias}.${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//     //                 }
+//     //             )
+//     //             .join(&#x27; AND &#x27;);
+
+//     //         filterQuery &#x3D; &#x60;WHERE ${filterConditions}&#x60;;
+//     //     }
+
+//     //     if (sort &amp;&amp; sort.length &gt; 0) {
+//     //         sortByQuery &#x3D; &#x60;ORDER BY &#x60;;
+//     //         sortByQuery +&#x3D; sort
+//     //             .map((sortItem) &#x3D;&gt; {
+//     //                 const field &#x3D; sortItem.field.toLowerCase();
+//     //                 let alias &#x3D; &#x60;s&#x60;; // default alias for the main table
+
+//     //                 if (fieldConfigs[field]) {
+//     //                     const config &#x3D; fieldConfigs[field];
+//     //                     alias &#x3D; config.alias(0); // Use index 0 since sorting doesn&#x27;t require multiple aliases
+//     //                 }
+
+//     //                 return &#x60;${alias}.${sortItem.field} ${sortItem.direction}&#x60;;
+//     //             })
+//     //             .join(&#x27;, &#x27;);
+//     //     }
+
+//     //     return { filterQuery, filterValues, joinTables, selectFields, sortByQuery };
+//     // }
+// }
+// end
+// import { Injectable } from &#x27;@nestjs/common&#x27;;
+
+// import { IPaginationOptions } from &#x27;@utils/types/pagination-options&#x27;;
+
+// import { Country } from &#x27;./domain/country&#x27;;
+// import { FilterCountryDto, SortCountryDto } from &#x27;./dto/query-country.dto&#x27;;
+
+// @Injectable()
+// export class CountriesService {
+//     findManyWithPagination({
+//         filterOptions,
+//         sortOptions,
+//         paginationOptions,
+//     }: {
+//         filterOptions?: FilterCountryDto | null;
+//         sortOptions?: SortCountryDto[] | null;
+//         paginationOptions: IPaginationOptions;
+//     }): Promise&lt;Country[]&gt; {
+//         console.log(&#x27;filterOptions&#x27;, filterOptions);
+//         console.log(&#x27;sortOptions&#x27;, sortOptions);
+//         console.log(&#x27;paginationOptions&#x27;, paginationOptions);
+
+//         return &#x27;hi&#x27; as any;
+//         // return this.usersRepository.findManyWithPagination({
+//         //     filterOptions,
+//         //     sortOptions,
+//         //     paginationOptions,
+//         // });
+//     }
+// }
+
+// import { Injectable } from &#x27;@nestjs/common&#x27;;
+
+// import { PaginationService } from &#x27;@services/pagination.service&#x27;;
+// import { PaginationResponseDto } from &#x27;@utils/dto/pagination-response.dto&#x27;;
+// import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
+// // import { PaginationMetaDto } from &#x27;@utils/dto/pagination.meta.dto&#x27;;
+
+// import { Country } from &#x27;./dto/country&#x27;;
+
+// @Injectable()
+// export class CountriesService {
+//     constructor(private readonly paginationService: PaginationService) {}
+
+//     async findAll(
+//         paginationQuery: PaginationQueryDto&lt;Country&gt;
+//     ): Promise&lt;PaginationResponseDto&lt;Country&gt;&gt; {
+//         const selectFields &#x3D; [
+//             &#x27;c.id_country&#x27;,
+//             &#x27;c.name&#x27;,
+//             &#x27;c.iso&#x27;,
+//             &#x27;c.nice_name&#x27;,
+//             &#x27;c.iso3&#x27;,
+//             &#x27;c.num_code&#x27;,
+//             &#x27;c.dial_code&#x27;,
+//             &#x27;c.continent&#x27;,
+//             &#x27;c.capital&#x27;,
+//         ];
+//         const fromQuery &#x3D; &#x60; FROM countries c&#x60;;
+
+//         const joinTables &#x3D; [];
+//         // const whereClauses &#x3D; [];
+//         let sortByQuery &#x3D; &#x27;&#x27;;
+
+//         let filterQuery &#x3D; &#x27;&#x27;;
+//         if (paginationQuery.filters &amp;&amp; paginationQuery.filters.length &gt; 0) {
+//             const filterConditions &#x3D; paginationQuery.filters
+//                 .map((filter, index) &#x3D;&gt; {
+//                     const field &#x3D; filter.field.toLowerCase();
+//                     let alias &#x3D; &#x60;&#x60;;
+//                     if (field &#x3D;&#x3D;&#x3D; &#x27;symbol&#x27;) {
+//                         joinTables.push(
+//                             &#x60; JOIN currencies c${index} ON c.id_currency &#x3D; c${index}.id_currency&#x60;
+//                         );
+//                         selectFields.push(&#x60;c${index}.symbol&#x60;, &#x60;c${index}.name AS currency_name&#x60;);
+//                         alias &#x3D; &#x60;c${index}&#x60;;
+//                     } else if (field &#x3D;&#x3D;&#x3D; &#x27;offset&#x27;) {
+//                         joinTables.push(
+//                             &#x60; JOIN timezone tz${index} ON c.id_timezone &#x3D; tz${index}.id_timezone&#x60;
+//                         );
+//                         selectFields.push(
+//                             &#x60;tz${index}.value&#x60;,
+//                             &#x60;tz${index}.offset&#x60;,
+//                             &#x60;tz${index}.offset_in_minutes&#x60;,
+//                             &#x60;tz${index}.text&#x60;
+//                         );
+//                         alias &#x3D; &#x60;tz${index}&#x60;;
+//                     } else {
+//                         alias &#x3D; &#x60;c${index}&#x60;;
+//                     }
+//                     const operator &#x3D; filter.operator.toUpperCase();
+//                     if (operator &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//                         const values &#x3D; filter.value
+//                             .split(&#x27;,&#x27;)
+//                             .map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;)
+//                             .join(&#x27;, &#x27;);
+//                         return &#x60; ${alias}.${filter.field} IN (${values})&#x60;;
+//                     }
+//                     return &#x60; ${alias}.${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//                 })
+//                 .join(&#x27; AND &#x27;);
+//             filterQuery &#x3D; &#x60;WHERE ${filterConditions}&#x60;;
+//         }
+
+//         // // Add join if filter by country_name
+//         // paginationQuery.filters?.forEach((filter, index) &#x3D;&gt; {
+//         //     let alias &#x3D; &#x60;&#x60;;
+//         //     switch (filter.field) {
+//         //         case &#x27;symbol&#x27;:
+//         //             joinTables.push(
+//         //                 &#x60; JOIN currencies c${index} ON c.id_currency &#x3D; c${index}.id_currency&#x60;
+//         //             );
+//         //             selectFields.push(&#x60;c${index}.symbol&#x60;, &#x60;c${index}.name AS currency_name&#x60;);
+//         //             alias &#x3D; &#x60;c${index}&#x60;;
+//         //             // selectFields.push(&#x60;c${index}.name AS currency_name&#x60;);
+//         //             break;
+//         //         case &#x27;offset&#x27;:
+//         //             joinTables.push(
+//         //                 &#x60; JOIN timezone tz${index} ON c.id_timezone &#x3D; tz${index}.id_timezone&#x60;
+//         //             );
+//         //             selectFields.push(
+//         //                 &#x60;tz${index}.value&#x60;,
+//         //                 &#x60;tz${index}.offset&#x60;,
+//         //                 &#x60;tz${index}.offset_in_minutes&#x60;,
+//         //                 &#x60;tz${index}.text&#x60;
+//         //             );
+//         //             alias &#x3D; &#x60;tz${index}&#x60;;
+//         //             // selectFields.push(&#x60;tz${index}.offset&#x60;);
+//         //             // selectFields.push(&#x60;tz${index}.offset_in_minutes&#x60;);
+//         //             // selectFields.push(&#x60;tz${index}.text&#x60;);
+//         //             break;
+//         //         // Add more cases as needed for other filter fields
+//         //         default:
+//         //             alias &#x3D; &#x60;c&#x60;;
+//         //             // Handle other filter fields if needed
+//         //             break;
+//         //     }
+
+//         //     if (filter.operator.toUpperCase() &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//         //         const values &#x3D; filter.value
+//         //             .split(&#x27;,&#x27;)
+//         //             .map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;)
+//         //             .join(&#x27;, &#x27;);
+//         //         return &#x60; ${alias}.${filter.field} IN (${values})&#x60;;
+//         //     } else {
+//         //         filterQuery +&#x3D; &#x60; ${alias}.${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//         //     }
+//         // });
+
+//         // Add where clauses based on filters
+//         // if (paginationQuery.filters) {
+//         //     paginationQuery.filters.forEach((filter) &#x3D;&gt; {
+//         //         switch (filter.operator) {
+//         //             case &#x27;LIKE&#x27;:
+//         //                 whereClauses.push(&#x60;${filter.field} LIKE &#x27;%${filter.value}%&#x27;&#x60;);
+//         //                 break;
+//         //             case &#x27;&gt;&#x27;:
+//         //                 whereClauses.push(&#x60;${filter.field} &gt; ${filter.value}&#x60;);
+//         //                 break;
+//         //             case &#x27;&lt;&#x27;:
+//         //                 whereClauses.push(&#x60;${filter.field} &lt; ${filter.value}&#x60;);
+//         //                 break;
+//         //             // Add other cases as needed
+//         //         }
+//         //     });
+//         // }
+
+//         // Add where clauses based on filters
+//         // let filterQuery &#x3D; &#x27;&#x27;;
+//         // if (paginationQuery.filters &amp;&amp; paginationQuery.filters.length &gt; 0) {
+//         //     const filterConditions &#x3D; paginationQuery.filters
+//         //         .map((filter) &#x3D;&gt; {
+//         //             console.log(&#x27;hi&#x27;);
+//         //             if (filter.operator.toUpperCase() &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//         //                 const values &#x3D; filter.value
+//         //                     .split(&#x27;,&#x27;)
+//         //                     .map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;)
+//         //                     .join(&#x27;, &#x27;);
+//         //                 return &#x60;${filter.field} IN (${values})&#x60;;
+//         //             }
+//         //             return &#x60;${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//         //         })
+//         //         .join(&#x27; AND &#x27;);
+//         //     filterQuery &#x3D; &#x60;WHERE ${filterConditions}&#x60;;
+//         // }
+//         // let filterQuery &#x3D; &#x27;&#x27;;
+//         // if (paginationQuery.filters &amp;&amp; paginationQuery.filters.length &gt; 0) {
+//         //     const filterConditions &#x3D; paginationQuery.filters
+//         //         .map((filter) &#x3D;&gt; {
+//         //             const operator &#x3D; filter.operator.toUpperCase();
+//         //             if (operator &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
+//         //                 const values &#x3D; filter.value
+//         //                     .split(&#x27;,&#x27;)
+//         //                     .map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;)
+//         //                     .join(&#x27;, &#x27;);
+//         //                 return &#x60;${filter.field} IN (${values})&#x60;;
+//         //             }
+//         //             return &#x60;${filter.field} ${filter.operator} &#x27;${filter.value}&#x27;&#x60;;
+//         //         })
+//         //         .join(&#x27; AND &#x27;);
+//         //     filterQuery &#x3D; &#x60;WHERE ${filterConditions}&#x60;;
+//         // }
+
+//         console.log(&#x27;____________________________________&#x27;, joinTables);
+
+//         // Add sort by clauses based on filters
+//         if (paginationQuery.sort) {
+//             sortByQuery &#x3D; &#x60; order by &#x60;;
+//             sortByQuery +&#x3D; paginationQuery.sort
+//                 .map((filter) &#x3D;&gt; {
+//                     return &#x60;${filter.field} ${filter.direction}&#x60;;
+//                 })
+//                 .join(&#x27;, &#x27;);
+//         }
+
+//         // const select &#x3D; selectFields.join(&#x27;, &#x27;);
+//         return this.paginationService.paginate&lt;Country&gt;(
+//             selectFields,
+//             &#x60;${fromQuery}&#x60;,
+//             joinTables,
+//             &#x60;${filterQuery}&#x60;,
+//             sortByQuery,
+//             paginationQuery
+//         );
+
+//         // const data &#x3D; [
+//         //     { id_country: &#x27;1&#x27;, name: &#x27;Country 1&#x27; },
+//         //     { id_country: &#x27;2&#x27;, name: &#x27;Country 2&#x27; },
+//         // ];
+
+//         // const meta &#x3D; new PaginationMetaDto({
+//         //     paginationQueryDto: paginationQuery,
+//         //     totalItems: 77,
+//         // });
+
+//         // return { data, meta, hasNextPage: true };
+//         // const baseQuery &#x3D; &#x60;SELECT &#x60;;
+//         // const selectFields &#x3D; [&#x27;s.id&#x27;, &#x27;s.name&#x27;, &#x27;s.population&#x27;, &#x27;s.area&#x27;];
+//         // const fromQuery &#x3D; &#x60; FROM states s&#x60;;
+//         // const countQuery &#x3D; &#x60;SELECT COUNT(*)&#x60;;
+
+//         // const joinTables &#x3D; [];
+//         // // if (paginationQuery.filters?.some((filter) &#x3D;&gt; filter.field &#x3D;&#x3D;&#x3D; &#x27;country_name&#x27;)) {
+//         // //     joinTables.push(&#x27;JOIN countries c ON s.country_id &#x3D; c.id&#x27;);
+//         // //     selectFields.push(&#x27;c.name as country_name&#x27;);
+//         // // }
+//         // // Iterate over each filter in paginationQuery.filters
+//         // // Iterate over each filter in paginationQuery.filters
+//         // paginationQuery.filters?.forEach((filter, index) &#x3D;&gt; {
+//         //     switch (filter.field) {
+//         //         case &#x27;country_name&#x27;:
+//         //             joinTables.push(&#x60;JOIN countries c${index} ON s.country_id &#x3D; c${index}.id&#x60;);
+//         //             selectFields.push(&#x60;c${index}.name AS country_name&#x60;);
+//         //             break;
+//         //         case &#x27;name&#x27;:
+//         //             joinTables.push(&#x60;JOIN state c${index} ON s.state_id &#x3D; c${index}.id&#x60;);
+//         //             selectFields.push(&#x60;c${index}.name AS state_name&#x60;);
+//         //             break;
+//         //         // Add more cases as needed for other filter fields
+//         //         default:
+//         //             // Handle other filter fields if needed
+//         //             break;
+//         //     }
+//         // });
+
+//         // // const select &#x3D; selectFields.join(&#x27;, &#x27;);
+//         // return this.paginationService.paginate&lt;Country&gt;(
+//         //     &#x60;${baseQuery} ${selectFields} ${fromQuery}&#x60;,
+//         //     &#x60;${countQuery} ${fromQuery}&#x60;,
+//         //     paginationQuery,
+//         //     joinTables
+//         // );
+//     }
+// }
+
+// // import { Injectable } from &#x27;@nestjs/common&#x27;;
+
+// // import { IPaginationOptions } from &#x27;@utils/types/pagination-options&#x27;;
+
+// // import { Country } from &#x27;./domain/country&#x27;;
+// // import { FilterCountryDto, SortCountryDto } from &#x27;./dto/query-country.dto&#x27;;
+
+// // @Injectable()
+// // export class CountriesService {
+// //     findManyWithPagination({
+// //         filterOptions,
+// //         sortOptions,
+// //         paginationOptions,
+// //     }: {
+// //         filterOptions?: FilterCountryDto | null;
+// //         sortOptions?: SortCountryDto[] | null;
+// //         paginationOptions: IPaginationOptions;
+// //     }): Promise&lt;Country[]&gt; {
+// //         console.log(&#x27;filterOptions&#x27;, filterOptions);
+// //         console.log(&#x27;sortOptions&#x27;, sortOptions);
+// //         console.log(&#x27;paginationOptions&#x27;, paginationOptions);
+
+// //         return &#x27;hi&#x27; as any;
+// //         // return this.usersRepository.findManyWithPagination({
+// //         //     filterOptions,
+// //         //     sortOptions,
+// //         //     paginationOptions,
+// //         // });
+// //     }
+// // }
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'CountriesService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

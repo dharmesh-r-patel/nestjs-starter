@@ -115,7 +115,25 @@
                             <a href="#bootstrap" title="src/main.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
                         <li>
+                            <a href="#deepResolvePromises" title="src/utils/deep-resolver.ts" ><b>deepResolvePromises</b>&nbsp;&nbsp;&nbsp;(src/.../deep-resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IsNumberStringOrNumber" title="src/core/decorators/number.string.validator.ts" ><b>IsNumberStringOrNumber</b>&nbsp;&nbsp;&nbsp;(src/.../number.string.validator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IsValidField" title="src/core/validators/field.validator.ts" ><b>IsValidField</b>&nbsp;&nbsp;&nbsp;(src/.../field.validator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PaginationResponse" title="src/utils/dto/pagination-response.dto.ts" ><b>PaginationResponse</b>&nbsp;&nbsp;&nbsp;(src/.../pagination-response.dto.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ToNumber" title="src/core/decorators/transforms.decorator.ts" ><b>ToNumber</b>&nbsp;&nbsp;&nbsp;(src/.../transforms.decorator.ts)</a>
+                        </li>
+                        <li>
                             <a href="#Unnamed function" title="src/swagger.ts" ><b>Unnamed function</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#validateConfig" title="src/utils/validate-config.ts" ><b>validateConfig</b>&nbsp;&nbsp;&nbsp;(src/.../validate-config.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -146,6 +164,334 @@
 
 
 
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes and starts the NestJS application.
+Configures global settings, middleware, and exception handling.
+Sets up Swagger documentation if in development, staging, or testing environments.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/utils/deep-resolver.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deepResolvePromises"></a>
+                    <span class="name">
+                        <span ><b>deepResolvePromises</b></span>
+                        <a href="#deepResolvePromises"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deepResolvePromises(input)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Recursively resolves all nested promises in an object or array.</p>
+<p>This function takes an input that can be a promise, an array, an object, or a primitive value,
+and recursively resolves any promises contained within. It supports nested structures and
+preserves the original structure of the input while resolving promises.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>input</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The input to process, which may include promises.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/core/decorators/number.string.validator.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IsNumberStringOrNumber"></a>
+                    <span class="name">
+                        <span ><b>IsNumberStringOrNumber</b></span>
+                        <a href="#IsNumberStringOrNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>IsNumberStringOrNumber(validationOptions?: ValidationOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Custom decorator that checks if a value is a number or a numeric string,
+and if it is greater than or equal to 1.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>validationOptions</td>
+                                            <td>
+                                                        <code>ValidationOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Options used to pass to validation decorators.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/core/validators/field.validator.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IsValidField"></a>
+                    <span class="name">
+                        <span ><b>IsValidField</b></span>
+                        <a href="#IsValidField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>IsValidField(entity: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, validationOptions?: ValidationOptions)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Custom decorator to validate if a field is a valid key of the provided entity class.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>entity</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The class constructor of the entity to check against.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>validationOptions</td>
+                                            <td>
+                                                        <code>ValidationOptions</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Optional validation options.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/utils/dto/pagination-response.dto.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PaginationResponse"></a>
+                    <span class="name">
+                        <span ><b>PaginationResponse</b></span>
+                        <a href="#PaginationResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>PaginationResponse(classReference: Type)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a pagination response DTO class with specified data type.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>classReference</td>
+                                            <td>
+                                                        <code>Type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The class reference for the data type.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/core/decorators/transforms.decorator.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ToNumber"></a>
+                    <span class="name">
+                        <span ><b>ToNumber</b></span>
+                        <a href="#ToNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ToNumber()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Decorator that converts a string number or number to an integer.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <ul>
+<li>A property decorator function.</li>
+</ul>
+
+                            </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </section>    <h3>src/swagger.ts</h3>
@@ -172,6 +518,11 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Configures and sets up Swagger documentation for the NestJS application.</p>
+<p>This function creates and configures Swagger documentation based on application configuration.
+It sets up two separate Swagger documents: one for the main application modules and another
+for common modules. It also configures various Swagger UI options.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -182,6 +533,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -196,6 +548,98 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The NestJS application instance.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/utils/validate-config.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateConfig"></a>
+                    <span class="name">
+                        <span ><b>validateConfig</b></span>
+                        <a href="#validateConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateConfig(config: Record, envVariablesClass: ClassConstructor)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Validates and transforms a configuration object based on a class schema.</p>
+<p>This function uses <code>class-transformer</code> to transform a plain object into an instance of a class
+and <code>class-validator</code> to validate the instance. If validation fails, it throws an error with
+detailed information about the validation errors.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>config</td>
+                                            <td>
+                                                        <code>Record</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The configuration object to be validated.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>envVariablesClass</td>
+                                            <td>
+                                                        <code>ClassConstructor</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The class constructor used for transforming and validating the configuration.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

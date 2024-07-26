@@ -36,9 +36,30 @@ import { Reflector } from '@nestjs/core';
 
 import { Request, Response } from 'express';
 
+/**
+ * A global exception filter to catch and handle all exceptions.
+ *
+ * @class
+ * @implements {ExceptionFilter}
+ */
+
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
+    /**
+     * Creates an instance of AllExceptionsFilter.
+     *
+     * @param {Reflector} reflector - The reflector instance used for metadata reflection.
+     */
+
     constructor(public reflector: Reflector) {}
+
+    /**
+     * Catches and handles exceptions thrown by the application.
+     *
+     * @param {unknown} exception - The exception that was thrown.
+     * @param {ArgumentsHost} host - The execution context that contains request and response objects.
+     */
+
     catch(exception: unknown, host: ArgumentsHost) {
         console.log('ALL EXEPTION from filter', exception);
         const ctx = host.switchToHttp();

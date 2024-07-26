@@ -8,12 +8,43 @@ export interface IPageMetaDtoParameters {
     maxPages?: number;
 }
 
+/**
+ * PaginationMetaDto provides metadata for paginated responses.
+ * This class helps in constructing the pagination information that can be used
+ * to navigate through large sets of data.
+ *
+ * @example
+ * {
+ *   totalItems: 77,
+ *   currentPage: 7,
+ *   pageSize: 10,
+ *   totalPages: 8,
+ *   startPage: 1,
+ *   endPage: 7,
+ *   startIndex: 60,
+ *   endIndex: 76,
+ *   pages: [1, 2, 3, 4, 5, 6, 7]
+ * }
+ */
+
 export class PaginationMetaDto {
+    /**
+     * The total number of items available.
+     *
+     * @example 77
+     */
+
     @ApiPropertyOptional({
         type: Number,
         example: 77, //  'Total records'
     })
     readonly totalItems: number;
+
+    /**
+     * The current page number.
+     *
+     * @example 7
+     */
 
     @ApiPropertyOptional({
         type: Number,
@@ -21,11 +52,23 @@ export class PaginationMetaDto {
     })
     readonly currentPage: number;
 
+    /**
+     * The number of items per page (page size).
+     *
+     * @example 10
+     */
+
     @ApiPropertyOptional({
         type: Number,
         example: 10, //  'limit / page record number',
     })
     readonly pageSize: number;
+
+    /**
+     * The total number of pages based on total items and page size.
+     *
+     * @example 8
+     */
 
     @ApiPropertyOptional({
         type: Number,
@@ -33,11 +76,23 @@ export class PaginationMetaDto {
     })
     readonly totalPages: number;
 
+    /**
+     * The start page in the pagination controls.
+     *
+     * @example 1
+     */
+
     @ApiPropertyOptional({
         type: Number,
         example: 1, //  'Start page',
     })
     readonly startPage: number;
+
+    /**
+     * The end page in the pagination controls.
+     *
+     * @example 7
+     */
 
     @ApiPropertyOptional({
         type: Number,
@@ -45,11 +100,23 @@ export class PaginationMetaDto {
     })
     readonly endPage: number;
 
+    /**
+     * The index of the first item on the current page.
+     *
+     * @example 60
+     */
+
     @ApiPropertyOptional({
         type: Number,
         example: 0, //  'Record start index',
     })
     readonly startIndex: number;
+
+    /**
+     * The index of the last item on the current page.
+     *
+     * @example 76
+     */
 
     @ApiPropertyOptional({
         type: Number,
@@ -57,11 +124,23 @@ export class PaginationMetaDto {
     })
     readonly endIndex: number;
 
+    /**
+     * An array of page numbers to display in pagination controls.
+     *
+     * @example [1, 2, 3, 4, 5, 6, 7]
+     */
+
     @ApiPropertyOptional({
         type: Array,
         example: [1, 2, 3, 4, 5, 6, 7], //  'Array of page number',
     })
     readonly pages: any;
+
+    /**
+     * Creates an instance of PaginationMetaDto.
+     *
+     * @param {IPageMetaDtoParameters} params - Parameters required for creating pagination metadata.
+     */
 
     constructor({ paginationQueryDto, totalItems, maxPages = 10 }: IPageMetaDtoParameters) {
         const pageSize = paginationQueryDto.limit || 10;

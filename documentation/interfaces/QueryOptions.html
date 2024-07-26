@@ -1,0 +1,1043 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-starter documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  QueryOptions</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/providers/dynamic-query.service-to-be-remove.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Options for building queries.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#conditions" 
+>
+                                            conditions
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#deleteType" 
+>
+                                            deleteType
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#fields" 
+>
+                                            fields
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#joins" 
+>
+                                            joins
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#optionalConditions" 
+>
+                                            optionalConditions
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#queryName" 
+>
+                                            queryName
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#queryType" 
+>
+                                            queryType
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#returningFields" 
+>
+                                            returningFields
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#table" 
+>
+                                            table
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#values" 
+>
+                                            values
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="conditions"></a>
+                                        <span class="name "><b>conditions</b>
+                                            <a href="#conditions">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>conditions:     <code>Record&lt;string | any&gt;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>Record&lt;string | any&gt;</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Conditions for the query (e.g., WHERE clauses).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="deleteType"></a>
+                                        <span class="name "><b>deleteType</b>
+                                            <a href="#deleteType">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>deleteType:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Type of delete operation (&#39;soft&#39; or &#39;hard&#39;).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="fields"></a>
+                                        <span class="name "><b>fields</b>
+                                            <a href="#fields">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>fields:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>List of fields to include in the query (e.g., columns for SELECT, INSERT, or UPDATE).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="joins"></a>
+                                        <span class="name "><b>joins</b>
+                                            <a href="#joins">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>joins:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Join clauses to include in the query.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="optionalConditions"></a>
+                                        <span class="name "><b>optionalConditions</b>
+                                            <a href="#optionalConditions">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>optionalConditions:     <code>Record&lt;string | any&gt;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>Record&lt;string | any&gt;</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Optional conditions for the query.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="queryName"></a>
+                                        <span class="name "><b>queryName</b>
+                                            <a href="#queryName">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>queryName:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Name of the query.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="queryType"></a>
+                                        <span class="name "><b>queryType</b>
+                                            <a href="#queryType">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>queryType:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Type of the query (e.g., INSERT, SELECT, UPDATE, DELETE).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="returningFields"></a>
+                                        <span class="name "><b>returningFields</b>
+                                            <a href="#returningFields">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>returningFields:     <code>string[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>string[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Fields to return from the query.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="table"></a>
+                                        <span class="name "><b>table</b>
+                                            <a href="#table">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>table:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Name of the table to perform the query on.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="values"></a>
+                                        <span class="name "><b>values</b>
+                                            <a href="#values">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>values:     <code>Record&lt;string | any&gt;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>Record&lt;string | any&gt;</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Values to be used in the query (e.g., for INSERT or UPDATE operations).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as _ from &#x27;lodash&#x27;;
+
+/**
+ * Options for building queries.
+ *
+ * @export
+ * @interface QueryOptions
+ */
+
+export interface QueryOptions {
+    /**
+     * Name of the query.
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+
+    queryName?: string;
+
+    /**
+     * Type of the query (e.g., INSERT, SELECT, UPDATE, DELETE).
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+
+    queryType?: string;
+
+    /**
+     * Name of the table to perform the query on.
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+
+    table: string;
+
+    /**
+     * List of fields to include in the query (e.g., columns for SELECT, INSERT, or UPDATE).
+     *
+     * @type {string[]}
+     * @memberof QueryOptions
+     */
+
+    fields?: string[];
+
+    /**
+     * Values to be used in the query (e.g., for INSERT or UPDATE operations).
+     *
+     * @type {Record&lt;string, any&gt;}
+     * @memberof QueryOptions
+     */
+
+    values?: Record&lt;string, any&gt;;
+
+    /**
+     * Conditions for the query (e.g., WHERE clauses).
+     *
+     * @type {Record&lt;string, any&gt;}
+     * @memberof QueryOptions
+     */
+
+    conditions?: Record&lt;string, any&gt;;
+
+    /**
+     * Optional conditions for the query.
+     *
+     * @type {Record&lt;string, any&gt;}
+     * @memberof QueryOptions
+     */
+
+    optionalConditions?: Record&lt;string, any&gt;;
+
+    /**
+     * Join clauses to include in the query.
+     *
+     * @type {string[]}
+     * @memberof QueryOptions
+     */
+
+    joins?: string[];
+
+    /**
+     * Fields to return from the query.
+     *
+     * @type {string[]}
+     * @memberof QueryOptions
+     */
+
+    returningFields?: string[];
+
+    /**
+     * Type of delete operation (&#x27;soft&#x27; or &#x27;hard&#x27;).
+     *
+     * @type {string}
+     * @memberof QueryOptions
+     */
+    deleteType?: string;
+}
+
+/**
+ * Class to build dynamic SQL queries.
+ *
+ * @export
+ * @class DynamicQueryBuilder
+ */
+export class DynamicQueryBuilder {
+    /**
+     * Builds an INSERT SQL query.
+     *
+     * @param {QueryOptions} options - Options for the INSERT query.
+     * @returns {object} - An object containing the query name, type, and the SQL syntax.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildInsertQuery(options: QueryOptions): object {
+        const { queryName, queryType, fields, table, values &#x3D; {}, returningFields &#x3D; [] } &#x3D; options;
+        const conds &#x3D; _.pick(values, fields);
+        const keys &#x3D; _.keys(conds);
+        const vals &#x3D; _.values(conds);
+
+        const returningClause &#x3D; returningFields.length
+            ? &#x60;RETURNING ${returningFields.join(&#x27;, &#x27;)}&#x60;
+            : &#x27;&#x27;;
+
+        const sql &#x3D; &#x60;INSERT INTO ${table} (${keys.join()}) VALUES (&#x27;${vals.join(&quot;&#x27;,&#x27;&quot;)}&#x27;) ${returningClause};&#x60;;
+
+        return {
+            name: queryName ? queryName : &#x27;add&#x27;,
+            type: queryType ? queryType : &#x27;INSERT&#x27;,
+            syntax: () &#x3D;&gt; {
+                return sql;
+            },
+        };
+    }
+
+    /**
+     * Builds a SELECT SQL query.
+     *
+     * @param {QueryOptions} options - Options for the SELECT query.
+     * @returns {object} - An object containing the query name, type, and the SQL syntax.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildSelectQuery(options: QueryOptions): object {
+        const {
+            queryName,
+            queryType,
+            table,
+            fields &#x3D; [&#x27;*&#x27;],
+            conditions &#x3D; {},
+            joins &#x3D; [],
+            optionalConditions &#x3D; null,
+        } &#x3D; options;
+
+        const whereClauses &#x3D; Object.keys(conditions).map((key) &#x3D;&gt; {
+            const value &#x3D; conditions[key];
+            return typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? &#x60;${key} &#x3D; &#x27;${value}&#x27;&#x60; : &#x60;${key} &#x3D; ${value}&#x60;;
+        });
+
+        if (optionalConditions) {
+            // Adding optional conditions dynamically
+            Object.keys(optionalConditions).forEach((key) &#x3D;&gt; {
+                const value &#x3D; optionalConditions[key];
+                if (value) {
+                    whereClauses.push(
+                        typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? &#x60;${key} !&#x3D; &#x27;${value}&#x27;&#x60; : &#x60;${key} !&#x3D; ${value}&#x60;
+                    );
+                }
+            });
+        }
+
+        const whereClause &#x3D; whereClauses.length ? &#x60;WHERE ${whereClauses.join(&#x27; AND &#x27;)}&#x60; : &#x27;&#x27;;
+        const joinClause &#x3D; joins.length ? joins.join(&#x27; &#x27;) : &#x27;&#x27;;
+
+        const sql &#x3D; &#x60;SELECT ${fields.join(&#x27;, &#x27;)} FROM ${table} ${joinClause} ${whereClause}&#x60;;
+
+        return {
+            name: queryName ? queryName : &#x27;find&#x27;,
+            type: queryType ? queryType : &#x27;SELECT_ONE&#x27;,
+            syntax: () &#x3D;&gt; {
+                return sql;
+            },
+        };
+    }
+
+    /**
+     * Builds an UPDATE SQL query.
+     *
+     * @param {QueryOptions} options - Options for the UPDATE query.
+     * @returns {object} - An object containing the query name, type, SQL syntax, and values to be used.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildUpdateQuery(options: QueryOptions): object {
+        const { table, values &#x3D; {}, conditions &#x3D; {}, returningFields &#x3D; [] } &#x3D; options;
+
+        const setClauses &#x3D; Object.keys(values).map((key, index) &#x3D;&gt; &#x60;${key} &#x3D; $${index + 1}&#x60;);
+        const whereClauses &#x3D; Object.keys(conditions).map(
+            (key, index) &#x3D;&gt; &#x60;${key} &#x3D; $${index + Object.keys(values).length + 1}&#x60;
+        );
+
+        const returningClause &#x3D; returningFields.length
+            ? &#x60;RETURNING ${returningFields.join(&#x27;, &#x27;)}&#x60;
+            : &#x27;&#x27;;
+
+        const sql &#x3D; &#x60;UPDATE ${table} SET ${setClauses.join(&#x27;, &#x27;)} WHERE ${whereClauses.join(&#x27; AND &#x27;)} ${returningClause};&#x60;;
+
+        return {
+            name: &#x27;update&#x27;,
+            type: &#x27;UPDATE&#x27;,
+            sql,
+            values: [...Object.values(values), ...Object.values(conditions)],
+        };
+    }
+
+    //     return {
+    //   name: &#x60;delete&#x60;,
+    //   type: &#x60;UPDATE&#x60;,
+    //   syntax: (idArea: number) &#x3D;&gt; {
+    //     const sql &#x3D; &#x60;UPDATE Area SET Status &#x3D; 127 WHERE Status &#x3D; 1 AND idArea &#x3D; ${idArea}&#x60;;
+
+    //     return sql;
+    //   },
+    // };
+
+    /**
+     * Builds a DELETE SQL query.
+     *
+     * @param {QueryOptions} options - Options for the DELETE query.
+     * @returns {object} - An object containing the query name, type, and the SQL syntax.
+     * @memberof DynamicQueryBuilder
+     */
+
+    buildDeleteQuery(options: QueryOptions): object {
+        const {
+            queryName,
+            queryType,
+            table,
+            conditions &#x3D; {},
+            optionalConditions &#x3D; null,
+            joins &#x3D; [],
+            returningFields &#x3D; [],
+            deleteType &#x3D; &#x27;soft&#x27;,
+        } &#x3D; options;
+
+        const whereClauses &#x3D; Object.keys(conditions).map((key) &#x3D;&gt; {
+            const value &#x3D; conditions[key];
+            return typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? &#x60;${key} &#x3D; &#x27;${value}&#x27;&#x60; : &#x60;${key} &#x3D; ${value}&#x60;;
+        });
+
+        if (optionalConditions) {
+            // Adding optional conditions dynamically
+            Object.keys(optionalConditions).forEach((key) &#x3D;&gt; {
+                const value &#x3D; optionalConditions[key];
+                if (value) {
+                    whereClauses.push(
+                        typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? &#x60;${key} !&#x3D; &#x27;${value}&#x27;&#x60; : &#x60;${key} !&#x3D; ${value}&#x60;
+                    );
+                }
+            });
+        }
+
+        const whereClause &#x3D; whereClauses.length ? &#x60;WHERE ${whereClauses.join(&#x27; AND &#x27;)}&#x60; : &#x27;&#x27;;
+        const joinClause &#x3D; joins.length ? joins.join(&#x27; &#x27;) : &#x27;&#x27;;
+
+        // const whereClauses &#x3D; Object.keys(conditions).map((key, index) &#x3D;&gt; &#x60;${key} &#x3D; $${index + 1}&#x60;);
+        // const whereClause &#x3D; whereClauses.length ? &#x60;WHERE ${whereClauses.join(&#x27; AND &#x27;)}&#x60; : &#x27;&#x27;;
+
+        const returningClause &#x3D; returningFields.length
+            ? &#x60;RETURNING ${returningFields.join(&#x27;, &#x27;)}&#x60;
+            : &#x27;&#x27;;
+
+        let sql: string;
+        if (deleteType &#x3D;&#x3D;&#x3D; &#x27;soft&#x27;) {
+            sql &#x3D; &#x60;UPDATE ${table} SET status &#x3D; 127 ${whereClause} ${returningClause};&#x60;;
+        } else {
+            sql &#x3D; &#x60;DELETE FROM ${table} ${joinClause} ${whereClause} ${returningClause};&#x60;;
+        }
+
+        console.log(&#x27;QQQQQQQQQQQQQQQQQQQQ&#x27;, sql);
+
+        return {
+            name: queryName ? queryName : &#x27;delete&#x27;,
+            type: queryType ? queryType : &#x27;DELETE&#x27;,
+            syntax: () &#x3D;&gt; {
+                return sql;
+            },
+        };
+    }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'QueryOptions.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

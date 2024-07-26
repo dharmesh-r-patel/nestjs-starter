@@ -119,10 +119,28 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/core/filters/query.ts</code>
+            <code>src/core/exceptions/query.ts</code>
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Class representing SQL query builder for error logging.</p>
+<p>into an <code>Error</code> table. The query escapes single quotes in request and response data
+to prevent SQL injection.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">```typescript
+const query = new Query();
+const sqlQuery = query.addHttpQueryError(
+  &#39;UserModule&#39;,
+  &#39;GET&#39;,
+  &#39;/users&#39;,
+  JSON.stringify(requestData),
+  JSON.stringify(responseData)
+).syntax();
+console.log(sqlQuery); // Outputs the SQL query string</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none"></code></pre></div>
+            </p>
 
 
 
@@ -141,7 +159,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#addQueryError" >addQueryError</a>
+                                <a href="#addHttpQueryError" >addHttpQueryError</a>
                             </li>
                         </ul>
                     </td>
@@ -166,30 +184,32 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addQueryError"></a>
+                    <a name="addHttpQueryError"></a>
                     <span class="name">
-                        <span ><b>addQueryError</b></span>
-                        <a href="#addQueryError"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addHttpQueryError</b></span>
+                        <a href="#addHttpQueryError"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addQueryError(module: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, method: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reqdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, resdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>addHttpQueryError(module: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, method: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reqdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, resdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="4"
-                                    class="link-to-prism">src/core/filters/query.ts:4</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/core/exceptions/query.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Constructs an SQL query to insert HTTP error details into the <code>Error</code> table.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -200,6 +220,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -214,6 +235,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The name of the module where the error occurred.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>method</td>
@@ -226,6 +253,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The HTTP method used in the request.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>url</td>
@@ -238,6 +271,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The URL of the request that caused the error.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>reqdata</td>
@@ -250,6 +289,12 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The request data, serialized as a JSON string.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>resdata</td>
@@ -262,16 +307,23 @@
                                             </td>
 
 
+                                            <td>
+                                                    <ul>
+<li>The response data, serialized as a JSON string.</li>
+</ul>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>{ name: string; type: string; syntax: () &#x3D;&gt; string; }</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An object representing the SQL query with a <code>name</code>, <code>type</code>, and <code>syntax</code> function.</p>
+
                             </div>
                 </td>
             </tr>
@@ -288,12 +340,29 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Query {
-    addQueryError(module: any, method: any, url: any, reqdata: string, resdata: string) {
+    /**
+     * Constructs an SQL query to insert HTTP error details into the &#x60;Error&#x60; table.
+     *
+     * @param {string} module - The name of the module where the error occurred.
+     * @param {string} method - The HTTP method used in the request.
+     * @param {string} url - The URL of the request that caused the error.
+     * @param {string} reqdata - The request data, serialized as a JSON string.
+     * @param {string} resdata - The response data, serialized as a JSON string.
+     * @returns {Object} An object representing the SQL query with a &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; function.
+     */
+
+    addHttpQueryError(module: any, method: any, url: any, reqdata: string, resdata: string): any {
         return {
             name: &#x60;addQueryError&#x60;,
             type: &#x60;INSERT&#x60;,
-            syntax: () &#x3D;&gt; {
-                // data: any[]
+            /**
+             * Generates the SQL query string for inserting the error details.
+             *
+             * @returns {string} The SQL query string.
+             */
+
+            syntax: (): string &#x3D;&gt; {
+                //data: any[]
                 try {
                     let reqescValue &#x3D; reqdata;
                     let resescValue &#x3D; resdata;

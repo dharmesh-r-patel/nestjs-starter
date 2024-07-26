@@ -1,5 +1,7 @@
 services:
     server:
+        container_name: app-server-${NODE_ENV}
+        image: app-server:1.0.0
         build:
             context: .
             dockerfile: Dockerfile

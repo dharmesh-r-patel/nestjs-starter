@@ -123,6 +123,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Exception class for handling non-image file uploads.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">```typescript
+import { FileNotImageException } from &#39;./path/to/exception&#39;;</code></pre></div><p>throw new FileNotImageException(&#39;Custom error message&#39;);</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none"></code></pre></div>
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -145,12 +154,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/core/exceptions/file-not-image.exception.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/core/exceptions/file-not-image.exception.ts:20</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of FileNotImageException.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -159,6 +170,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -173,6 +185,12 @@
                                                             Yes
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Optional custom error message.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>error</td>
@@ -185,6 +203,12 @@
                                                             Yes
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Optional custom error code.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -210,7 +234,29 @@
 
 import { BadRequestException } from &#x27;@nestjs/common&#x27;;
 
+/**
+ * Exception class for handling non-image file uploads.
+ *
+ * @description This exception is thrown when a file that is not an image is uploaded, extending the &#x60;BadRequestException&#x60; from NestJS.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;typescript
+ * import { FileNotImageException } from &#x27;./path/to/exception&#x27;;
+ *
+ * throw new FileNotImageException(&#x27;Custom error message&#x27;);
+ * &#x60;&#x60;&#x60;
+ *
+ * @extends {BadRequestException}
+ */
+
 export class FileNotImageException extends BadRequestException {
+    /**
+     * Creates an instance of FileNotImageException.
+     *
+     * @param {string | any} [message] - Optional custom error message.
+     * @param {string} [error] - Optional custom error code.
+     */
+
     constructor(message?: string | any, error?: string) {
         if (message) {
             super(message, error);

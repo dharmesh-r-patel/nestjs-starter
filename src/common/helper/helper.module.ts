@@ -8,6 +8,28 @@ import { UtilsService } from './services/util.service';
 
 const providers = [PaginationService, PrismaService, UtilsService]; // ConfigService,
 
+/**
+ * @module HelperModule
+ *
+ * @description
+ * The `HelperModule` is a global module that provides common utility services across the application.
+ * It is marked as global, meaning its providers are available throughout the application without needing to import the module in other modules.
+ *
+ * @remarks
+ * - The `HttpModule` is imported to allow services within this module to make HTTP requests.
+ * - The module exports its services and `HttpModule`, making them available for use in other modules.
+ *
+ * @example
+ * ```typescript
+ * @Module({
+ *     imports: [HttpModule],
+ *     providers: [PaginationService, PrismaService, UtilsService],
+ *     exports: [PaginationService, PrismaService, UtilsService, HttpModule],
+ * })
+ * export class HelperModule {}
+ * ```
+ */
+
 @Global()
 @Module({
     // imports: [],

@@ -4,8 +4,29 @@ import { BaseExceptionFilter } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
 
+/**
+ * Exception filter for handling Prisma Client known request errors.
+ *
+ * This filter catches `PrismaClientKnownRequestError` exceptions and formats the
+ * response based on the specific Prisma error codes.
+ *
+ * @export
+ * @class PrismaClientExceptionFilter
+ * @extends {BaseExceptionFilter}
+ */
+
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
+    /**
+     * Handles the Prisma Client exception and formats the error response
+     * based on the error code.
+     *
+     * @param {Prisma.PrismaClientKnownRequestError} exception The Prisma Client error to handle.
+     * @param {ArgumentsHost} host The arguments host for accessing request and response objects.
+     *
+     * @memberof PrismaClientExceptionFilter
+     */
+
     catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
         console.log('PRISMA CLIENT EXCEPTION', exception.message);
         const ctx = host.switchToHttp();

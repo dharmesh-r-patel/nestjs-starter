@@ -1,14 +1,41 @@
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { IPaginationFieldConfig } from '@utils/types/pagination-options';
 
+/**
+ * UtilsService
+ *
+ * @description
+ * `UtilsService` provides utility methods for building dynamic SQL queries, including pagination, filtering, sorting, and query construction.
+ *
+ * @export
+ * @class UtilsService
+ */
 export class UtilsService {
+    /**
+     * Builds dynamic SQL queries based on pagination, filtering, sorting, and field configuration.
+     *
+     * @param {PaginationQueryDto} paginationQuery - The pagination query parameters including filters and sorting options.
+     * @param {Record<string, IPaginationFieldConfig>} fieldConfigs - Configuration for each field including alias, join table, and select fields.
+     * @param {string[]} baseFields - The base fields to include in the SELECT clause.
+     * @param {string} fromQuery - The base FROM clause for the query.
+     * @param {string} [countByField='*'] - The field to use for counting records in the count query.
+     *
+     * @returns {{
+     *     selectQuery: string;
+     *     countQuery: string;
+     * }} - An object containing the dynamically built SELECT and COUNT queries.
+     */
+
     public buildDynamicQuery(
         paginationQuery: PaginationQueryDto,
         fieldConfigs: Record<string, IPaginationFieldConfig>,
         baseFields: string[],
         fromQuery: string,
         countByField: string = '*'
-    ) {
+    ): {
+        selectQuery: string;
+        countQuery: string;
+    } {
         let filterQuery = '';
         let sortByQuery = '';
         const filterValues: any[] = [];
@@ -89,6 +116,23 @@ export class UtilsService {
         return { selectQuery, countQuery };
     }
 
+    /**
+     * Constructs SELECT and COUNT SQL queries based on the provided parameters.
+     *
+     * @param {string[]} baseFields - The base fields to include in the SELECT clause.
+     * @param {string | string[]} selectFields - Additional fields to include in the SELECT clause.
+     * @param {string} fromQuery - The base FROM clause for the query.
+     * @param {string[]} joinTables - JOIN clauses to include in the query.
+     * @param {string} filterQuery - The WHERE clause for filtering.
+     * @param {string} sortByQuery - The ORDER BY clause for sorting.
+     * @param {string} [countByField='*'] - The field to use for counting records in the count query.
+     *
+     * @returns {{
+     *     selectQuery: string;
+     *     countQuery: string;
+     * }} - An object containing the constructed SELECT and COUNT queries.
+     */
+
     public queryStatements(
         baseFields: string[],
         selectFields: string | string[],
@@ -97,7 +141,10 @@ export class UtilsService {
         filterQuery: string,
         sortByQuery: string,
         countByField: string = '*'
-    ) {
+    ): {
+        selectQuery: string;
+        countQuery: string;
+    } {
         const selectQuery = `SELECT ${baseFields.join(', ')} ${selectFields} ${fromQuery} ${joinTables.join(' ')} ${filterQuery} ${sortByQuery}`;
         const countQuery = `SELECT count(${countByField}) ${fromQuery} ${joinTables.join(' ')} ${filterQuery}`;
 

@@ -1,3 +1,12 @@
+/**
+ * Maps HTTP status codes to their respective status messages.
+ *
+ * @const {Record<number, string>}
+ * @example
+ * // Usage example:
+ * console.log(HTTP_STATUS_MESSAGES[200]); // Output: 'OK'
+ */
+
 export const HTTP_STATUS_MESSAGES = {
     200: 'OK',
     201: 'Created',
@@ -30,6 +39,17 @@ export const HTTP_STATUS_MESSAGES = {
     504: 'Gateway Timeout',
 };
 
+/**
+ * Metadata key used for response serialization in decorators.
+ *
+ * @const {string}
+ */
+
 export const RESPONSE_SERIALIZATION_META_KEY = 'ResponseSerializationMetaKey';
 
+/**
+ * Key used to denote public routes.
+ *
+ * @const {string}
+ */
 export const PUBLIC_ROUTE_KEY = 'PUBLIC';

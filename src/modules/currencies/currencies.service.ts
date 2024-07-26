@@ -12,9 +12,28 @@ import { CreateDto } from './dto/create.dto';
 import { Currency } from './dto/currency';
 import { Query } from './query';
 
+/**
+ * @fileoverview
+ * This file defines the `CurrenciesService` class, which provides methods to manage currency data.
+ * It includes operations for creating, updating, retrieving, and deleting currencies.
+ *
+ * @module
+ * @description
+ * The `CurrenciesService` class is responsible for handling business logic related to currencies.
+ * It interacts with the database through the `PrismaService` and performs various operations using raw SQL queries.
+ */
 @Injectable()
 export class CurrenciesService {
     private readonly MODULE: string;
+
+    /**
+     * Creates an instance of `CurrenciesService`.
+     * @param {PaginationService} paginationService - Service to handle pagination logic.
+     * @param {PrismaService} prisma - Service to interact with the database.
+     * @param {Query} query - Service for SQL query generation.
+     * @param {UtilsService} utilsService - Service for utility functions, including dynamic query building.
+     */
+
     constructor(
         private readonly paginationService: PaginationService,
         private readonly prisma: PrismaService,
@@ -25,8 +44,12 @@ export class CurrenciesService {
     }
 
     /**
-     * Create
+     * Creates a new currency.
+     * @param {CreateDto} createDto - Data required to create a new currency.
+     * @returns {Promise<Currency>} The created currency object.
+     * @throws {HttpException} If the currency code already exists or if an error occurs during creation.
      */
+
     async create(createDto: CreateDto): Promise<Currency> {
         // Check Code for prevent duplicate
         const find = await this.prisma.executeRawQuery(this.query.findByCode(), createDto);
@@ -53,8 +76,13 @@ export class CurrenciesService {
     }
 
     /**
-     * Update
+     * Updates an existing currency by its ID.
+     * @param {string} id - The ID of the currency to update.
+     * @param {DeepPartial<Currency>} payload - Data to update the currency with.
+     * @returns {Promise<Currency | null>} The updated currency object or null if not found.
+     * @throws {HttpException} If nothing to update is provided, if the code already exists, or if an error occurs during the update.
      */
+
     async update(id: string, payload: DeepPartial<Currency>): Promise<Currency | null> {
         if (Object.keys(payload).length === 0) {
             throw new HttpException(
@@ -99,8 +127,10 @@ export class CurrenciesService {
         }
     }
 
-    /***
-     * Get all
+    /**
+     * Retrieves a paginated list of currencies.
+     * @param {PaginationQueryDto} paginationQuery - Pagination and filtering parameters.
+     * @returns {Promise<PaginationResponseDto<Currency>>} A paginated list of currencies.
      */
 
     async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Currency>> {
@@ -136,8 +166,12 @@ export class CurrenciesService {
     }
 
     /**
-     * Delete
+     * Deletes a currency by its ID.
+     * @param {string} id - The ID of the currency to delete.
+     * @returns {Promise<object>} An object indicating the result of the deletion.
+     * @throws {HttpException} If an error occurs during deletion or if the currency is not found.
      */
+
     async delete(id: string): Promise<object> {
         // Delete
         const deleted = await this.prisma.executeRawQuery(this.query.delete(), id);
@@ -157,8 +191,11 @@ export class CurrenciesService {
     }
 
     /*** HELPER METHODS */
+
     /**
-     * Get by id
+     * Retrieves a currency by its ID.
+     * @param {string} id - The ID of the currency to retrieve.
+     * @returns {Promise<Currency>} The currency object.
      */
 
     async findOne(id: string): Promise<Currency> {

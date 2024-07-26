@@ -14,6 +14,26 @@ import { imageFileFilter } from '@providers/file-upload.service';
 import { FilesS3Controller } from './files.controller';
 import { FilesS3Service } from './files.service';
 
+/**
+ * @module FilesS3Module
+ *
+ * @description
+ * The `FilesS3Module` configures the integration with AWS S3 for file upload functionality. It sets up the Multer middleware to handle file uploads, configures the S3 client, and defines the file storage and filtering logic.
+ *
+ * @imports
+ * - `MulterModule`: Configures Multer for file handling and integrates it with S3.
+ * - `ConfigModule`: Provides access to application configuration settings.
+ *
+ * @providers
+ * - `FilesS3Service`: Handles file upload and processing logic using S3.
+ *
+ * @controllers
+ * - `FilesS3Controller`: Manages HTTP requests related to file uploads and downloads.
+ *
+ * @exports
+ * - `FilesS3Service`: Exposes the service for file operations to other modules.
+ */
+
 @Module({
     imports: [
         MulterModule.registerAsync({

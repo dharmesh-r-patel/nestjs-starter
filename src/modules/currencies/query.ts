@@ -1,7 +1,24 @@
 import * as _ from 'lodash';
 
+/**
+ * @fileoverview
+ * This file defines the `Query` class, which provides methods for generating SQL queries
+ * related to currency data management.
+ *
+ * @module
+ * @description
+ * The `Query` class includes methods to generate SQL queries for operations such as
+ * retrieving, inserting, updating, and deleting currency records from the database.
+ * It uses the lodash library for object manipulation and query construction.
+ */
+
 export class Query {
-    findById() {
+    /**
+     * Generates a SQL query to find a currency by its ID.
+     * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
+     */
+
+    findById(): object {
         return {
             name: `findById`,
             type: `SELECT_ONE`,
@@ -23,7 +40,13 @@ export class Query {
         };
     }
 
-    findByCode(id?: string) {
+    /**
+     * Generates a SQL query to find a currency by its code.
+     * @param {string} [id] - Optional ID to exclude from the search if provided.
+     * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
+     */
+
+    findByCode(id?: string): object {
         return {
             name: `findByCode`,
             type: `SELECT_ONE`,
@@ -40,7 +63,12 @@ export class Query {
         };
     }
 
-    insert() {
+    /**
+     * Generates a SQL query to insert a new currency.
+     * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
+     */
+
+    insert(): object {
         return {
             name: `add`,
             type: `INSERT`,
@@ -64,7 +92,12 @@ export class Query {
         };
     }
 
-    update() {
+    /**
+     * Generates a SQL query to update an existing currency.
+     * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
+     */
+
+    update(): object {
         return {
             name: `update`,
             type: `UPDATE`,
@@ -97,7 +130,13 @@ export class Query {
         };
     }
 
-    delete() {
+    /**
+     * Generates a SQL query to delete a currency by its ID.
+     * @param {string} id - The ID of the currency to delete.
+     * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
+     */
+
+    delete(): object {
         return {
             name: `delete`,
             type: `UPDATE`,
@@ -108,6 +147,11 @@ export class Query {
             },
         };
     }
+
+    /**
+     * Provides the base fields for selecting currencies in pagination queries.
+     * @returns {string[]} An array of column names to be selected in pagination queries.
+     */
 
     pgBaseSelectField(): string[] {
         return [
@@ -120,7 +164,12 @@ export class Query {
         ];
     }
 
-    pgBaseQuery() {
+    /**
+     * Provides the base query for selecting currencies.
+     * @returns {string} The base query string for selecting currencies.
+     */
+
+    pgBaseQuery(): string {
         return ` FROM currencies ptbl`;
     }
 }

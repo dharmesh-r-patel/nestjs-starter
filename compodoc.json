@@ -1,0 +1,6 @@
+{
+  "hideGenerator": true,
+  "output": "documentation",
+  "includes": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
+}

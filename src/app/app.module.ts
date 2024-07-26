@@ -15,6 +15,16 @@ import { AppController } from './app.controller';
 
 const ENV = process.env.NODE_ENV;
 
+/**
+ * @fileoverview
+ * This file contains the `AppModule` class, which is the root module of the NestJS application.
+ *
+ * @module
+ * @description
+ * The `AppModule` class is responsible for importing and configuring the core modules of the application.
+ * It includes configuration for environment variables, database connections, and health checks.
+ */
+
 @Module({
     controllers: [AppController],
     imports: [

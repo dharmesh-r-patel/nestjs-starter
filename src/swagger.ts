@@ -12,6 +12,31 @@ import { AppModule } from './app/app.module';
 
 // import { ConfigService } from './common/helper/services/config.service';
 
+/**
+ * Configures and sets up Swagger documentation for the NestJS application.
+ *
+ * This function creates and configures Swagger documentation based on application configuration.
+ * It sets up two separate Swagger documents: one for the main application modules and another
+ * for common modules. It also configures various Swagger UI options.
+ *
+ * @param {INestApplication} app - The NestJS application instance.
+ * @returns {Promise<void>} - A promise that resolves when the Swagger setup is complete.
+ *
+ * @throws {Error} - Throws an error if configuration retrieval fails.
+ *
+ * @example
+ * import { NestFactory } from '@nestjs/core';
+ * import { AppModule } from './app.module';
+ * import setupSwagger from './setup-swagger';
+ *
+ * async function bootstrap() {
+ *   const app = await NestFactory.create(AppModule);
+ *   await setupSwagger(app);
+ *   await app.listen(3000);
+ * }
+ * bootstrap();
+ */
+
 export default async function (app: INestApplication) {
     // const configService = app.get(ConfigService);
     const configService = app.get(ConfigService<AllConfigType>);

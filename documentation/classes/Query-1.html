@@ -119,10 +119,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/core/exceptions/query.ts</code>
+            <code>src/core/filters/query.ts</code>
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>A utility class for generating SQL queries related to error logging.</p>
+
+            </p>
 
 
 
@@ -141,7 +148,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#addHttpQueryError" >addHttpQueryError</a>
+                                <a href="#addQueryError" >addQueryError</a>
                             </li>
                         </ul>
                     </td>
@@ -166,30 +173,32 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addHttpQueryError"></a>
+                    <a name="addQueryError"></a>
                     <span class="name">
-                        <span ><b>addHttpQueryError</b></span>
-                        <a href="#addHttpQueryError"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addQueryError</b></span>
+                        <a href="#addQueryError"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addHttpQueryError(module: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, method: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reqdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, resdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>addQueryError(module: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, method: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reqdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, resdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="4"
-                                    class="link-to-prism">src/core/exceptions/query.ts:4</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/core/filters/query.ts:24</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Generates an SQL query for logging query errors.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -200,6 +209,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -214,6 +224,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The module where the error occurred.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>method</td>
@@ -226,6 +240,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The method that caused the error.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>url</td>
@@ -238,6 +256,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The URL where the error occurred.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>reqdata</td>
@@ -250,6 +272,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The request data associated with the error.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>resdata</td>
@@ -262,6 +288,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The response data associated with the error.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -271,7 +301,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An object containing the SQL query details.</p>
+
                             </div>
                 </td>
             </tr>
@@ -288,12 +319,25 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Query {
-    addHttpQueryError(module: any, method: any, url: any, reqdata: string, resdata: string) {
+    /**
+     * Generates an SQL query for logging query errors.
+     *
+     * @param {any} module The module where the error occurred.
+     * @param {any} method The method that caused the error.
+     * @param {any} url The URL where the error occurred.
+     * @param {string} reqdata The request data associated with the error.
+     * @param {string} resdata The response data associated with the error.
+     * @returns {{ name: string, type: string, syntax: () &#x3D;&gt; string }} An object containing the SQL query details.
+     *
+     * @memberof Query
+     */
+
+    addQueryError(module: any, method: any, url: any, reqdata: string, resdata: string) {
         return {
             name: &#x60;addQueryError&#x60;,
             type: &#x60;INSERT&#x60;,
             syntax: () &#x3D;&gt; {
-                //data: any[]
+                // data: any[]
                 try {
                     let reqescValue &#x3D; reqdata;
                     let resescValue &#x3D; resdata;

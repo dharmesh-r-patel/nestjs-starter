@@ -13,8 +13,40 @@ import {
 
 //   import { Query } from "./query";
 
+/**
+ * Global HTTP error filter.
+ *
+ * @description This filter catches all HTTP exceptions and formats the response to include
+ * additional error information such as the HTTP status, timestamp, request URL, method, and message.
+ * It logs the error details, particularly for internal server errors.
+ *
+ * @example
+ * ```typescript
+ * import { HttpErrorFilter } from './path/to/filter';
+ *
+ * @Module({
+ *   providers: [
+ *     {
+ *       provide: APP_FILTER,
+ *       useClass: HttpErrorFilter,
+ *     },
+ *   ],
+ * })
+ * export class AppModule {}
+ * ```
+ *
+ * @implements {ExceptionFilter}
+ */
+
 @Catch()
 export class HttpErrorFilter implements ExceptionFilter {
+    /**
+     * Method that handles the exception.
+     *
+     * @param {HttpException} exception - The exception that was thrown.
+     * @param {ArgumentsHost} host - The host object containing the details of the current request.
+     */
+
     catch(exception: HttpException, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();

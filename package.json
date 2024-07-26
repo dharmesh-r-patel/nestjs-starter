@@ -1,8 +1,10 @@
 {
   "name": "nestjs-starter",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
-  "author": "Dharmesh Patel",
+  "author": {
+    "name": "Dharmesh Patel"
+  },
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
   "repository": {
@@ -18,6 +20,7 @@
     "staging": "pm2-runtime start pm2/startup.json --env staging",
     "testing": "pm2-runtime start pm2/startup.json --env testing",
     "production": "pm2-runtime start pm2/production.json --env production",
+    "prebuild": "rimraf dist",
     "build": "nest build",
     "migrate:dev": "dotenv -e .env.development -- prisma migrate dev",
     "migrate:staging": "dotenv -e .env.staging -- prisma migrate deploy",
@@ -40,7 +43,8 @@
     "lint": "eslint '{src,test}/**/*.ts'",
     "lint:fix": "eslint --fix '{src,test}/**/*.ts'",
     "update:packages": "npx npm-check-updates -u",
-    "doc": "compodoc -p tsconfig.json",
+    "docs:generate": "npx compodoc -p tsconfig.json -d documentation",
+    "docs:serve": "npx compodoc -s -d documentation",
     "test": "jest --config=jest.json",
     "test:watch": "jest --watch --config=jest.json",
     "test:coverage": "jest --config=jest.json --coverage --coverageDirectory=coverage",
@@ -75,6 +79,8 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@compodoc/compodoc": "^1.1.25",
     "@eslint/compat": "^1.1.0",
     "@nestjs/cli": "^10.3.2",
@@ -130,7 +136,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet"
+      "pre-commit": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {

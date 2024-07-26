@@ -5,6 +5,33 @@ import { PaginationResponseDto } from '@utils/dto/pagination-response.dto';
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { PaginationMetaDto } from '@utils/dto/pagination.meta.dto';
 
+/**
+ * @service PaginationService
+ *
+ * @description
+ * The `PaginationService` provides functionality to handle pagination for database queries. It utilizes Prisma's query capabilities
+ * to perform paginated data retrieval based on the provided query parameters.
+ *
+ * @remarks
+ * - The `paginate` method constructs SQL queries to fetch paginated data and its corresponding metadata.
+ * - The method supports different pagination strategies such as 'all' and 'infinity'.
+ *
+ * @example
+ * ```typescript
+ * const paginationQuery = new PaginationQueryDto({
+ *     page: 1,
+ *     limit: 10,
+ *     pagination: 'paginate',
+ * });
+ *
+ * const result = await paginationService.paginate<MyEntity>(
+ *     'SELECT * FROM my_table',
+ *     'SELECT COUNT(*) as count FROM my_table',
+ *     paginationQuery
+ * );
+ * ```
+ */
+
 @Injectable()
 export class PaginationService {
     constructor(private readonly prisma: PrismaService) {}

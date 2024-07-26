@@ -123,6 +123,16 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Custom exception for user not found errors.</p>
+<p>It extends the <code>NotFoundException</code> provided by NestJS.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">```typescript
+throw new UserNotFoundException();
+throw new UserNotFoundException(&#39;Specific error message&#39;);</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none"></code></pre></div>
+            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
@@ -145,12 +155,14 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/core/exceptions/user-not-found.exception.ts:5</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/core/exceptions/user-not-found.exception.ts:20</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of UserNotFoundException.</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -159,6 +171,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -173,6 +186,12 @@
                                                             Yes
                                                     </td>
                                                     
+                                                        <td>
+                                                                <ul>
+<li>Optional error message.</li>
+</ul>
+
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -198,7 +217,28 @@
 
 import { NotFoundException } from &#x27;@nestjs/common&#x27;;
 
+/**
+ * Custom exception for user not found errors.
+ *
+ * @extends {NotFoundException}
+ *
+ * @description This exception is thrown when a requested user is not found in the system.
+ * It extends the &#x60;NotFoundException&#x60; provided by NestJS.
+ *
+ * @example
+ * &#x60;&#x60;&#x60;typescript
+ * throw new UserNotFoundException();
+ * throw new UserNotFoundException(&#x27;Specific error message&#x27;);
+ * &#x60;&#x60;&#x60;
+ */
+
 export class UserNotFoundException extends NotFoundException {
+    /**
+     * Creates an instance of UserNotFoundException.
+     *
+     * @param {string} [error] - Optional error message.
+     */
+
     constructor(error?: string) {
         super(&#x27;error.user_not_found&#x27;, error);
     }

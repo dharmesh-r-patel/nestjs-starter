@@ -123,6 +123,15 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Exception filter for handling Prisma Client known request errors.</p>
+<p>This filter catches <code>PrismaClientKnownRequestError</code> exceptions and formats the
+response based on the specific Prisma error codes.</p>
+
+            </p>
 
 
 
@@ -182,14 +191,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="9"
-                                    class="link-to-prism">src/core/filters/prisma-exception.filter.ts:9</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/core/filters/prisma-exception.filter.ts:30</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Handles the Prisma Client exception and formats the error response
+based on the error code.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -200,6 +212,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -214,6 +227,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The Prisma Client error to handle.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>host</td>
@@ -226,6 +243,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The arguments host for accessing request and response objects.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -257,16 +278,65 @@ import { BaseExceptionFilter } from &#x27;@nestjs/core&#x27;;
 import { Prisma } from &#x27;@prisma/client&#x27;;
 import { Response } from &#x27;express&#x27;;
 
+/**
+ * Exception filter for handling Prisma Client known request errors.
+ *
+ * This filter catches &#x60;PrismaClientKnownRequestError&#x60; exceptions and formats the
+ * response based on the specific Prisma error codes.
+ *
+ * @export
+ * @class PrismaClientExceptionFilter
+ * @extends {BaseExceptionFilter}
+ */
+
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
+    /**
+     * Handles the Prisma Client exception and formats the error response
+     * based on the error code.
+     *
+     * @param {Prisma.PrismaClientKnownRequestError} exception The Prisma Client error to handle.
+     * @param {ArgumentsHost} host The arguments host for accessing request and response objects.
+     *
+     * @memberof PrismaClientExceptionFilter
+     */
+
     catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
-        console.error(exception.message);
+        console.log(&#x27;PRISMA CLIENT EXCEPTION&#x27;, exception.message);
         const ctx &#x3D; host.switchToHttp();
         const response &#x3D; ctx.getResponse&lt;Response&gt;();
         const message &#x3D; exception.message.replace(/\n/g, &#x27;&#x27;);
         switch (exception.code) {
             case &#x27;P2002&#x27;: {
+                // Unique constraint failed on the {constraint}
                 const status &#x3D; HttpStatus.CONFLICT;
+                response.status(status).json({
+                    statusCode: status,
+                    message: message,
+                });
+                break;
+            }
+            case &#x27;P2000&#x27;: {
+                // The provided value for the column is too long for the column’s type. Column: {column_name}
+                const status &#x3D; HttpStatus.BAD_REQUEST;
+                response.status(status).json({
+                    statusCode: status,
+                    message: message,
+                });
+                break;
+            }
+            case &#x27;P2025&#x27;: {
+                // An operation failed because it depends on one or more records that were required but not found. {cause}
+                const status &#x3D; HttpStatus.NOT_FOUND;
+                response.status(status).json({
+                    statusCode: status,
+                    message: message,
+                });
+                break;
+            }
+            case &#x27;P2010&#x27;: {
+                // An operation failed because it depends on one or more records that were required but not found. {cause}
+                const status &#x3D; HttpStatus.BAD_REQUEST;
                 response.status(status).json({
                     statusCode: status,
                     message: message,

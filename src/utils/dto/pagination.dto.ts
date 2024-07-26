@@ -21,6 +21,13 @@ import { ToNumber } from '@decorators/transforms.decorator';
 // import { ToNumber } from '@decorators/transforms.decorator';
 // import { Country } from '@modules/countries/dto/country';
 
+/**
+ * Enum representing different pagination types.
+ *
+ * @export
+ * @enum {string}
+ */
+
 export enum PaginationType {
     NONE = 'no',
     INFINITY = 'infinity',
@@ -28,7 +35,19 @@ export enum PaginationType {
     ALL = 'all',
 }
 
+/**
+ * DTO class for pagination query parameters.
+ *
+ * @export
+ */
 export class PaginationQueryDto {
+    /**
+     * The type of pagination to apply.
+     *
+     * @type {PaginationType}
+     * @memberof PaginationQueryDto
+     */
+
     @ApiPropertyOptional({
         description:
             'Pagination must all (Page and has_next_page), infinity (only has_next_page), paginate(only page)',
@@ -38,6 +57,13 @@ export class PaginationQueryDto {
     @IsEnum(PaginationType)
     @IsOptional()
     readonly pagination: PaginationType;
+
+    /**
+     * The page number for pagination.
+     *
+     * @type {number}
+     * @memberof PaginationQueryDto
+     */
 
     @ApiPropertyOptional({
         description: 'Page number',
@@ -49,6 +75,13 @@ export class PaginationQueryDto {
     @ToNumber()
     @Min(1)
     readonly page?: number;
+
+    /**
+     * The number of records per page.
+     *
+     * @type {number}
+     * @memberof PaginationQueryDto
+     */
 
     @ApiPropertyOptional({
         description: 'Record limit',
@@ -62,6 +95,13 @@ export class PaginationQueryDto {
     @Min(10)
     @Max(500)
     readonly limit?: number = 10;
+
+    /**
+     * Filters to apply to the query.
+     *
+     * @type {FilterQueryDto[] | null}
+     * @memberof PaginationQueryDto
+     */
 
     @ApiPropertyOptional({
         name: 'filters',
@@ -77,6 +117,13 @@ export class PaginationQueryDto {
     @ValidateNested({ each: true })
     @Type(() => FilterQueryDto)
     filters?: FilterQueryDto[] | null;
+
+    /**
+     * Sorting options for the query.
+     *
+     * @type {SortByDto[] | null}
+     * @memberof PaginationQueryDto
+     */
 
     @ApiPropertyOptional({
         name: 'sort',
@@ -94,16 +141,42 @@ export class PaginationQueryDto {
     sort?: SortByDto[] | null;
 }
 
+/**
+ * DTO class for filter query parameters.
+ *
+ * @export
+ */
 export class FilterQueryDto {
+    /**
+     * The field to filter on.
+     *
+     * @type {string}
+     * @memberof FilterQueryDto
+     */
+
     @ApiProperty({ example: 'iso', required: true })
     @IsNotEmpty()
     @IsString()
     field: string;
 
+    /**
+     * The operator to use for filtering.
+     *
+     * @type {string}
+     * @memberof FilterQueryDto
+     */
+
     @ApiProperty({ example: '=' })
     @IsNotEmpty()
     @IsString()
     operator: string;
+
+    /**
+     * The value to filter by.
+     *
+     * @type {string}
+     * @memberof FilterQueryDto
+     */
 
     @ApiProperty({ example: 'IN' })
     @IsNotEmpty()
@@ -111,6 +184,11 @@ export class FilterQueryDto {
     value: string;
 }
 
+/**
+ * DTO class for sorting options.
+ *
+ * @export
+ */
 export class SortByDto {
     // @ApiProperty({ example: 'name' })
     // @IsString()
@@ -118,6 +196,13 @@ export class SortByDto {
     //     message: 'Field must be a valid key of Country',
     // })
     // field: keyof Country;
+    /**
+     * The field to sort by.
+     *
+     * @type {string}
+     * @memberof SortByDto
+     */
+
     @ApiProperty()
     @IsString()
     // @IsIn(abc(x : keyof TExposedAccountInfo), {
@@ -127,6 +212,13 @@ export class SortByDto {
     //     message: 'Field must be a valid key of the specified entity',
     // })
     field: string;
+
+    /**
+     * The direction of the sort (ascending or descending).
+     *
+     * @type {string}
+     * @memberof SortByDto
+     */
 
     @ApiProperty({ example: 'ASC' })
     @IsString()

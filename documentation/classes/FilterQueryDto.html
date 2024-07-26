@@ -1,0 +1,1004 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-starter documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >FilterQueryDto</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/utils/dto/pagination.dto.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>DTO class for filter query parameters.</p>
+
+            </p>
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#field" >field</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#operator" >operator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#value" >value</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="field"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>field</b></span>
+                        <a href="#field"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({example: &#x27;iso&#x27;, required: true})<br />@IsNotEmpty()<br />@IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/utils/dto/pagination.dto.ts:160</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The field to filter on.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="operator"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>operator</b></span>
+                        <a href="#operator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({example: &#x27;&#x3D;&#x27;})<br />@IsNotEmpty()<br />@IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/utils/dto/pagination.dto.ts:172</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The operator to use for filtering.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="value"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>value</b></span>
+                        <a href="#value"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({example: &#x27;IN&#x27;})<br />@IsNotEmpty()<br />@IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/utils/dto/pagination.dto.ts:184</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The value to filter by.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
+
+import { Type, Transform, plainToInstance } from &#x27;class-transformer&#x27;;
+import {
+    IsOptional,
+    Min,
+    Max,
+    IsNotEmpty,
+    IsString,
+    ValidateNested,
+    Matches,
+    IsEnum,
+    // Validate,
+    // IsIn,
+} from &#x27;class-validator&#x27;;
+
+// import { IsValidField } from &#x27;@core/validators/field.validator&#x27;; // Import the custom validator
+import { IsNumberStringOrNumber } from &#x27;@decorators/number.string.validator&#x27;;
+import { ToNumber } from &#x27;@decorators/transforms.decorator&#x27;;
+// import { IsNumberStringOrNumber } from &#x27;@decorators/number.string.validator&#x27;;
+// import { ToNumber } from &#x27;@decorators/transforms.decorator&#x27;;
+// import { Country } from &#x27;@modules/countries/dto/country&#x27;;
+
+/**
+ * Enum representing different pagination types.
+ *
+ * @export
+ * @enum {string}
+ */
+
+export enum PaginationType {
+    NONE &#x3D; &#x27;no&#x27;,
+    INFINITY &#x3D; &#x27;infinity&#x27;,
+    PAGINATE &#x3D; &#x27;paginate&#x27;,
+    ALL &#x3D; &#x27;all&#x27;,
+}
+
+/**
+ * DTO class for pagination query parameters.
+ *
+ * @export
+ */
+export class PaginationQueryDto {
+    /**
+     * The type of pagination to apply.
+     *
+     * @type {PaginationType}
+     * @memberof PaginationQueryDto
+     */
+
+    @ApiPropertyOptional({
+        description:
+            &#x27;Pagination must all (Page and has_next_page), infinity (only has_next_page), paginate(only page)&#x27;,
+        enum: PaginationType,
+        default: PaginationType.ALL,
+    })
+    @IsEnum(PaginationType)
+    @IsOptional()
+    readonly pagination: PaginationType;
+
+    /**
+     * The page number for pagination.
+     *
+     * @type {number}
+     * @memberof PaginationQueryDto
+     */
+
+    @ApiPropertyOptional({
+        description: &#x27;Page number&#x27;,
+        minimum: 1,
+        default: 1,
+    })
+    @IsOptional()
+    @IsNumberStringOrNumber()
+    @ToNumber()
+    @Min(1)
+    readonly page?: number;
+
+    /**
+     * The number of records per page.
+     *
+     * @type {number}
+     * @memberof PaginationQueryDto
+     */
+
+    @ApiPropertyOptional({
+        description: &#x27;Record limit&#x27;,
+        minimum: 1,
+        maximum: 500,
+        default: 10,
+    })
+    @IsOptional()
+    @IsNumberStringOrNumber()
+    @ToNumber()
+    @Min(10)
+    @Max(500)
+    readonly limit?: number &#x3D; 10;
+
+    /**
+     * Filters to apply to the query.
+     *
+     * @type {FilterQueryDto[] | null}
+     * @memberof PaginationQueryDto
+     */
+
+    @ApiPropertyOptional({
+        name: &#x27;filters&#x27;,
+        required: false,
+        type: String,
+        description: &#x27;Array of filter objects as a JSON string&#x27;,
+        example: &#x27;[{&quot;field&quot;:&quot;name&quot;,&quot;operator&quot;:&quot;&#x3D;&quot;,&quot;value&quot;:&quot;IN&quot;}]&#x27;,
+    })
+    @IsOptional()
+    @Transform(({ value }) &#x3D;&gt; {
+        return value ? plainToInstance(FilterQueryDto, JSON.parse(value)) : undefined;
+    })
+    @ValidateNested({ each: true })
+    @Type(() &#x3D;&gt; FilterQueryDto)
+    filters?: FilterQueryDto[] | null;
+
+    /**
+     * Sorting options for the query.
+     *
+     * @type {SortByDto[] | null}
+     * @memberof PaginationQueryDto
+     */
+
+    @ApiPropertyOptional({
+        name: &#x27;sort&#x27;,
+        required: false,
+        type: String,
+        description: &#x27;Array of sort objects as a JSON string&#x27;,
+        example: &#x27;[{&quot;field&quot;:&quot;name&quot;,&quot;direction&quot;:&quot;ASC&quot;}]&#x27;,
+    })
+    @IsOptional()
+    @Transform(({ value }) &#x3D;&gt; {
+        return value ? plainToInstance(SortByDto, JSON.parse(value)) : undefined;
+    })
+    @ValidateNested({ each: true })
+    @Type(() &#x3D;&gt; SortByDto)
+    sort?: SortByDto[] | null;
+}
+
+/**
+ * DTO class for filter query parameters.
+ *
+ * @export
+ */
+export class FilterQueryDto {
+    /**
+     * The field to filter on.
+     *
+     * @type {string}
+     * @memberof FilterQueryDto
+     */
+
+    @ApiProperty({ example: &#x27;iso&#x27;, required: true })
+    @IsNotEmpty()
+    @IsString()
+    field: string;
+
+    /**
+     * The operator to use for filtering.
+     *
+     * @type {string}
+     * @memberof FilterQueryDto
+     */
+
+    @ApiProperty({ example: &#x27;&#x3D;&#x27; })
+    @IsNotEmpty()
+    @IsString()
+    operator: string;
+
+    /**
+     * The value to filter by.
+     *
+     * @type {string}
+     * @memberof FilterQueryDto
+     */
+
+    @ApiProperty({ example: &#x27;IN&#x27; })
+    @IsNotEmpty()
+    @IsString()
+    value: string;
+}
+
+/**
+ * DTO class for sorting options.
+ *
+ * @export
+ */
+export class SortByDto {
+    // @ApiProperty({ example: &#x27;name&#x27; })
+    // @IsString()
+    // @Validate(IsValidField, [Country], {
+    //     message: &#x27;Field must be a valid key of Country&#x27;,
+    // })
+    // field: keyof Country;
+    /**
+     * The field to sort by.
+     *
+     * @type {string}
+     * @memberof SortByDto
+     */
+
+    @ApiProperty()
+    @IsString()
+    // @IsIn(abc(x : keyof TExposedAccountInfo), {
+    //     message: &#x27;Field must be one of &quot;name&quot;, &quot;age&quot;, or &quot;status&quot;&#x27;,
+    // })
+    // @Validate(IsValidField, [{ entity: () &#x3D;&gt; T }], {
+    //     message: &#x27;Field must be a valid key of the specified entity&#x27;,
+    // })
+    field: string;
+
+    /**
+     * The direction of the sort (ascending or descending).
+     *
+     * @type {string}
+     * @memberof SortByDto
+     */
+
+    @ApiProperty({ example: &#x27;ASC&#x27; })
+    @IsString()
+    @Matches(/^(ASC|DESC|asc|desc)$/, {
+        message: &#x27;operator must be one of ASC, DESC, asc, or desc&#x27;,
+    })
+    direction: string;
+}
+
+// export class PaginatedResultDto&lt;T&gt; {
+//     @ApiProperty()
+//     data: T[];
+
+//     @ApiProperty()
+//     total: number;
+
+//     @ApiProperty()
+//     page: number;
+
+//     @ApiProperty()
+//     limit: number;
+// }
+
+//DX
+// import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
+
+// import { Type, Transform, plainToInstance } from &#x27;class-transformer&#x27;;
+// import {
+//     IsOptional,
+//     Min,
+//     Max,
+//     IsNotEmpty,
+//     IsString,
+//     IsArray,
+//     ValidateNested,
+//     Validate,
+//     Matches,
+// } from &#x27;class-validator&#x27;;
+
+// import { IsNumberStringOrNumber } from &#x27;@decorators/number.string.validator&#x27;;
+// import { ToNumber } from &#x27;@decorators/transforms.decorator&#x27;;
+// import { SortBy } from &#x27;@validators/filter.validator&#x27;;
+
+// export class FilterQueryDto {
+//     @ApiProperty({ example: &#x27;name&#x27;, required: true })
+//     @IsNotEmpty()
+//     @IsString()
+//     field: string;
+
+//     @ApiProperty({ example: &#x27;LIKE&#x27; })
+//     @IsNotEmpty()
+//     @IsString()
+//     operator: string;
+
+//     @ApiProperty({ example: &#x27;%John%&#x27; })
+//     @IsNotEmpty()
+//     @IsString()
+//     value: string;
+// }
+
+// export class SortByDto {
+//     @ApiProperty({ example: &#x27;name&#x27; })
+//     @IsString()
+//     field: string;
+
+//     @ApiProperty({ example: &#x27;ASC&#x27; })
+//     @IsString()
+//     @Matches(/^(ASC|DESC|asc|desc)$/, {
+//         message: &#x27;operator must be one of ASC, DESC, asc, or desc&#x27;,
+//     })
+//     direction: string;
+// }
+
+// export class PaginationQueryDto {
+//     @ApiPropertyOptional({
+//         description: &#x27;Page number&#x27;,
+//         minimum: 1,
+//         default: 1,
+//     })
+//     @IsOptional()
+//     @IsNumberStringOrNumber()
+//     @ToNumber()
+//     @Min(1)
+//     // @Transform(({ value }) &#x3D;&gt; {
+//     //     const strippedValue &#x3D; String(value).replace(/[&#x27;&quot;]+/g, &#x27;&#x27;);
+//     //     const numberValue &#x3D; Number(strippedValue);
+//     //     return isNaN(numberValue) ? &#x27;undefined&#x27; : numberValue;
+//     // })
+//     readonly page?: number;
+
+//     @ApiPropertyOptional({
+//         description: &#x27;Record limit&#x27;,
+//         minimum: 1,
+//         maximum: 500,
+//         default: 10,
+//     })
+//     @IsOptional()
+//     @IsNumberStringOrNumber()
+//     @ToNumber()
+//     @Min(10)
+//     @Max(500)
+//     readonly limit?: number &#x3D; 10;
+
+//     // @IsOptional()
+//     // @IsArray()
+//     // @ValidateNested({ each: true })
+//     // @Type(() &#x3D;&gt; FilterQueryDto)
+//     // filters?: FilterQueryDto[];
+//     // // filters?: any;
+//     @ApiPropertyOptional({
+//         name: &#x27;filters&#x27;,
+//         required: false,
+//         type: String,
+//         description: &#x27;Array of filter objects as a JSON string&#x27;,
+//         example:
+//             &#x27;[{&quot;field&quot;:&quot;name&quot;,&quot;operator&quot;:&quot;LIKE&quot;,&quot;value&quot;:&quot;John&quot;},{&quot;field&quot;:&quot;age&quot;,&quot;operator&quot;:&quot;&gt;&quot;,&quot;value&quot;:&quot;30&quot;}]&#x27;,
+//     })
+//     @IsOptional()
+//     @Transform(({ value }) &#x3D;&gt; {
+//         return value ? plainToInstance(FilterQueryDto, JSON.parse(value)) : undefined;
+//     })
+//     @ValidateNested({ each: true })
+//     @Type(() &#x3D;&gt; FilterQueryDto)
+//     filters?: FilterQueryDto[] | null;
+
+//     // @ApiPropertyOptional({
+//     //     description: &#x27;&lt;SortBy Column&gt; Name or City: &lt;Order&gt; ASC or DESC&#x27;,
+//     //     example: &#x27;name ASC&#x27;,
+//     // })
+//     // @IsOptional()
+//     // @IsString()
+//     // @Validate(SortBy)
+//     // readonly sort?: string;
+//     // @ApiPropertyOptional({ type: [SortByDto], isArray: true })
+//     // @IsOptional()
+//     // @Transform(({ value }) &#x3D;&gt; {
+//     //     return value ? plainToInstance(SortUserDto, JSON.parse(value)) : undefined;
+//     // })
+//     // @ValidateNested({ each: true })
+//     // @Type(() &#x3D;&gt; SortUserDto)
+//     // sort?: SortUserDto[] | null;
+
+//     @ApiPropertyOptional({
+//         name: &#x27;sort&#x27;,
+//         required: false,
+//         type: String,
+//         description: &#x27;Array of sort objects as a JSON string&#x27;,
+//         example: &#x27;[{&quot;field&quot;:&quot;name&quot;,&quot;direction&quot;:&quot;ASC&quot;},{&quot;field&quot;:&quot;age&quot;,&quot;direction&quot;:&quot;DESC&quot;}]&#x27;,
+//     })
+//     @IsOptional()
+//     @Transform(({ value }) &#x3D;&gt; {
+//         return value ? plainToInstance(SortByDto, JSON.parse(value)) : undefined;
+//     })
+//     @ValidateNested({ each: true })
+//     @Type(() &#x3D;&gt; SortByDto)
+//     sort?: SortByDto[] | null;
+// }
+
+// export class PaginatedResultDto&lt;T&gt; {
+//     @ApiProperty()
+//     data: T[];
+
+//     @ApiProperty()
+//     total: number;
+
+//     @ApiProperty()
+//     page: number;
+
+//     @ApiProperty()
+//     limit: number;
+// }
+
+// // import { ApiProperty, ApiExtraModels } from &#x27;@nestjs/swagger&#x27;;
+
+// // import { Type } from &#x27;class-transformer&#x27;;
+// // import { IsOptional, IsString, IsArray, ValidateNested, IsNumber } from &#x27;class-validator&#x27;;
+
+// // // export class FilterQueryDto {
+// // //     @ApiProperty({ example: &#x27;name&#x27; })
+// // //     field: string;
+
+// // //     @ApiProperty({ example: &#x27;LIKE&#x27; })
+// // //     operator: string;
+
+// // //     @ApiProperty({ example: &#x27;%John%&#x27; })
+// // //     value: string;
+// // // }
+// // export class FilterQueryDto {
+// //     @ApiProperty({ example: &#x27;country_name&#x27; })
+// //     @IsString()
+// //     field: string;
+
+// //     @ApiProperty({ example: &#x27;LIKE&#x27; })
+// //     @IsString()
+// //     operator: string;
+
+// //     @ApiProperty({ example: &#x27;%United%&#x27; })
+// //     @IsString()
+// //     value: string;
+// // }
+// // @ApiExtraModels(FilterQueryDto)
+// // export class PaginationQueryDto {
+// //     @ApiProperty({ example: 1, required: false })
+// //     @IsOptional()
+// //     @IsNumber()
+// //     @Type(() &#x3D;&gt; Number)
+// //     page?: number &#x3D; 1;
+
+// //     @ApiProperty({ example: 10, required: false })
+// //     @IsOptional()
+// //     @IsNumber()
+// //     @Type(() &#x3D;&gt; Number)
+// //     limit?: number &#x3D; 10;
+
+// //     // @ApiProperty({
+// //     //     type: [FilterQueryDto],
+// //     //     required: false,
+// //     //     isArray: true,
+// //     // })
+// //     // @Type(() &#x3D;&gt; FilterQueryDto)
+// //     // filters?: FilterQueryDto[];
+// //     @ApiProperty({
+// //         type: FilterQueryDto,
+// //         required: false,
+// //         isArray: true,
+// //     })
+// //     // @IsOptional()
+// //     @IsArray()
+// //     @ValidateNested({ each: true })
+// //     @Type(() &#x3D;&gt; FilterQueryDto)
+// //     filters?: FilterQueryDto[];
+
+// //     // @ApiProperty({
+// //     //     type: [Object],
+// //     //     // items: {
+// //     //     //     type: &#x27;object&#x27;,
+// //     //     //     items: {
+// //     //     //         type: &#x27;object&#x27;,
+// //     //     //     },
+// //     //     // },
+// //     // })
+// //     // coords: FilterQueryDto[];
+
+// //     // @ApiProperty({ type: String, required: false })
+// //     // @IsOptional()
+// //     // @IsArray()
+// //     // @ValidateNested({ each: true })
+// //     // @Type(() &#x3D;&gt; FilterQueryDto)
+// //     // filters?: FilterQueryDto[];
+
+// //     @ApiProperty({ example: &#x27;name ASC1&#x27;, required: false })
+// //     sort?: string;
+// // }
+
+// // // export class PaginationQueryDto {
+// // //     @ApiProperty({ example: 1, required: false })
+// // //     page?: number &#x3D; 1;
+
+// // //     @ApiProperty({ example: 10, required: false })
+// // //     limit?: number &#x3D; 10;
+
+// // //     // @ApiProperty({ type: [FilterQueryDto], required: false, isArray: true })
+// // //     // filters?: FilterQueryDto[];
+
+// // //     // @ApiProperty({ type: String, required: false, isArray: true })
+// // //     // filters?: FilterQueryDto[];
+
+// // //     // @ApiProperty({ type: [FilterQueryDto], required: false, isArray: true })
+// // //     // @Type(() &#x3D;&gt; FilterQueryDto)
+// // //     // filters?: FilterQueryDto[];
+
+// // //     @ApiProperty({ type: [FilterQueryDto], required: false })
+// // //     @IsOptional()
+// // //     @IsArray()
+// // //     @ValidateNested({ each: true })
+// // //     @Type(() &#x3D;&gt; FilterQueryDto)
+// // //     filters?: FilterQueryDto[];
+
+// // //     @ApiProperty({ example: &#x27;name ASC1&#x27;, required: false })
+// // //     sort?: string;
+// // // }
+
+// // export class PaginatedResultDto&lt;T&gt; {
+// //     @ApiProperty()
+// //     data: T[];
+
+// //     @ApiProperty()
+// //     total: number;
+
+// //     @ApiProperty()
+// //     page: number;
+
+// //     @ApiProperty()
+// //     limit: number;
+// // }
+
+// // export class abc {
+// //     @ApiProperty()
+// //     page: number;
+
+// //     @ApiProperty()
+// //     limit: number;
+// // }
+
+// // import { applyDecorators } from &#x27;@nestjs/common&#x27;;
+// // import { ApiProperty, ApiExtraModels, ApiQuery, getSchemaPath } from &#x27;@nestjs/swagger&#x27;;
+
+// // /**
+// //  * Combines Swagger Decorators to create a description for &#x60;filters[name]&#x3D;something&#x60;
+// //  *  - has support for swagger
+// //  *  - automatic transformation with nestjs
+// //  */
+// // // // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types
+// // // export function ApiFilterQuery(fieldName: string, filterDto: Function) {
+// // //     return applyDecorators(
+// // //         ApiExtraModels(filterDto),
+// // //         ApiQuery({
+// // //             required: false,
+// // //             name: fieldName,
+// // //             style: &#x27;deepObject&#x27;,
+// // //             explode: true,
+// // //             type: &#x27;object&#x27;,
+// // //             schema: {
+// // //                 $ref: getSchemaPath(filterDto),
+// // //             },
+// // //         })
+// // //     );
+// // // }
+// // // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types
+// // export function ApiFilterQuery(fieldName: string, filterDto: Function, index: number) {
+// //     return applyDecorators(
+// //         ApiExtraModels(filterDto),
+// //         ApiQuery({
+// //             required: false,
+// //             name: &#x60;${fieldName}[${index}]&#x60;,
+// //             style: &#x27;deepObject&#x27;,
+// //             explode: true,
+// //             type: &#x27;object&#x27;,
+// //             schema: {
+// //                 $ref: getSchemaPath(filterDto),
+// //             },
+// //         })
+// //     );
+// // }
+
+// // export function ApiFilterQuery(fieldName: string, index: number) {
+// //     return applyDecorators(
+// //         ApiQuery({
+// //             required: false,
+// //             name: &#x60;${fieldName}[${index}].field&#x60;,
+// //             style: &#x27;deepObject&#x27;,
+// //             explode: true,
+// //             type: &#x27;object&#x27;,
+// //         }),
+// //         ApiQuery({
+// //             required: false,
+// //             name: &#x60;${fieldName}[${index}].operator&#x60;,
+// //             style: &#x27;deepObject&#x27;,
+// //             explode: true,
+// //             type: &#x27;object&#x27;,
+// //         }),
+// //         ApiQuery({
+// //             required: false,
+// //             name: &#x60;${fieldName}[${index}].value&#x60;,
+// //             style: &#x27;deepObject&#x27;,
+// //             explode: true,
+// //             type: &#x27;object&#x27;,
+// //         })
+// //     );
+// // }
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'FilterQueryDto.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

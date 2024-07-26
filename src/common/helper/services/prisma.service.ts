@@ -10,13 +10,28 @@ import { AllConfigType } from '@config/type/config.type';
 // import { ConfigService } from '../services/config.service';
 
 /**
- * Prisma service
+ * PrismaService
+ *
+ * @description
+ * `PrismaService` is a service that extends the PrismaClient class to manage database operations with Prisma ORM. It handles
+ * initialization and teardown of database connections, executes raw queries with parameter escaping, supports transactions,
+ * and provides a health check for the database connection.
+ *
  * @export
  * @class PrismaService
+ * @extends PrismaClient
+ * @implements {OnModuleInit}
+ * @implements {OnModuleDestroy}
  */
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+    /**
+     * Creates an instance of PrismaService.
+     *
+     * @param {ConfigService<AllConfigType>} configService - The configuration service for retrieving database connection details.
+     */
+
     constructor(private readonly configService: ConfigService<AllConfigType>) {
         super({
             datasources: {
@@ -27,17 +42,39 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
         });
     }
 
-    async onModuleInit() {
+    /**
+     * Called when the module is initialized. Connects to the database.
+     *
+     * @returns {Promise<void>}
+     */
+
+    async onModuleInit(): Promise<void> {
         await this.$connect();
     }
 
-    async onModuleDestroy() {
+    /**
+     * Called when the module is destroyed. Disconnects from the database.
+     *
+     * @returns {Promise<void>}
+     */
+
+    async onModuleDestroy(): Promise<void> {
         await this.$disconnect();
     }
 
     // async executeRawQuery(query: string, params?: any[]): Promise<any> {
     //     return this.$queryRawUnsafe(query, ...params);
     // }
+
+    /**
+     * Executes a raw query with optional data and field sanitization.
+     *
+     * @param {any} queryObj - The query object with a `syntax` method to generate the query string.
+     * @param {any} [data=null] - Optional data to be used in the query.
+     * @param {string[]} [fields=[]] - Optional fields to be sanitized in the data.
+     *
+     * @returns {Promise<any>} - The result of the query.
+     */
 
     async executeRawQuery(
         queryObj: any = null,
@@ -81,11 +118,25 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
         return result;
     }
 
+    /**
+     * Executes a transaction with Prisma.
+     *
+     * @param {(prisma: Prisma.TransactionClient) => Promise<any>} actions - A function containing the transactional operations.
+     *
+     * @returns {Promise<any>} - The result of the transaction.
+     */
+
     async executeTransaction(
         actions: (prisma: Prisma.TransactionClient) => Promise<any>
     ): Promise<any> {
         return this.$transaction(actions);
     }
+
+    /**
+     * Checks the health of the Prisma connection by executing a simple query.
+     *
+     * @returns {Promise<HealthIndicatorResult>} - The result of the health check.
+     */
 
     async isHealthy(): Promise<HealthIndicatorResult> {
         try {

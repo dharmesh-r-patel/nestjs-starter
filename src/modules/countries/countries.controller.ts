@@ -7,6 +7,14 @@ import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { CountriesService } from './countries.service';
 import { Country } from './dto/country';
 
+/**
+ * @fileoverview
+ * This file defines the `CountriesController`, which handles HTTP requests related to countries.
+ *
+ * @module
+ * @description
+ * The `CountriesController` is responsible for handling requests to find and retrieve country information.
+ */
 @ApiTags('Countries')
 @Controller()
 export class CountriesController {
@@ -14,6 +22,19 @@ export class CountriesController {
 
     /***
      * Find all countries
+     *
+     * @param {PaginationQueryDto} query - The pagination query parameters.
+     * @returns {Promise<PaginationResponseDto<Country>>} A promise that resolves to a paginated response of countries.
+     *
+     * @example
+     * GET /v1/countries?page=1&limit=10
+     *
+     * @description
+     * This endpoint allows the client to retrieve a paginated list of countries.
+     *
+     * @see PaginationQueryDto
+     * @see PaginationResponseDto
+     * @see Country
      */
 
     @Get('v1/countries')

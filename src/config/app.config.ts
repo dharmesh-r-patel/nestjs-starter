@@ -13,9 +13,10 @@ enum Environment {
 }
 
 /**
- * Config service
+ * Class to validate environment variables using class-validator decorators.
+ *
  * @export
- * @class ConfigService
+ * @class EnvironmentVariablesValidator
  */
 
 class EnvironmentVariablesValidator {
@@ -57,6 +58,18 @@ class EnvironmentVariablesValidator {
     @IsOptional()
     API_PREFIX: string;
 }
+
+/**
+ * Configuration registration and validation.
+ *
+ * Registers the configuration with NestJS and validates the environment variables
+ * using `EnvironmentVariablesValidator`. Returns an `AppConfig` object with default values
+ * for the application configuration.
+ *
+ * @export
+ * @function
+ * @returns {AppConfig} The application configuration.
+ */
 
 export default registerAs<AppConfig>('app', (): AppConfig => {
     validateConfig(process.env, EnvironmentVariablesValidator);

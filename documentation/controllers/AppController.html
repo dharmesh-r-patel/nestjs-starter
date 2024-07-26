@@ -117,6 +117,15 @@
 
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This file contains the <code>AppController</code> class, which provides health check endpoints for the application.</p>
+<p>The <code>AppController</code> is responsible for handling HTTP requests related to the application&#39;s health status.
+It uses <code>@nestjs/terminus</code> for health checks and <code>PrismaService</code> to check the database connection status.</p>
+
+            </p>
 
 
 
@@ -190,19 +199,35 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="20"
-                                    class="link-to-prism">src/app/app.controller.ts:20</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/app.controller.ts:63</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Health check endpoint.</p>
+<p>This endpoint performs a health check by verifying the status of the database connection.
+The result of the health check is returned in the response.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">// Example response
+{
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;info&quot;: {
+    &quot;prisma&quot;: &quot;up&quot;
+  },
+  &quot;error&quot;: {},
+  &quot;details&quot;: {}
+}</code></pre></div></div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
+                            <b>Returns : </b>    <code>Promise&lt;object&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                <p>A promise that resolves with the health check result.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -211,26 +236,69 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, VERSION_NEUTRAL } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get } from &#x27;@nestjs/common&#x27;; // VERSION_NEUTRAL
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { HealthCheck, HealthCheckService } from &#x27;@nestjs/terminus&#x27;;
 
-import { PrismaService } from &#x27;../common/helper/services/prisma.service&#x27;;
+import { PrismaService } from &#x27;@services/prisma.service&#x27;;
 // import { PublicRoute } from &#x27;src/core/decorators/public.request.decorator&#x27;;
 
-@Controller({
-    version: VERSION_NEUTRAL,
-    path: &#x27;/&#x27;,
-})
+// @Controller({
+//     version: VERSION_NEUTRAL,
+//     path: &#x27;/&#x27;,
+// })
+
+/**
+ * @fileoverview
+ * This file contains the &#x60;AppController&#x60; class, which provides health check endpoints for the application.
+ *
+ * @module
+ * @description
+ * The &#x60;AppController&#x60; is responsible for handling HTTP requests related to the application&#x27;s health status.
+ * It uses &#x60;@nestjs/terminus&#x60; for health checks and &#x60;PrismaService&#x60; to check the database connection status.
+ */
+
+@ApiTags(&#x27;Health&#x27;) // Tags the controller for Swagger API documentation
+@Controller() // Decorates the class as a NestJS controller
 export class AppController {
+    /**
+     * Creates an instance of &#x60;AppController&#x60;.
+     *
+     * @param {HealthCheckService} healthCheckService - Service for performing health checks.
+     * @param {PrismaService} prismaService - Service for interacting with the Prisma ORM.
+     */
     constructor(
         private readonly healthCheckService: HealthCheckService,
         private readonly prismaService: PrismaService
     ) {}
 
-    @Get(&#x27;/health&#x27;)
-    @HealthCheck()
+    /**
+     * Health check endpoint.
+     *
+     * @route GET /health
+     * @returns {Promise&lt;object&gt;} A promise that resolves with the health check result.
+     * @throws {BadRequestException} If the health check fails.
+     *
+     * @description
+     * This endpoint performs a health check by verifying the status of the database connection.
+     * The result of the health check is returned in the response.
+     *
+     * @example
+     * // Example response
+     * {
+     *   &quot;status&quot;: &quot;ok&quot;,
+     *   &quot;info&quot;: {
+     *     &quot;prisma&quot;: &quot;up&quot;
+     *   },
+     *   &quot;error&quot;: {},
+     *   &quot;details&quot;: {}
+     * }
+     */
+
+    @Get(&#x27;/health&#x27;) // Route to handle GET requests at /health
+    @HealthCheck() // Decorator to indicate that this is a health check endpoint
     // @PublicRoute()
-    public async getHealth() {
+    public async getHealth(): Promise&lt;object&gt; {
         return this.healthCheckService.check([() &#x3D;&gt; this.prismaService.isHealthy()]);
     }
 }
