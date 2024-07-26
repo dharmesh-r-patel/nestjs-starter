@@ -1,6 +1,9 @@
 NestJS
 https://github.com/hmake98/nestjs-starter
 
+config husky, docker etc
+https://dev.to/one-beyond/build-faster-your-guide-to-a-quick-start-project-template-2o0p
+
 
 Prisma
 
