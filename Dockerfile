@@ -7,12 +7,15 @@ FROM node:20-alpine as base
 # Install PostgreSQL client tools for `pg_isready`
 RUN apk update && apk add postgresql-client
 
+# Install the latest npm version
+RUN npm install -g npm@latest
+
 # Create app directory
 WORKDIR /usr/src/app
 
 # Install app dependencies using the `npm ci` command instead of `npm install`
 RUN yarn install --legacy-peer-deps
-RUN yarn global add pm2
+RUN yarn global add pm2 pm2-runtime
 
 # Copy application dependency manifests to the container image.
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
@@ -32,7 +35,15 @@ FROM base as development
 # Bundle app source
 COPY --chown=node:node . .
 
-RUN chmod +x entrypoint.sh
+# RUN chmod +x entrypoint.sh
+# RUN chmod +x start.sh
+# RUN chmod +x stop.sh
+
+RUN chmod +x entrypoint.sh start.sh stop.sh
+
+# Install dependencies
+COPY --chown=node:node package*.json ./
+RUN yarn install --legacy-peer-deps
 
 # Generate Prisma database client code
 RUN yarn prisma:generate
@@ -72,6 +83,13 @@ FROM base as production
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 COPY --chown=node:node --from=build /usr/src/app/prisma ./prisma
+
+# Copy the start and stop script
+COPY start.sh ./
+RUN chmod +x start.sh
+
+COPY stop.sh ./
+RUN chmod +x stop.sh
 
 # Copy the entrypoint script
 COPY entrypoint.sh ./

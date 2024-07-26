@@ -3,7 +3,7 @@
       {
         "name": "netsjs-starter",
         "script": "node_modules/.bin/ts-node",
-        "args": "-r tsconfig-paths/register ./src/main.ts",
+        "args": ["-r","tsconfig-paths/register","./src/main.ts"],
         "exec_interpreter": "node",
         "node_args": [
           "--harmony",

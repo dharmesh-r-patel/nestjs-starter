@@ -20,13 +20,12 @@ case $ENV in
     ;;
 esac
 
-echo $ENV
+echo .env.${ENV}
 
 # Set NODE_ENV environment variable
 # export NODE_ENV=$ENV
 
 # Start Docker Compose with the specified environment file
 docker-compose --env-file .env.${ENV} up -d --build
-
 # Run Docker Compose with the specified environment
 #docker-compose -f docker-compose.yml -f docker-compose.$ENV.yml up --build

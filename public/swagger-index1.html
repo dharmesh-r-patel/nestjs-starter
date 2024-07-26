@@ -1,0 +1,622 @@
+<!-- https://ostranme.github.io/swagger-ui-themes/index.html -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Swagger UI</title>
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/reset.css' media='print' rel='stylesheet' type='text/css'/>
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/print.css' media='print' rel='stylesheet' type='text/css'/>
+
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/object-assign-pollyfill.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/jquery-1.8.0.min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/jquery.slideto.min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/jquery.wiggle.min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/handlebars-4.0.5.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/lodash.min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/backbone-min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/swagger-ui.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/highlight.9.1.0.pack.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/highlight.9.1.0.pack_extended.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/jsoneditor.min.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/marked.js' type='text/javascript'></script>
+  <script src='https://ostranme.github.io/swagger-ui-themes/demo/lib/swagger-oauth.js' type='text/javascript'></script>
+
+
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/screen.css' media='screen' rel='stylesheet' id="sut" type='text/css'/>
+
+  <script type="text/javascript">
+    $(function () {
+      var url = window.location.search.match(/url=([^&]+)/);
+      if (url && url.length > 1) {
+        url = decodeURIComponent(url[1]);
+      } else {
+        url = "https://petstore.swagger.io/v2/swagger.json";
+      }
+
+      hljs.configure({
+        highlightSizeThreshold: 5000
+      });
+
+      // Pre load translate...
+      if(window.SwaggerTranslator) {
+        window.SwaggerTranslator.translate();
+      }
+      window.swaggerUi = new SwaggerUi({
+        url: url,
+        dom_id: "swagger-ui-container",
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+        onComplete: function(swaggerApi, swaggerUi){
+          if(typeof initOAuth == "function") {
+            initOAuth({
+              clientId: "your-client-id",
+              clientSecret: "your-client-secret-if-required",
+              realm: "your-realms",
+              appName: "your-app-name",
+              scopeSeparator: " ",
+              additionalQueryStringParams: {}
+            });
+          }
+
+          if(window.SwaggerTranslator) {
+            window.SwaggerTranslator.translate();
+          }
+        },
+        onFailure: function(data) {
+          log("Unable to Load SwaggerUI");
+        },
+        docExpansion: "none",
+        jsonEditor: false,
+        defaultModelRendering: 'schema',
+        showRequestHeaders: false
+      });
+
+      window.swaggerUi.load();
+
+      function log() {
+        if ('console' in window) {
+          console.log.apply(console, arguments);
+        }
+      }
+  });
+  </script>
+</head>
+
+<body class="swagger-section">
+<div id='header'>
+  <div class="swagger-ui-wrap">
+    <a id="logo" href="http://swagger.io"><img class="logo__img" alt="swagger" height="30" width="30" src="images/logo_small.png" /><span class="logo__title">swagger</span></a>
+    <form id='api_selector'>
+      <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text"/></div>
+      <div id='auth_container'></div>
+      <div class='input'><a id="explore" class="header__btn" href="#" data-sw-translate>Explore</a></div>
+    </form>
+  </div>
+</div>
+
+<div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
+
+
+<div class="sut-container">
+  <script>
+    function toggleStyle(theme){
+      if (theme){
+        var link  = document.getElementById('sut');
+        link.href = 'https://ostranme.github.io/swagger-ui-themes/demo/themes/' + theme + '.css';
+      }
+    }
+  </script>
+  <style>
+    .sut-container{
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
+      min-width: 760px;
+      max-width: 960px;
+      font-family: 'Roboto', sans-serif;
+      border-bottom: 2px solid #e8e8e8;
+      text-align: center;
+    }
+    .theme-container {
+      margin: 30px 0;
+    }
+    .btn{
+      background-color: #2980b9;
+      border: none;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      border-radius: 3px;
+      font-weight: 200;
+      letter-spacing: 1px;
+    }
+  </style>
+
+  <a href="../index.html">Go back to Swagger UI themes</a>
+  <div class="theme-container">
+    <a href="#" class="btn" onclick="toggleStyle('theme-feeling-blue')">Feeling Blue</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-flattop')">Flattop</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-material')">Material</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-monokai')">Monokai</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-muted')">Muted</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-newspaper')">Newspaper</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-outline')">Outline</a>
+  </div>
+
+</div>
+
+
+<div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+  <!-- <link rel="stylesheet" href="/css/theme-material.css"> -->
+  <link href='https://ostranme.github.io/swagger-ui-themes/demo/css/screen.css' media='screen' rel='stylesheet' id="sut" type='text/css'/>
+  
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f4f4f4; /* Light grey background */
+      margin: 0;
+      padding: 0;
+    }
+    .sidebar {
+      position: fixed;
+      width: 200px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+    .swagger-ui {
+      font-family: 'Open Sans', sans-serif;
+      background: #ffffff; /* White background for Swagger UI */
+      color: #333; /* Dark text color for readability */
+      border-radius: 8px; /* Rounded corners for a modern look */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+      margin: 20px auto;
+      max-width: 1200px; /* Limit width for readability */
+      padding: 20px;
+    }
+
+    .swagger-ui .topbar {
+      background-color: #007bff; /* Enterprise blue */
+      color: #ffffff; /* White text */
+      border-radius: 8px 8px 0 0;
+    }
+
+    .swagger-ui .topbar .topbar-wrapper {
+      padding: 10px 20px;
+    }
+
+    .swagger-ui .info {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .swagger-ui .btn.execute {
+      background-color: #28a745; /* Green for action buttons */
+      color: #fff;
+    }
+
+    .swagger-ui .btn.execute:hover {
+      background-color: #218838; /* Darker green on hover */
+    }
+
+    .swagger-ui .info h1, .swagger-ui .info h2 {
+      font-weight: 600; /* Bold headings for emphasis */
+    }
+  </style>
+</head>
+<body>
+    <div class="sidebar">
+    <h2>Documentation</h2>
+    <a href="#main-api">Main API</a>
+    <a href="#users-api">Users API</a>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+  </div>
+  <div id="swagger-ui"></div>
+
+  <script>
+    function toggleStyle(theme){
+      if (theme){
+        var link  = document.getElementById('sut');
+        link.href = 'https://ostranme.github.io/swagger-ui-themes/demo/themes/' + theme + '.css';
+      }
+    }
+  </script>
+
+  <div class="theme-container">
+    <a href="#" class="btn" onclick="toggleStyle('theme-feeling-blue')">Feeling Blue</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-flattop')">Flattop</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-material')">Material</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-monokai')">Monokai</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-muted')">Muted</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-newspaper')">Newspaper</a>
+    <a href="#" class="btn" onclick="toggleStyle('theme-outline')">Outline</a>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+  <script>
+    SwaggerUIBundle({
+      url: "/docs-json", // Replace with your Swagger JSON URL
+      dom_id: '#swagger-ui',
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIBundle.SwaggerUIStandalonePreset
+      ],
+      layout: "BaseLayout",
+      swaggerOptions: {
+        filter: true,
+        tagsSorter: 'alpha',
+        operationsSorter: 'method',
+        tryItOutEnabled: true,
+        displayOperationId: true,
+        defaultModelsExpandDepth: -1 // Hide models by default for a cleaner look
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      width: 200px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>API Documentation</h2>
+    <a href="#main-api">Main API</a>
+    <a href="#users-api">Users API</a>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        dom_id: '#' + elementId,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        filter: true,  // Make sure filter is enabled here
+        docExpansion: 'none',
+      });
+    }
+
+    renderSwaggerUI('main-api', '/docs-json');  // URL to the Swagger JSON endpoint
+  </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      width: 200px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>API Documentation</h2>
+    <a href="#main-api">Main API</a>
+    <a href="#users-api">Users API</a>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        dom_id: '#' + elementId,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+           swaggerOptions: {
+          docExpansion: 'none',
+          persistAuthorization: true,
+          displayOperationId: true,
+          operationsSorter: 'method',
+          tagsSorter: 'alpha',
+          tryItOutEnabled: true,
+          filter: true,  // Ensure this is true
+        }
+      });
+    }
+
+    // Adjust these URLs to match your actual Swagger JSON endpoints
+    renderSwaggerUI('main-api', '/docs-json');  // Main API JSON endpoint
+    // renderSwaggerUI('users-api', 'http://localhost:3031/api-docs/users-json'); // Users API JSON endpoint
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      width: 200px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>API Documentation</h2>
+    <a href="#main-api">Main API</a>
+    <a href="#users-api">Users API</a>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        dom_id: '#' + elementId,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+      });
+    }
+
+    renderSwaggerUI('main-api', '/docs');
+    renderSwaggerUI('users-api', '/api-docs/users');
+  </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      width: 200px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>API Documentation</h2>
+    <a href="#main-api">Main API</a>
+    <a href="#users-api">Users API</a>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        dom_id: '#' + elementId,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+      });
+    }
+
+    renderSwaggerUI('main-api', '/docs');
+    renderSwaggerUI('users-api', '/api-docs/users');
+  </script>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <style>
+    .sidebar {
+      position: fixed;
+      width: 200px;
+      height: 100%;
+      background: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>API Documentation</h2>
+    <a href="#main-api">Main API</a>
+    <a href="#users-api">Users API</a>
+    <a href="#orders-api">Orders API</a>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+    <div id="orders-api"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        dom_id: '#' + elementId,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+      });
+    }
+
+
+
+    renderSwaggerUI('main-api', '/docs');
+    renderSwaggerUI('users-api', '/docs/users');
+    renderSwaggerUI('orders-api', '/docs/orders');
+  </script>
+</body>
+</html> -->
+

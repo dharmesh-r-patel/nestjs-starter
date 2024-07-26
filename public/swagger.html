@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+  <link rel="stylesheet" href="css/theme-outline.css" id="theme-stylesheet">
+  <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+  <style>
+    * {
+      list-style: none;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+    }
+
+    .wrapper .sidebar {
+      background: rgb(5, 68, 104);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 225px;
+      height: 100%;
+      padding: 20px 0;
+      transition: all 0.5s ease;
+    }
+
+    .wrapper .sidebar .profile {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .wrapper .sidebar .profile img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .wrapper .sidebar .profile h3 {
+      color: #ffffff;
+      margin: 10px 0 5px;
+    }
+
+    .wrapper .sidebar .profile p {
+      color: rgb(206, 240, 253);
+      font-size: 14px;
+    }
+
+    .wrapper .sidebar ul li a {
+      display: block;
+      padding: 13px 30px;
+      border-bottom: 1px solid #10558d;
+      color: rgb(241, 237, 237);
+      font-size: 16px;
+      position: relative;
+    }
+
+    .wrapper .sidebar ul li a .icon {
+      color: #dee4ec;
+      width: 30px;
+      display: inline-block;
+    }
+
+    .wrapper .sidebar ul li a:hover,
+    .wrapper .sidebar ul li a.active {
+      color: #0c7db1;
+      background: white;
+      border-right: 2px solid rgb(5, 68, 104);
+    }
+
+    .wrapper .sidebar ul li a:hover .icon,
+    .wrapper .sidebar ul li a.active .icon {
+      color: #0c7db1;
+    }
+
+    .wrapper .section {
+      width: calc(100% - 225px);
+      margin-left: 225px;
+      transition: all 0.5s ease;
+    }
+
+    .wrapper .section .top_navbar {
+      /* background: rgb(7, 105, 185); */
+      background: #ffffff;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+    }
+
+    .wrapper .section .top_navbar .hamburger a {
+      font-size: 28px;
+      color: #054468;
+    }
+
+    .wrapper .section .top_navbar .hamburger a:hover {
+      color: #a2ecff;
+    }
+
+    body.active .wrapper .sidebar {
+      left: -225px;
+    }
+
+    body.active .wrapper .section {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .content {
+      padding: 10px;
+      width: calc(100%);
+    }
+
+    .swagger-ui {
+      background: #ffffff;
+      border-radius: 4px;
+      padding: 10px;
+      /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+    }
+
+    /* .swagger-ui .topbar {
+      display: none;
+    } */
+
+    /* .swagger-ui .btn.execute {
+      background-color: #28a745;
+      color: #fff;
+    } */
+
+    /* .swagger-ui .btn.execute:hover {
+      background-color: #218838;
+    }  */
+
+    /* Theme submenu styles */
+    .theme-container {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 180px;
+    }
+
+    .theme-container h4 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .theme-container .theme-submenu {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .theme-container:hover .theme-submenu {
+      display: block;
+    }
+
+    .theme-container a {
+      display: block;
+      padding: 5px;
+      margin: 5px 0;
+      color: #333;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.3s ease;
+    }
+
+    .theme-container a.selected {
+      background: #e0e0e0;
+      font-weight: bold;
+    }
+
+    .theme-container a:hover {
+      background: #f0f0f0;
+    }
+
+</style>
+</head>
+<body  class="swagger-section-look">
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="profile">
+        <!-- <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture"> -->
+        <h3>Infinite</h3>
+        <p>Sampel APIs</p>
+      </div>
+      <ul>
+        <li>
+          <a href="#" data-url="/docs-json" class="menu-link active">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="item">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-url="/commons-json" class="menu-link">
+            <span class="icon"><i class="fas fa-desktop"></i></span>
+            <span class="item">Commons</span>
+          </a>
+        </li>
+      </ul>
+      <!-- Inspired by https://ostranme.github.io/swagger-ui-themes/index.html -->
+      <div class="theme-container">
+        <h4>Theme: <span id="selected-theme-name">Outline</span></h4>
+        <div class="theme-submenu">
+          <a href="#" onclick="setTheme('theme-swagger-ui', 'Default')">Default</a>
+          <a href="#" onclick="setTheme('theme-feeling-blue', 'Feeling Blue')">Feeling Blue</a>
+          <a href="#" onclick="setTheme('theme-flattop', 'Flattop')">Flattop</a>
+          <a href="#" onclick="setTheme('theme-material', 'Material')">Material</a>
+          <a href="#" onclick="setTheme('theme-monokai', 'Monokai')">Monokai</a>
+          <a href="#" onclick="setTheme('theme-muted', 'Muted')">Muted</a>
+          <a href="#" onclick="setTheme('theme-newspaper', 'Newspaper')">Newspaper</a>
+          <a href="#" onclick="setTheme('theme-outline', 'Outline')">Outline</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="top_navbar">
+        <div class="hamburger">
+          <a href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <div class="content">
+        <div id="swagger-ui" class="swagger-ui-wrap"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+  <script>
+    let swaggerUIInstance;
+
+    function renderSwaggerUI(url) {
+      if (swaggerUIInstance) {
+        document.getElementById('swagger-ui').innerHTML = '';
+      }
+
+      swaggerUIInstance = SwaggerUIBundle({
+        url: url,
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        swaggerOptions: {
+          filter: true,
+          tagsSorter: 'alpha',
+          operationsSorter: 'method',
+          tryItOutEnabled: true,
+          displayOperationId: true,
+          defaultModelsExpandDepth: -1 // Hide models by default
+        }
+      });
+    }
+
+    function handleMenuClick(event) {
+      event.preventDefault();
+      const target = event.target.closest('.menu-link');
+      if (!target) return;
+
+      const url = target.getAttribute('data-url');
+      if (!url) return;
+
+      document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+      target.classList.add('active');
+      renderSwaggerUI(url);
+    }
+
+    function setTheme(theme, themeName) {
+      if (theme) {
+        // Save selected theme in localStorage
+        localStorage.setItem('selectedTheme', theme);
+
+        // Remove existing theme stylesheet
+        const oldLink = document.getElementById('theme-stylesheet');
+        if (oldLink) {
+          oldLink.parentNode.removeChild(oldLink);
+        }
+
+        // Create a new theme stylesheet link
+        const newLink = document.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.href =  theme === "theme-swagger-ui" ? "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css" : `css/${theme}.css`;
+        newLink.id = 'theme-stylesheet';
+        document.head.appendChild(newLink);
+
+        // Update theme submenu and selected theme name
+        document.querySelectorAll('.theme-container a').forEach(link => link.classList.remove('selected'));
+        document.querySelector(`.theme-container a[onclick*="${theme}"]`).classList.add('selected');
+        document.getElementById('selected-theme-name').textContent = themeName;        
+      }
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('selectedTheme') || 'theme-swagger-ui';
+      setTheme(savedTheme, document.querySelector(`.theme-container a[onclick*="${savedTheme}"]`).textContent);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initial load
+      renderSwaggerUI('/docs-json');
+      loadTheme();
+      document.querySelectorAll('.menu-link').forEach(link => {
+        link.addEventListener('click', handleMenuClick);
+      });
+    });
+
+    var hamburger = document.querySelector(".hamburger");
+	hamburger.addEventListener("click", function(){
+	    document.querySelector("body").classList.toggle("active");
+	})
+  </script>
+</body>
+</html>

@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+  <link rel="stylesheet" href="css/theme-outline.css" id="theme-stylesheet">
+  <style>
+    * {
+      list-style: none;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+    }
+
+    .wrapper .sidebar {
+      background: rgb(5, 68, 104);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 225px;
+      height: 100%;
+      padding: 20px 0;
+      transition: all 0.5s ease;
+    }
+
+    .wrapper .sidebar .profile {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .wrapper .sidebar .profile img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .wrapper .sidebar .profile h3 {
+      color: #ffffff;
+      margin: 10px 0 5px;
+    }
+
+    .wrapper .sidebar .profile p {
+      color: rgb(206, 240, 253);
+      font-size: 14px;
+    }
+
+    .wrapper .sidebar ul li a {
+      display: block;
+      padding: 13px 30px;
+      border-bottom: 1px solid #10558d;
+      color: rgb(241, 237, 237);
+      font-size: 16px;
+      position: relative;
+    }
+
+    .wrapper .sidebar ul li a .icon {
+      color: #dee4ec;
+      width: 30px;
+      display: inline-block;
+    }
+
+    .wrapper .sidebar ul li a:hover,
+    .wrapper .sidebar ul li a.active {
+      color: #0c7db1;
+      background: white;
+      border-right: 2px solid rgb(5, 68, 104);
+    }
+
+    .wrapper .sidebar ul li a:hover .icon,
+    .wrapper .sidebar ul li a.active .icon {
+      color: #0c7db1;
+    }
+
+    .wrapper .section {
+      width: calc(100% - 225px);
+      margin-left: 225px;
+      transition: all 0.5s ease;
+    }
+
+    .wrapper .section .top_navbar {
+      background: rgb(7, 105, 185);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+    }
+
+    .wrapper .section .top_navbar .hamburger a {
+      font-size: 28px;
+      color: #f4fbff;
+    }
+
+    .wrapper .section .top_navbar .hamburger a:hover {
+      color: #a2ecff;
+    }
+
+    body.active .wrapper .sidebar {
+      left: -225px;
+    }
+
+    body.active .wrapper .section {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .content {
+      padding: 10px;
+      width: calc(100%);
+    }
+
+    .swagger-ui {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+    }
+
+    .swagger-ui .topbar {
+      display: none;
+    }
+
+    .swagger-ui .btn.execute {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .swagger-ui .btn.execute:hover {
+      background-color: #218838;
+    } 
+
+    /* Theme submenu styles */
+    .theme-container {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 180px;
+    }
+
+    .theme-container h4 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .theme-container .theme-submenu {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .theme-container:hover .theme-submenu {
+      display: block;
+    }
+
+    .theme-container a {
+      display: block;
+      padding: 5px;
+      margin: 5px 0;
+      color: #333;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.3s ease;
+    }
+
+    .theme-container a.selected {
+      background: #e0e0e0;
+      font-weight: bold;
+    }
+
+    .theme-container a:hover {
+      background: #f0f0f0;
+    }
+
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="profile">
+        <!-- <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture"> -->
+        <h3>Infinite</h3>
+        <p>Sampel APIs</p>
+      </div>
+      <ul>
+        <li>
+          <a href="#" data-url="/docs-json" class="menu-link active">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="item">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-url="/api-docs/users" class="menu-link">
+            <span class="icon"><i class="fas fa-desktop"></i></span>
+            <span class="item">Commons</span>
+          </a>
+        </li>
+      </ul>
+      <div class="theme-container">
+        <h4>Theme: <span id="selected-theme-name">Outline</span></h4>
+        <div class="theme-submenu">
+          <a href="#" onclick="setTheme('theme-swagger-ui', 'Default')">Default</a>
+          <a href="#" onclick="setTheme('theme-feeling-blue', 'Feeling Blue')">Feeling Blue</a>
+          <a href="#" onclick="setTheme('theme-flattop', 'Flattop')">Flattop</a>
+          <a href="#" onclick="setTheme('theme-material', 'Material')">Material</a>
+          <a href="#" onclick="setTheme('theme-outline', 'Outline')">Outline</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="top_navbar">
+        <div class="hamburger">
+          <a href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <div class="content">
+        <div id="swagger-ui" class="swagger-ui"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+  <script>
+    let swaggerUIInstance;
+
+    function renderSwaggerUI(url) {
+      if (swaggerUIInstance) {
+        document.getElementById('swagger-ui').innerHTML = '';
+      }
+
+      swaggerUIInstance = SwaggerUIBundle({
+        url: url,
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        swaggerOptions: {
+          filter: true,
+          tagsSorter: 'alpha',
+          operationsSorter: 'method',
+          tryItOutEnabled: true,
+          displayOperationId: true,
+          defaultModelsExpandDepth: -1 // Hide models by default
+        }
+      });
+    }
+
+    function handleMenuClick(event) {
+      event.preventDefault();
+      const target = event.target.closest('.menu-link');
+      if (!target) return;
+
+      const url = target.getAttribute('data-url');
+      if (!url) return;
+
+      document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+      target.classList.add('active');
+      renderSwaggerUI(url);
+    }
+
+    function setTheme(theme, themeName) {
+      if (theme) {
+        // Save selected theme in localStorage
+        localStorage.setItem('selectedTheme', theme);
+
+        // Remove existing theme stylesheet
+        const oldLink = document.getElementById('theme-stylesheet');
+        if (oldLink) {
+          oldLink.parentNode.removeChild(oldLink);
+        }
+
+        // Create a new theme stylesheet link
+        const newLink = document.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.href =  theme === "theme-swagger-ui" ? "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css" : `css/${theme}.css`;
+        newLink.id = 'theme-stylesheet';
+        document.head.appendChild(newLink);
+
+        // Update theme submenu and selected theme name
+        document.querySelectorAll('.theme-container a').forEach(link => link.classList.remove('selected'));
+        document.querySelector(`.theme-container a[onclick*="${theme}"]`).classList.add('selected');
+        document.getElementById('selected-theme-name').textContent = themeName;        
+
+        // // Update theme submenu and selected theme name
+        // document.querySelectorAll('.theme-container a').forEach(link => link.classList.remove('selected'));
+        // const selectedLink = document.querySelector(`.theme-container a[href*="${theme}"]`);
+        // console.log("SELECTED LINK", selectedLink)
+        // if (selectedLink) {
+        //   selectedLink.classList.add('selected');
+        //   document.getElementById('selected-theme-name').textContent = selectedLink.textContent;
+        // }
+
+          // Update theme submenu
+        // document.querySelectorAll('.theme-container a').forEach(link => link.classList.remove('selected'));
+        // document.querySelector(`.theme-container a[href*="${theme}"]`).classList.add('selected');
+      }
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('selectedTheme') || 'theme-swagger-ui';
+      setTheme(savedTheme, document.querySelector(`.theme-container a[onclick*="${savedTheme}"]`).textContent);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            // Initial load
+      renderSwaggerUI('/docs-json');
+      loadTheme();
+      document.querySelectorAll('.menu-link').forEach(link => {
+        link.addEventListener('click', handleMenuClick);
+      });
+    });
+
+    var hamburger = document.querySelector(".hamburger");
+	hamburger.addEventListener("click", function(){
+	    document.querySelector("body").classList.toggle("active");
+	})
+  </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+  <link rel="stylesheet" href="css/theme-outline.css" id="theme-stylesheet">
+  <style>
+    /* Reset and base styles */
+    * {
+      list-style: none;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+    }
+
+    /* Sidebar styles */
+    .wrapper .sidebar {
+      background: rgb(5, 68, 104);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 225px;
+      height: 100%;
+      padding: 20px 0;
+      transition: all 0.5s ease;
+    }
+
+    .wrapper .sidebar .profile {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .wrapper .sidebar .profile img {
+      display: block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .wrapper .sidebar .profile h3 {
+      color: #ffffff;
+      margin: 10px 0 5px;
+    }
+
+    .wrapper .sidebar .profile p {
+      color: rgb(206, 240, 253);
+      font-size: 14px;
+    }
+
+    .wrapper .sidebar ul li a {
+      display: block;
+      padding: 13px 30px;
+      border-bottom: 1px solid #10558d;
+      color: rgb(241, 237, 237);
+      font-size: 16px;
+      position: relative;
+    }
+
+    .wrapper .sidebar ul li a .icon {
+      color: #dee4ec;
+      width: 30px;
+      display: inline-block;
+    }
+
+    .wrapper .sidebar ul li a:hover,
+    .wrapper .sidebar ul li a.active {
+      color: #0c7db1;
+      background: white;
+      border-right: 2px solid rgb(5, 68, 104);
+    }
+
+    .wrapper .sidebar ul li a:hover .icon,
+    .wrapper .sidebar ul li a.active .icon {
+      color: #0c7db1;
+    }
+
+    /* Section styles */
+    .wrapper .section {
+      width: calc(100% - 225px);
+      margin-left: 225px;
+      transition: all 0.5s ease;
+    }
+
+    .wrapper .section .top_navbar {
+      background: rgb(7, 105, 185);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+    }
+
+    .wrapper .section .top_navbar .hamburger a {
+      font-size: 28px;
+      color: #f4fbff;
+    }
+
+    .wrapper .section .top_navbar .hamburger a:hover {
+      color: #a2ecff;
+    }
+
+    body.active .wrapper .sidebar {
+      left: -225px;
+    }
+
+    body.active .wrapper .section {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    /* Content styles */
+    .content {
+      padding: 20px;
+      width: calc(100%);
+    }
+
+    .swagger-ui {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .swagger-ui .topbar {
+      display: none;
+    }
+
+    .swagger-ui .btn.execute {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .swagger-ui .btn.execute:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="profile">
+        <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture">
+        <h3>Anamika Roy</h3>
+        <p>Designer</p>
+      </div>
+      <ul>
+        <li>
+          <a href="#" data-url="/docs-json" class="menu-link active">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span class="item">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-url="/api-docs/users" class="menu-link">
+            <span class="icon"><i class="fas fa-desktop"></i></span>
+            <span class="item">My Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" data-url="/api-docs/orders" class="menu-link">
+            <span class="icon"><i class="fas fa-user-friends"></i></span>
+            <span class="item">People</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="top_navbar">
+        <div class="hamburger">
+          <a href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <div class="content">
+        <div id="swagger-ui" class="swagger-ui"></div>
+      </div>
+    </div>
+
+    <div class="theme-container">
+      <a href="#" class="btn" onclick="toggleStyle('theme-feeling-blue')">Feeling Blue</a>
+      <a href="#" class="btn" onclick="toggleStyle('theme-flattop')">Flattop</a>
+      <a href="#" class="btn" onclick="toggleStyle('theme-material')">Material</a>
+      <a href="#" class="btn" onclick="toggleStyle('theme-outline')">Outline</a>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+  <script>
+    let swaggerUIInstance;
+
+    function renderSwaggerUI(url) {
+      if (swaggerUIInstance) {
+        document.getElementById('swagger-ui').innerHTML = '';
+      }
+
+      swaggerUIInstance = SwaggerUIBundle({
+        url: url,
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        swaggerOptions: {
+          filter: true,
+          tagsSorter: 'alpha',
+          operationsSorter: 'method',
+          tryItOutEnabled: true,
+          displayOperationId: true,
+          defaultModelsExpandDepth: -1 // Hide models by default
+        }
+      });
+    }
+
+    function handleMenuClick(event) {
+      event.preventDefault();
+      const target = event.target.closest('.menu-link');
+      if (!target) return;
+
+      const url = target.getAttribute('data-url');
+      if (!url) return;
+
+      document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+      target.classList.add('active');
+      renderSwaggerUI(url);
+    }
+
+    function toggleStyle(theme) {
+      if (theme) {
+        // Remove existing theme stylesheet
+        const oldLink = document.getElementById('theme-stylesheet');
+        if (oldLink) {
+          oldLink.parentNode.removeChild(oldLink);
+        }
+
+        // Create a new theme stylesheet link
+        const newLink = document.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.type = 'text/css';
+        newLink.id = 'theme-stylesheet';
+        newLink.href = 'css/' + theme + '.css?v=' + new Date().getTime();
+
+        // Append the new theme stylesheet to the head
+        document.getElementsByTagName("head")[0].appendChild(newLink);
+
+        // Ensure the new stylesheet is applied
+        newLink.onload = () => {
+          renderSwaggerUI(document.querySelector('.menu-link.active').getAttribute('data-url'));
+        };
+
+        newLink.onerror = () => {
+          console.error('Failed to load theme stylesheet.');
+        };
+      }
+    }
+
+    document.querySelector('.sidebar').addEventListener('click', handleMenuClick);
+
+    // Initial load
+    renderSwaggerUI('/docs-json');
+
+    var hamburger = document.querySelector(".hamburger");
+	hamburger.addEventListener("click", function(){
+	    document.querySelector("body").classList.toggle("active");
+	})
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css" >
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+  <link href='css/theme-outline.css' media='screen' rel='stylesheet' type='text/css' id="sut" />
+  <style>
+    *{
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body{
+	background: #f5f6fa;
+}
+
+.wrapper .sidebar{
+	background: rgb(5, 68, 104);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 225px;
+	height: 100%;
+	padding: 20px 0;
+	transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile{
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.wrapper .sidebar .profile img{
+	display: block;
+	width: 100px;
+	height: 100px;
+    border-radius: 50%;
+	margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3{
+	color: #ffffff;
+	margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p{
+	color: rgb(206, 240, 253);
+	font-size: 14px;
+}
+
+.wrapper .sidebar ul li a{
+	display: block;
+	padding: 13px 30px;
+	border-bottom: 1px solid #10558d;
+	color: rgb(241, 237, 237);
+	font-size: 16px;
+	position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+	color: #dee4ec;
+	width: 30px;
+	display: inline-block;
+}
+
+ 
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+	color: #0c7db1;
+
+	background:white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+	color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+	display: block;
+}
+
+.wrapper .section{
+	width: calc(100% - 225px);
+	margin-left: 225px;
+	transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar{
+	background: rgb(7, 105, 185);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+ 
+}
+
+.wrapper .section .top_navbar .hamburger a{
+	font-size: 28px;
+	color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .hamburger a:hover{
+	color: #a2ecff;
+}
+
+ 
+
+body.active .wrapper .sidebar{
+	left: -225px;
+}
+
+body.active .wrapper .section{
+	margin-left: 0;
+	width: 100%;
+}
+    .content {
+      padding: 20px;
+      width: calc(100%); 
+    }
+  </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="profile">
+                <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture">
+                <h3>Anamika Roy</h3>
+                <p>Designer</p>
+            </div>            
+            <ul >
+                <li>
+                    <a href="#" data-url="/docs-json" class="menu-link active">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="item">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/api-docs/users" class="menu-link">
+                    <span class="icon"><i class="fas fa-desktop"></i></span>
+                    <span class="item">My Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/api-docs/orders" class="menu-link">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="item">People</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="content">
+                <div id="swagger-ui" class="swagger-ui"></div>
+            </div>
+        </div>         
+
+            <div class="theme-container">
+        <a href="#" class="btn" onclick="toggleStyle('theme-feeling-blue')">Feeling Blue</a>
+        <a href="#" class="btn" onclick="toggleStyle('theme-flattop')">Flattop</a>
+        <a href="#" class="btn" onclick="toggleStyle('theme-material')">Material</a>
+        <a href="#" class="btn" onclick="toggleStyle('theme-monokai')">Monokai</a>
+        <a href="#" class="btn" onclick="toggleStyle('theme-muted')">Muted</a>
+        <a href="#" class="btn" onclick="toggleStyle('theme-newspaper')">Newspaper</a>
+        <a href="#" class="btn" onclick="toggleStyle('theme-outline')">Outline</a>
+    </div>
+
+
+    </div>     
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+  <script>
+    function renderSwaggerUI(url) {
+
+     let swaggerUIInstance;
+      if (swaggerUIInstance) {
+        swaggerUIInstance.destroy();
+      }
+
+    swaggerUIInstance =  SwaggerUIBundle({
+        url: url,
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        swaggerOptions: {
+          filter: true,
+          tagsSorter: 'alpha',
+          operationsSorter: 'method',
+          tryItOutEnabled: true,
+          displayOperationId: true,
+          defaultModelsExpandDepth: -1 // Hide models by default
+        }
+      });
+    }
+
+    function handleMenuClick(event) {
+      event.preventDefault();
+      const target = event.target.closest('.menu-link');
+      if (!target) return;
+
+      const url = target.getAttribute('data-url');
+      if (!url) return;
+
+      document.querySelectorAll('.menu-link').forEach(link => link.classList.remove('active'));
+      target.classList.add('active');
+      renderSwaggerUI(url);
+    }
+
+    document.querySelector('.sidebar').addEventListener('click', handleMenuClick);
+
+    // Initial load
+    renderSwaggerUI('/docs-json');
+
+    var hamburger = document.querySelector(".hamburger");
+	hamburger.addEventListener("click", function(){
+	    document.querySelector("body").classList.toggle("active");
+	})
+
+    function toggleStyle(theme){
+      if (theme){
+        var link  = document.getElementById('sut');
+        link.href = 'https://ostranme.github.io/swagger-ui-themes/demo/themes/' + theme + '.css?v=' + new Date().getTime();;
+        console.log("JJJJJJJJJJJJJ", link)
+
+
+        renderSwaggerUI('/docs-json');    
+        
+      }
+    }
+  </script>
+</body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'); */
+
+*{
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body{
+	background: #f5f6fa;
+}
+
+.wrapper .sidebar{
+	background: rgb(5, 68, 104);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 225px;
+	height: 100%;
+	padding: 20px 0;
+	transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile{
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.wrapper .sidebar .profile img{
+	display: block;
+	width: 100px;
+	height: 100px;
+    border-radius: 50%;
+	margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3{
+	color: #ffffff;
+	margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p{
+	color: rgb(206, 240, 253);
+	font-size: 14px;
+}
+
+.wrapper .sidebar ul li a{
+	display: block;
+	padding: 13px 30px;
+	border-bottom: 1px solid #10558d;
+	color: rgb(241, 237, 237);
+	font-size: 16px;
+	position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+	color: #dee4ec;
+	width: 30px;
+	display: inline-block;
+}
+
+ 
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+	color: #0c7db1;
+
+	background:white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+	color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+	display: block;
+}
+
+.wrapper .section{
+	width: calc(100% - 225px);
+	margin-left: 225px;
+	transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar{
+	background: rgb(7, 105, 185);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+ 
+}
+
+.wrapper .section .top_navbar .hamburger a{
+	font-size: 28px;
+	color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .hamburger a:hover{
+	color: #a2ecff;
+}
+
+ 
+
+body.active .wrapper .sidebar{
+	left: -225px;
+}
+
+body.active .wrapper .section{
+	margin-left: 0;
+	width: 100%;
+}
+
+    </style>
+</head>
+<body>
+   
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="profile">
+                <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture">
+                <h3>Anamika Roy</h3>
+                <p>Designer</p>
+            </div>
+            <ul id="sidebar-menu">
+                    <li>
+                        <a href="#main-api" data-url="/docs-json" class="active menu-link">
+                            <span class="icon"><i class="fas fa-home"></i></span>
+                            <span class="item">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#users-api" data-url="/user-json" class="menu-link">
+                            <span class="icon"><i class="fas fa-desktop"></i></span>
+                            <span class="item">My Dashboard</span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="#" data-url="/people-json" class="menu-link">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="item">People</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/performance" class="menu-link">
+                        <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                        <span class="item">Perfomance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/development" class="menu-link">
+                        <span class="icon"><i class="fas fa-database"></i></span>
+                        <span class="item">Development</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/reports" class="menu-link">
+                        <span class="icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="item">Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/admin" class="menu-link">
+                        <span class="icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="item">Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-url="/settings" class="menu-link">
+                        <span class="icon"><i class="fas fa-cog"></i></span>
+                        <span class="item">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="content">
+                <div id="swagger-ui" class="swagger-ui"></div>
+            </div>
+        </div>        
+        
+    </div>
+  <script>
+       var hamburger = document.querySelector(".hamburger");
+	    hamburger.addEventListener("click", function(){
+		    document.querySelector("body").classList.toggle("active");
+	    })
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>    
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        // dom_id: '#' + elementId,
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        filter: true,  // Make sure filter is enabled here
+        docExpansion: 'none',
+      });
+    }
+
+    renderSwaggerUI('main-api', '/docs-json');  // URL to the Swagger JSON endpoint
+    // renderSwaggerUI('users-api', '/docs'); // Users API JSON endpoint
+
+  </script>
+  <script>
+        function handleMenuClick(event) {
+            event.preventDefault();
+            const url = event.target.getAttribute('data-url');
+            console.log("UUUUUUUUUU", url)
+        }    
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', handleMenuClick);
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+  <style>
+*{
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body{
+	background: #f5f6fa;
+}
+
+.wrapper .sidebar{
+	background: rgb(5, 68, 104);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 225px;
+	height: 100%;
+	padding: 20px 0;
+	transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile{
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.wrapper .sidebar .profile img{
+	display: block;
+	width: 100px;
+	height: 100px;
+    border-radius: 50%;
+	margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3{
+	color: #ffffff;
+	margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p{
+	color: rgb(206, 240, 253);
+	font-size: 14px;
+}
+
+.wrapper .sidebar ul li a{
+	display: block;
+	padding: 13px 30px;
+	border-bottom: 1px solid #10558d;
+	color: rgb(241, 237, 237);
+	font-size: 16px;
+	position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+	color: #dee4ec;
+	width: 30px;
+	display: inline-block;
+}
+
+ 
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+	color: #0c7db1;
+
+	background:white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+	color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+	display: block;
+}
+
+.wrapper .section{
+	width: calc(100% - 225px);
+	margin-left: 225px;
+	transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar{
+	background: rgb(7, 105, 185);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 30px;
+ 
+}
+
+.wrapper .section .top_navbar .hamburger a{
+	font-size: 28px;
+	color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .hamburger a:hover{
+	color: #a2ecff;
+}
+
+ 
+
+body.active .wrapper .sidebar{
+	left: -225px;
+}
+
+body.active .wrapper .section{
+	margin-left: 0;
+	width: 100%;
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+        <div class="sidebar">
+            <div class="profile">
+                <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture">
+                <h3>Anamika Roy</h3>
+                <p>Designer</p>
+                <ul>
+                    <li>
+                        <a href="#main-api" class="active">
+                            <span class="icon"><i class="fas fa-home"></i></span>
+                            <span class="item">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#users-api" >
+                            <span class="icon"><i class="fas fa-desktop"></i></span>
+                            <span class="item">My Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-user-friends"></i></span>
+                            <span class="item">People</span>
+                        </a>
+                    </li>                    
+                </ul>                
+            </div>
+        </div>
+        <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+  </div>
+  <div class="content">
+    <div id="main-api"></div>
+    <div id="users-api"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+  <script>
+    function renderSwaggerUI(elementId, url) {
+      SwaggerUIBundle({
+        url: url,
+        dom_id: '#' + elementId,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIBundle.SwaggerUIStandalonePreset
+        ],
+        layout: "BaseLayout",
+        filter: true,  // Make sure filter is enabled here
+        docExpansion: 'none',
+      });
+    }
+
+    renderSwaggerUI('main-api', '/docs-json');  // URL to the Swagger JSON endpoint
+     renderSwaggerUI('users-api', 'http://localhost:3031/api-docs/users-json'); // Users API JSON endpoint
+  </script>
+  <script>
+        var hamburger = document.querySelector(".hamburger");
+	    hamburger.addEventListener("click", function(){
+		    document.querySelector("body").classList.toggle("active");
+	    })
+  </script>
+</body>
+</html> -->

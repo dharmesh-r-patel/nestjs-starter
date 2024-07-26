@@ -1,6 +1,6 @@
 'use strict';
 
-import { FileDriver } from '../../core/enum/file.type';
+import { FileDriver } from '@config/type/file-config.type';
 export interface IFileConfig {
     driver: FileDriver;
     accessKeyId?: string;

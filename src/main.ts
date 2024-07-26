@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 import { ClassSerializerInterceptor, ValidationPipe, BadRequestException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
@@ -26,8 +28,10 @@ async function bootstrap() {
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
     const configService = app.get(ConfigService<AllConfigType>);
 
+    app.set('trust proxy', 1); // 1 indicates trusting the first proxy
     app.enableCors();
     app.enableShutdownHooks();
+
     // app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 
     // dx const configService = app.select(HelperModule).get(ConfigService);
@@ -69,6 +73,8 @@ async function bootstrap() {
     );
 
     const node_env = configService.getOrThrow('app.nodeEnv', { infer: true });
+
+    app.useStaticAssets(join(__dirname, '..', 'public'));
 
     if (['development', 'staging', 'testing'].includes(node_env)) {
         swaggerInit(app);

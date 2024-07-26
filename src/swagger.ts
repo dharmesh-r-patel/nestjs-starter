@@ -3,6 +3,12 @@ import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AllConfigType } from '@config/type/config.type';
+import { CountriesModule } from '@modules/countries/countries.module';
+import { CurrenciesModule } from '@modules/currencies/currencies.module';
+import { FilesModule } from '@modules/files/files.module';
+import { HomeModule } from '@modules/home/home.module';
+
+import { AppModule } from './app/app.module';
 
 // import { ConfigService } from './common/helper/services/config.service';
 
@@ -24,11 +30,31 @@ export default async function (app: INestApplication) {
         .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT' }, 'refreshToken')
         .build();
 
-    const document = SwaggerModule.createDocument(app, documentBuild, {
+    const documentmain = SwaggerModule.createDocument(app, documentBuild, {
         deepScanRoutes: true,
+        include: [AppModule, HomeModule],
     });
 
-    SwaggerModule.setup(docPrefix, app, document, {
+    SwaggerModule.setup(docPrefix, app, documentmain, {
+        explorer: true,
+        customSiteTitle: docName,
+        swaggerOptions: {
+            docExpansion: 'none',
+            persistAuthorization: true,
+            displayOperationId: true,
+            operationsSorter: 'method',
+            tagsSorter: 'alpha',
+            tryItOutEnabled: true,
+            filter: true,
+        },
+    });
+
+    const documentCommon = SwaggerModule.createDocument(app, documentBuild, {
+        deepScanRoutes: true,
+        include: [CountriesModule, CurrenciesModule, FilesModule],
+    });
+
+    SwaggerModule.setup('commons', app, documentCommon, {
         explorer: true,
         customSiteTitle: docName,
         swaggerOptions: {
