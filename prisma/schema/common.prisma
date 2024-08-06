@@ -1,3 +1,21 @@
+model winstonlog {
+    id_log        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    level         String   @db.VarChar(80)
+    message       String   @db.Text
+    context       String?  @db.VarChar(255)
+    correlationId String?  @db.Uuid
+    sourceClass   String?  @db.VarChar(255)
+    props         Json?
+    organization  String?  @db.VarChar(40)
+    app           String?  @db.VarChar(40)
+    durationMs    Decimal? @default(0) @db.Decimal(10, 4)
+    stack         String?  @db.Text
+    label         String?  @db.VarChar(40)
+    timestamp     DateTime @default(now()) @db.Timestamptz(6)
+
+    @@schema("public")
+}
+
 model countries {
     id_country    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     name          String?   @unique @db.VarChar(80)

@@ -110,7 +110,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 
         let result: any;
         if (queryObj.type == 'SELECT_ONE' || queryObj.type == 'INSERT') {
-            result = !_.isEmpty(rows) ? rows[0] : null; //do not change null to balnk object
+            result = !_.isEmpty(rows) ? rows[0] : null; //do not change null to blank object
         } else {
             result = rows;
         }

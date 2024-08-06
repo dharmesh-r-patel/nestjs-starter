@@ -16,6 +16,7 @@ import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
+import NestjsLoggerServiceAdapter from '@infineit/winston-logger/logger/infrastructure/nestjs/nestjsLoggerServiceAdapter';
 import { useContainer } from 'class-validator';
 import compression from 'compression';
 import RateLimit from 'express-rate-limit';
@@ -45,9 +46,12 @@ import swaggerInit from './swagger';
  * @returns {Promise<void>} A promise that resolves when the server starts.
  */
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
     // Create a NestJS application instance
-    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, { bufferLogs: true });
+
+    app.useLogger(app.get(NestjsLoggerServiceAdapter));
+    app.flushLogs();
 
     // Use the application container for dependency injection
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
